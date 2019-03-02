@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AMCPatientEmailModelStoreContainer" CdmEntityContainer="AMCPatientEmailEntities">
+    <EntitySetMapping Name="MasterTemplates">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.MasterTemplate">
+        <MappingFragment StoreEntitySet="MasterTemplate">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Footer" ColumnName="Footer" />
+          <ScalarProperty Name="Header" ColumnName="Header" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SQLQueries">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.SQLQuery">
+        <MappingFragment StoreEntitySet="SQLQuery">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailAttachments">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailAttachment">
+        <MappingFragment StoreEntitySet="EmailAttachments">
+          <ScalarProperty Name="IsBrowsed" ColumnName="IsBrowsed" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="EmailTemplateId" ColumnName="EmailTemplateId" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SentEmailAttachments">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.SentEmailAttachment">
+        <MappingFragment StoreEntitySet="SentEmailAttachments">
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="procGetUsersInGroupsByGroupId" FunctionName="AMCPatientEmailModel.Store.procGetUsersInGroupsByGroupId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetUsersInGroupsByGroupId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetAllUsersInGroups" FunctionName="AMCPatientEmailModel.Store.procGetAllUsersInGroups">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetAllUsersInGroups_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetPermissionForUser" FunctionName="AMCPatientEmailModel.Store.procGetPermissionForUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetPermissionForUser_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PermisssionName" ColumnName="PermisssionName" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="CanCreateGroup" ColumnName="CanCreateGroup" />
+          <ScalarProperty Name="CanEditGroup" ColumnName="CanEditGroup" />
+          <ScalarProperty Name="CanDeleteGroup" ColumnName="CanDeleteGroup" />
+          <ScalarProperty Name="CanCreateTemplate" ColumnName="CanCreateTemplate" />
+          <ScalarProperty Name="CanEditTemplate" ColumnName="CanEditTemplate" />
+          <ScalarProperty Name="CanDeleteTemplate" ColumnName="CanDeleteTemplate" />
+          <ScalarProperty Name="CanEditOtherTemplate" ColumnName="CanEditOtherTemplate" />
+          <ScalarProperty Name="CanDeleteOtherTemplate" ColumnName="CanDeleteOtherTemplate" />
+          <ScalarProperty Name="CanSendEmail" ColumnName="CanSendEmail" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CanCreateSQLQuery" ColumnName="CanCreateSQLQuery" />
+          <ScalarProperty Name="CanEditSQLQuery" ColumnName="CanEditSQLQuery" />
+          <ScalarProperty Name="CanDeleteSQLQuery" ColumnName="CanDeleteSQLQuery" />
+          <ScalarProperty Name="CanEditOtherGroup" ColumnName="CanEditOtherGroup" />
+          <ScalarProperty Name="CanDeleteOtherGroup" ColumnName="CanDeleteOtherGroup" />
+          <ScalarProperty Name="CanEditOtherSQLQuery" ColumnName="CanEditOtherSQLQuery" />
+          <ScalarProperty Name="CanDeleteOtherSQLQuery" ColumnName="CanDeleteOtherSQLQuery" />
+          <ScalarProperty Name="CanDeleteEmail" ColumnName="CanDeleteEmail" />
+          <ScalarProperty Name="CanDeleteOtherEmail" ColumnName="CanDeleteOtherEmail" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersInGroups">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.UsersInGroup">
+        <MappingFragment StoreEntitySet="UsersInGroup">
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TagCategories">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.TagCategory">
+        <MappingFragment StoreEntitySet="TagCategory">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TagSQLs">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.TagSQL">
+        <MappingFragment StoreEntitySet="TagSQL">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="TagCategoryId" ColumnName="TagCategoryId" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="procGetTagSQLByTagCategory" FunctionName="AMCPatientEmailModel.Store.procGetTagSQLByTagCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetTagSQLByTagCategory_Result">
+          <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetEmailTemplates" FunctionName="AMCPatientEmailModel.Store.procGetEmailTemplates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailTemplates_Result">
+          <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetMasterTemplates" FunctionName="AMCPatientEmailModel.Store.procGetMasterTemplates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetMasterTemplates_Result">
+          <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.Permission">
+        <MappingFragment StoreEntitySet="Permission">
+          <ScalarProperty Name="CanDeleteOtherEmail" ColumnName="CanDeleteOtherEmail" />
+          <ScalarProperty Name="CanDeleteEmail" ColumnName="CanDeleteEmail" />
+          <ScalarProperty Name="CanDeleteOtherSQLQuery" ColumnName="CanDeleteOtherSQLQuery" />
+          <ScalarProperty Name="CanEditOtherSQLQuery" ColumnName="CanEditOtherSQLQuery" />
+          <ScalarProperty Name="CanDeleteOtherGroup" ColumnName="CanDeleteOtherGroup" />
+          <ScalarProperty Name="CanEditOtherGroup" ColumnName="CanEditOtherGroup" />
+          <ScalarProperty Name="CanDeleteSQLQuery" ColumnName="CanDeleteSQLQuery" />
+          <ScalarProperty Name="CanEditSQLQuery" ColumnName="CanEditSQLQuery" />
+          <ScalarProperty Name="CanCreateSQLQuery" ColumnName="CanCreateSQLQuery" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CanSendEmail" ColumnName="CanSendEmail" />
+          <ScalarProperty Name="CanDeleteOtherTemplate" ColumnName="CanDeleteOtherTemplate" />
+          <ScalarProperty Name="CanEditOtherTemplate" ColumnName="CanEditOtherTemplate" />
+          <ScalarProperty Name="CanDeleteTemplate" ColumnName="CanDeleteTemplate" />
+          <ScalarProperty Name="CanEditTemplate" ColumnName="CanEditTemplate" />
+          <ScalarProperty Name="CanCreateTemplate" ColumnName="CanCreateTemplate" />
+          <ScalarProperty Name="CanDeleteGroup" ColumnName="CanDeleteGroup" />
+          <ScalarProperty Name="CanEditGroup" ColumnName="CanEditGroup" />
+          <ScalarProperty Name="CanCreateGroup" ColumnName="CanCreateGroup" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="PermisssionName" ColumnName="PermisssionName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emails">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.Email">
+        <MappingFragment StoreEntitySet="Email">
+          <ScalarProperty Name="SendUnEncryptedPatientLetter" ColumnName="SendUnEncryptedPatientLetter" />
+          <ScalarProperty Name="StorePatientLetter" ColumnName="StorePatientLetter" />
+          <ScalarProperty Name="AttachmentDescription" ColumnName="AttachmentDescription" />
+          <ScalarProperty Name="AttachmentCategory" ColumnName="AttachmentCategory" />
+          <ScalarProperty Name="PatientFileName" ColumnName="PatientFileName" />
+          <ScalarProperty Name="SendASSMS" ColumnName="SendASSMS" />
+          <ScalarProperty Name="Letter" ColumnName="Letter" />
+          <ScalarProperty Name="LetterRequired" ColumnName="LetterRequired" />
+          <ScalarProperty Name="EmailTemplateId" ColumnName="EmailTemplateId" />
+          <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+          <ScalarProperty Name="ActivityRecId" ColumnName="ActivityRecId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="SentOn" ColumnName="SentOn" />
+          <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+          <ScalarProperty Name="IsDraft" ColumnName="IsDraft" />
+          <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+          <ScalarProperty Name="Cc" ColumnName="Cc" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="procGetEmailsByUser" FunctionName="AMCPatientEmailModel.Store.procGetEmailsByUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailsByUser_Result">
+          <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+          <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+          <ScalarProperty Name="SentOn" ColumnName="SentOn" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+          <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+          <ScalarProperty Name="EmailTemplateName" ColumnName="EmailTemplateName" />
+          <ScalarProperty Name="SendASSMS" ColumnName="SendASSMS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="EmailTemplateCategories">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailTemplateCategory">
+        <MappingFragment StoreEntitySet="EmailTemplateCategory">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailTemplates">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailTemplate">
+        <MappingFragment StoreEntitySet="EmailTemplate">
+          <ScalarProperty Name="SendUnEncryptedPatientLetter" ColumnName="SendUnEncryptedPatientLetter" />
+          <ScalarProperty Name="CombineMultipleInstructions" ColumnName="CombineMultipleInstructions" />
+          <ScalarProperty Name="InstructionFilter" ColumnName="InstructionFilter" />
+          <ScalarProperty Name="IncludeInstructions" ColumnName="IncludeInstructions" />
+          <ScalarProperty Name="AttachmentDescription" ColumnName="AttachmentDescription" />
+          <ScalarProperty Name="AttachmentCategory" ColumnName="AttachmentCategory" />
+          <ScalarProperty Name="PatientFileName" ColumnName="PatientFileName" />
+          <ScalarProperty Name="SendASSMS" ColumnName="SendASSMS" />
+          <ScalarProperty Name="StorePatientLetter" ColumnName="StorePatientLetter" />
+          <ScalarProperty Name="Letter" ColumnName="Letter" />
+          <ScalarProperty Name="RequireLetter" ColumnName="RequireLetter" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="SelectAllAttachments" ColumnName="SelectAllAttachments" />
+          <ScalarProperty Name="PromptForAttachments" ColumnName="PromptForAttachments" />
+          <ScalarProperty Name="AttachmentDirectoryInclude" ColumnName="AttachmentDirectoryInclude" />
+          <ScalarProperty Name="AttachmentDirectoryFilter" ColumnName="AttachmentDirectoryFilter" />
+          <ScalarProperty Name="AttachmentDirectoryPath" ColumnName="AttachmentDirectoryPath" />
+          <ScalarProperty Name="AttachmentHasDirectory" ColumnName="AttachmentHasDirectory" />
+          <ScalarProperty Name="AttachmentBusinessInclude" ColumnName="AttachmentBusinessInclude" />
+          <ScalarProperty Name="AttachmentBusinessFilter" ColumnName="AttachmentBusinessFilter" />
+          <ScalarProperty Name="AttachmentHasBusiness" ColumnName="AttachmentHasBusiness" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="EmailTemplateCategoryId" ColumnName="EmailTemplateCategoryId" />
+          <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+          <ScalarProperty Name="Cc" ColumnName="Cc" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSignatures">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.UserSignature">
+        <MappingFragment StoreEntitySet="UserSignatures">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Signature" ColumnName="Signature" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetBrowsedFileNamesByTemplateId" FunctionName="AMCPatientEmailModel.Store.GetBrowsedFileNamesByTemplateId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetBrowsedFileNamesByTemplateId_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetEmailTemplatesByCategoryId" FunctionName="AMCPatientEmailModel.Store.procGetEmailTemplatesByCategoryId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailTemplatesByCategoryId_Result">
+          <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEmailFilters" FunctionName="AMCPatientEmailModel.Store.GetEmailFilters">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetEmailFilters_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetEmailsByUserWithFilter" FunctionName="AMCPatientEmailModel.Store.procGetEmailsByUserWithFilter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailsByUserWithFilter_Result">
+          <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+          <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+          <ScalarProperty Name="SentOn" ColumnName="SentOn" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+          <ScalarProperty Name="EmailTemplateName" ColumnName="EmailTemplateName" />
+          <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="DocumentTemplates">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.DocumentTemplate">
+        <MappingFragment StoreEntitySet="DocumentTemplate">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TemplatePath" ColumnName="TemplatePath" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailJobs">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailJob">
+        <MappingFragment StoreEntitySet="EmailJob">
+          <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+          <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+          <ScalarProperty Name="EmailFailed" ColumnName="EmailFailed" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetScheduledEmailData" FunctionName="AMCPatientEmailModel.Store.GetScheduledEmailData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetScheduledEmailData_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="EmailFailed" ColumnName="EmailFailed" />
+          <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+          <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDoctorForPatient" FunctionName="AMCPatientEmailModel.Store.GetDoctorForPatient">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetDoctorForPatient_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctors">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstructionTemplates">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.InstructionTemplate">
+        <MappingFragment StoreEntitySet="InstructionTemplate">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TemplatePath" ColumnName="TemplatePath" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetInstructionTemplateByNames" FunctionName="AMCPatientEmailModel.Store.GetInstructionTemplateByNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetInstructionTemplateByNames_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="TemplatePath" ColumnName="TemplatePath" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="PharmacyWorksheets">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.PharmacyWorksheet">
+        <MappingFragment StoreEntitySet="PharmacyWorksheet">
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="XSORecId" ColumnName="XSORecId" />
+          <ScalarProperty Name="ActivityRecId" ColumnName="ActivityRecId" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+          <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+          <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+          <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+          <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="ProcessOn" ColumnName="ProcessOn" />
+          <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+          <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetScheduledPharmacyWorksheets" FunctionName="AMCPatientEmailModel.Store.GetScheduledPharmacyWorksheets">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetScheduledPharmacyWorksheets_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+          <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+          <ScalarProperty Name="ProcessOn" ColumnName="ProcessOn" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+          <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+          <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+          <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+          <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+          <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="ActivityRecId" ColumnName="ActivityRecId" />
+          <ScalarProperty Name="XSORecId" ColumnName="XSORecId" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetExcelJobs" FunctionName="AMCPatientEmailModel.Store.GetExcelJobs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetExcelJobs_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProcName" ColumnName="ProcName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+          <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+          <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+          <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+          <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+          <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ExcelJobs">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.ExcelJob">
+        <MappingFragment StoreEntitySet="ExcelJob">
+          <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+          <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+          <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+          <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+          <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ProcName" ColumnName="ProcName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrintJobs">
+      <EntityTypeMapping TypeName="AMCPatientEmailModel.PrintJob">
+        <MappingFragment StoreEntitySet="PrintJob">
+          <ScalarProperty Name="SaveInCRM" ColumnName="SaveInCRM" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+          <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+          <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+          <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+          <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+          <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetPrintJobs" FunctionName="AMCPatientEmailModel.Store.GetPrintJobs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetPrintJobs_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+          <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+          <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+          <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+          <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+          <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+          <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+          <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+          <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="SaveInCRM" ColumnName="SaveInCRM" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

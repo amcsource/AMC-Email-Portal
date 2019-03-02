@@ -1,0 +1,2115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AMCPatientEmailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoctorName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TemplatePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="From" Type="nvarchar" MaxLength="500" />
+          <Property Name="To" Type="nvarchar(max)" />
+          <Property Name="Cc" Type="nvarchar" MaxLength="500" />
+          <Property Name="Bcc" Type="nvarchar" MaxLength="500" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="500" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="HasAttachments" Type="bit" />
+          <Property Name="IsDraft" Type="bit" />
+          <Property Name="SentBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="SentOn" Type="datetime" />
+          <Property Name="ActivityRecId" Type="nvarchar" MaxLength="50" />
+          <Property Name="PatientRecId" Type="nvarchar" MaxLength="50" />
+          <Property Name="PatientNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="PatientFullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmailTemplateId" Type="int" />
+          <Property Name="LetterRequired" Type="bit" />
+          <Property Name="Letter" Type="nvarchar(max)" />
+          <Property Name="SendASSMS" Type="bit" />
+          <Property Name="PatientFileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="AttachmentCategory" Type="nvarchar" MaxLength="500" />
+          <Property Name="AttachmentDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="StorePatientLetter" Type="bit" />
+          <Property Name="SendUnEncryptedPatientLetter" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailAttachments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmailTemplateId" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeletedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsBrowsed" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateId" Type="int" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="500" />
+          <Property Name="SendDate" Type="datetime" Nullable="false" />
+          <Property Name="EmailFailed" Type="bit" Nullable="false" />
+          <Property Name="EmailSent" Type="bit" Nullable="false" />
+          <Property Name="PatientNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="PatientRecId" Type="nvarchar" MaxLength="36" />
+          <Property Name="Prescription" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="From" Type="nvarchar" MaxLength="500" />
+          <Property Name="To" Type="nvarchar(max)" />
+          <Property Name="Cc" Type="nvarchar" MaxLength="500" />
+          <Property Name="Bcc" Type="nvarchar" MaxLength="500" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="500" />
+          <Property Name="TemplateId" Type="int" />
+          <Property Name="EmailTemplateCategoryId" Type="int" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="AttachmentHasBusiness" Type="bit" />
+          <Property Name="AttachmentBusinessFilter" Type="nvarchar" MaxLength="500" />
+          <Property Name="AttachmentBusinessInclude" Type="nvarchar" MaxLength="50" />
+          <Property Name="AttachmentHasDirectory" Type="bit" />
+          <Property Name="AttachmentDirectoryPath" Type="nvarchar" MaxLength="500" />
+          <Property Name="AttachmentDirectoryFilter" Type="nvarchar" MaxLength="500" />
+          <Property Name="AttachmentDirectoryInclude" Type="nvarchar" MaxLength="50" />
+          <Property Name="PromptForAttachments" Type="bit" />
+          <Property Name="SelectAllAttachments" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeletedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="RequireLetter" Type="bit" />
+          <Property Name="Letter" Type="nvarchar(max)" />
+          <Property Name="StorePatientLetter" Type="bit" />
+          <Property Name="SendASSMS" Type="bit" />
+          <Property Name="PatientFileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="AttachmentCategory" Type="nvarchar" MaxLength="500" />
+          <Property Name="AttachmentDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="IncludeInstructions" Type="bit" />
+          <Property Name="InstructionFilter" Type="nvarchar" MaxLength="255" />
+          <Property Name="CombineMultipleInstructions" Type="bit" />
+          <Property Name="SendUnEncryptedPatientLetter" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailTemplateCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="ExcelJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Process" Type="bit" Nullable="false" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="ProcessedOn" Type="datetime" />
+          <Property Name="ProcessFailed" Type="bit" Nullable="false" />
+          <Property Name="ProcessFailedCount" Type="smallint" />
+          <Property Name="ProcessFailedReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="EmailSubject" Type="nvarchar" MaxLength="300" />
+          <Property Name="EmailBody" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="InstructionTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TemplatePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Header" Type="nvarchar(max)" />
+          <Property Name="Footer" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeletedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermisssionName" Type="nvarchar" MaxLength="255" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="CanCreateGroup" Type="bit" />
+          <Property Name="CanEditGroup" Type="bit" />
+          <Property Name="CanDeleteGroup" Type="bit" />
+          <Property Name="CanEditOtherGroup" Type="bit" />
+          <Property Name="CanDeleteOtherGroup" Type="bit" />
+          <Property Name="CanCreateTemplate" Type="bit" />
+          <Property Name="CanEditTemplate" Type="bit" />
+          <Property Name="CanDeleteTemplate" Type="bit" />
+          <Property Name="CanEditOtherTemplate" Type="bit" />
+          <Property Name="CanDeleteOtherTemplate" Type="bit" />
+          <Property Name="CanSendEmail" Type="bit" />
+          <Property Name="CanCreateSQLQuery" Type="bit" />
+          <Property Name="CanEditSQLQuery" Type="bit" />
+          <Property Name="CanDeleteSQLQuery" Type="bit" />
+          <Property Name="CanEditOtherSQLQuery" Type="bit" />
+          <Property Name="CanDeleteOtherSQLQuery" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CanDeleteEmail" Type="bit" />
+          <Property Name="CanDeleteOtherEmail" Type="bit" />
+        </EntityType>
+        <EntityType Name="PharmacyWorksheet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentTemplateId" Type="int" Nullable="false" />
+          <Property Name="DocumentTemplateName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PatientNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="PatientRecId" Type="nvarchar" MaxLength="36" />
+          <Property Name="ProcessOn" Type="datetime" Nullable="false" />
+          <Property Name="Process" Type="bit" Nullable="false" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="ProcessedOn" Type="datetime" />
+          <Property Name="ProcessFailed" Type="bit" Nullable="false" />
+          <Property Name="ProcessFailedCount" Type="smallint" />
+          <Property Name="ProcessFailedReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="Prescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="ActivityRecId" Type="nvarchar" MaxLength="36" />
+          <Property Name="XSORecId" Type="nvarchar" MaxLength="36" />
+          <Property Name="Flag" Type="nvarchar" MaxLength="30" />
+          <Property Name="PatientFullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PrintJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentTemplateId" Type="int" Nullable="false" />
+          <Property Name="DocumentTemplateName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PatientNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="PatientRecId" Type="nvarchar" MaxLength="36" />
+          <Property Name="Process" Type="bit" Nullable="false" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="ProcessedOn" Type="datetime" />
+          <Property Name="ProcessFailed" Type="bit" Nullable="false" />
+          <Property Name="ProcessFailedCount" Type="smallint" />
+          <Property Name="ProcessFailedReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="PatientFullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="SaveInCRM" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SentEmailAttachments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmailId" Type="int" />
+        </EntityType>
+        <EntityType Name="SQLQuery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Query" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeletedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TagCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TagSQL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Query" Type="nvarchar(max)" />
+          <Property Name="TagCategoryId" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserSignatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Signature" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeletedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="UsersInGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Email__EmailTemp__6E01572D">
+          <End Role="EmailTemplate" Type="Self.EmailTemplate" Multiplicity="0..1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="EmailTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmailAtta__Email__412EB0B6">
+          <End Role="EmailTemplate" Type="Self.EmailTemplate" Multiplicity="0..1" />
+          <End Role="EmailAttachments" Type="Self.EmailAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailAttachments">
+              <PropertyRef Name="EmailTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmailTemp__Email__619B8048">
+          <End Role="EmailTemplateCategory" Type="Self.EmailTemplateCategory" Multiplicity="0..1" />
+          <End Role="EmailTemplate" Type="Self.EmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplateCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplate">
+              <PropertyRef Name="EmailTemplateCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmailTemp__Templ__3C69FB99">
+          <End Role="MasterTemplate" Type="Self.MasterTemplate" Multiplicity="0..1" />
+          <End Role="EmailTemplate" Type="Self.EmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplate">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Permissio__Group__2F10007B">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Permission" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PharmacyW__Docum__3587F3E0">
+          <End Role="DocumentTemplate" Type="Self.DocumentTemplate" Multiplicity="1" />
+          <End Role="PharmacyWorksheet" Type="Self.PharmacyWorksheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PharmacyWorksheet">
+              <PropertyRef Name="DocumentTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PrintJob__Docume__4C6B5938">
+          <End Role="DocumentTemplate" Type="Self.DocumentTemplate" Multiplicity="1" />
+          <End Role="PrintJob" Type="Self.PrintJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrintJob">
+              <PropertyRef Name="DocumentTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SentEmail__Email__49C3F6B7">
+          <End Role="Email" Type="Self.Email" Multiplicity="0..1" />
+          <End Role="SentEmailAttachments" Type="Self.SentEmailAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Email">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentEmailAttachments">
+              <PropertyRef Name="EmailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TagSQL__TagCateg__5629CD9C">
+          <End Role="TagCategory" Type="Self.TagCategory" Multiplicity="0..1" />
+          <End Role="TagSQL" Type="Self.TagSQL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagSQL">
+              <PropertyRef Name="TagCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersInGr__Group__33D4B598">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="UsersInGroup" Type="Self.UsersInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersInGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetBrowsedFileNamesByTemplateId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="emailTemplateId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetDoctorForPatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="patientNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetEmailFilters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetExcelJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetInstructionTemplateByNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="names" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetPrintJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetScheduledEmailData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetScheduledPharmacyWorksheets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="procGetAllUsersInGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="procGetEmailsByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+          <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+          <Parameter Name="status" Type="nvarchar" Mode="In" />
+          <Parameter Name="sentBy" Type="nvarchar" Mode="In" />
+          <Parameter Name="patientNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="procGetEmailsByUserWithFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+          <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+          <Parameter Name="status" Type="nvarchar" Mode="In" />
+          <Parameter Name="sentBy" Type="nvarchar" Mode="In" />
+          <Parameter Name="patientNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="templateName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="procGetEmailTemplates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+          <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="procGetEmailTemplatesByCategoryId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+          <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="procGetMasterTemplates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+          <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="procGetPermissionForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="procGetTagSQLByTagCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+          <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+          <Parameter Name="tagCategoryId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="procGetUsersInGroupsByGroupId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="AMCPatientEmailModelStoreContainer">
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentTemplate" EntityType="Self.DocumentTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailAttachments" EntityType="Self.EmailAttachments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailJob" EntityType="Self.EmailJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplate" EntityType="Self.EmailTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplateCategory" EntityType="Self.EmailTemplateCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExcelJob" EntityType="Self.ExcelJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstructionTemplate" EntityType="Self.InstructionTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterTemplate" EntityType="Self.MasterTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PharmacyWorksheet" EntityType="Self.PharmacyWorksheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintJob" EntityType="Self.PrintJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SentEmailAttachments" EntityType="Self.SentEmailAttachments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SQLQuery" EntityType="Self.SQLQuery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagCategory" EntityType="Self.TagCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagSQL" EntityType="Self.TagSQL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSignatures" EntityType="Self.UserSignatures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersInGroup" EntityType="Self.UsersInGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Email__EmailTemp__6E01572D" Association="Self.FK__Email__EmailTemp__6E01572D">
+            <End Role="EmailTemplate" EntitySet="EmailTemplate" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmailAtta__Email__412EB0B6" Association="Self.FK__EmailAtta__Email__412EB0B6">
+            <End Role="EmailTemplate" EntitySet="EmailTemplate" />
+            <End Role="EmailAttachments" EntitySet="EmailAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmailTemp__Email__619B8048" Association="Self.FK__EmailTemp__Email__619B8048">
+            <End Role="EmailTemplateCategory" EntitySet="EmailTemplateCategory" />
+            <End Role="EmailTemplate" EntitySet="EmailTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmailTemp__Templ__3C69FB99" Association="Self.FK__EmailTemp__Templ__3C69FB99">
+            <End Role="MasterTemplate" EntitySet="MasterTemplate" />
+            <End Role="EmailTemplate" EntitySet="EmailTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Permissio__Group__2F10007B" Association="Self.FK__Permissio__Group__2F10007B">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Permission" EntitySet="Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PharmacyW__Docum__3587F3E0" Association="Self.FK__PharmacyW__Docum__3587F3E0">
+            <End Role="DocumentTemplate" EntitySet="DocumentTemplate" />
+            <End Role="PharmacyWorksheet" EntitySet="PharmacyWorksheet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PrintJob__Docume__4C6B5938" Association="Self.FK__PrintJob__Docume__4C6B5938">
+            <End Role="DocumentTemplate" EntitySet="DocumentTemplate" />
+            <End Role="PrintJob" EntitySet="PrintJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SentEmail__Email__49C3F6B7" Association="Self.FK__SentEmail__Email__49C3F6B7">
+            <End Role="Email" EntitySet="Email" />
+            <End Role="SentEmailAttachments" EntitySet="SentEmailAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TagSQL__TagCateg__5629CD9C" Association="Self.FK__TagSQL__TagCateg__5629CD9C">
+            <End Role="TagCategory" EntitySet="TagCategory" />
+            <End Role="TagSQL" EntitySet="TagSQL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersInGr__Group__33D4B598" Association="Self.FK__UsersInGr__Group__33D4B598">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="UsersInGroup" EntitySet="UsersInGroup" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AMCPatientEmailModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AMCPatientEmailEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MasterTemplates" EntityType="AMCPatientEmailModel.MasterTemplate" />
+          <EntitySet Name="SQLQueries" EntityType="AMCPatientEmailModel.SQLQuery" />
+          <EntitySet Name="EmailAttachments" EntityType="AMCPatientEmailModel.EmailAttachment" />
+          <EntitySet Name="SentEmailAttachments" EntityType="AMCPatientEmailModel.SentEmailAttachment" />
+          <FunctionImport Name="sp_GetResult" ReturnType="Collection(AMCPatientEmailModel.sp_GetResult_Result)">
+          <Parameter Name="sql" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="procGetUsersInGroupsByGroupId" ReturnType="Collection(AMCPatientEmailModel.procGetUsersInGroupsByGroupId_Result)">
+          <Parameter Name="groupId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="procGetAllUsersInGroups" ReturnType="Collection(AMCPatientEmailModel.procGetAllUsersInGroups_Result)" />
+          <FunctionImport Name="procGetPermissionForUser" ReturnType="Collection(AMCPatientEmailModel.procGetPermissionForUser_Result)">
+          <Parameter Name="userId" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Groups" EntityType="AMCPatientEmailModel.Group" />
+          <EntitySet Name="UsersInGroups" EntityType="AMCPatientEmailModel.UsersInGroup" />
+          <AssociationSet Name="FK__UsersInGr__Group__09DE7BCC" Association="AMCPatientEmailModel.FK__UsersInGr__Group__09DE7BCC">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="UsersInGroup" EntitySet="UsersInGroups" />
+          </AssociationSet>
+          <EntitySet Name="TagCategories" EntityType="AMCPatientEmailModel.TagCategory" />
+          <EntitySet Name="TagSQLs" EntityType="AMCPatientEmailModel.TagSQL" />
+          <AssociationSet Name="FK__TagSQL__TagCateg__59FA5E80" Association="AMCPatientEmailModel.FK__TagSQL__TagCateg__59FA5E80">
+            <End Role="TagCategory" EntitySet="TagCategories" />
+            <End Role="TagSQL" EntitySet="TagSQLs" />
+          </AssociationSet>
+          <FunctionImport Name="procGetTagSQLByTagCategory" ReturnType="Collection(AMCPatientEmailModel.procGetTagSQLByTagCategory_Result)">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortExpression" Mode="In" Type="String" />
+            <Parameter Name="searchKeyword" Mode="In" Type="String" />
+            <Parameter Name="tagCategoryId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="procGetEmailTemplates" ReturnType="Collection(AMCPatientEmailModel.procGetEmailTemplates_Result)">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortExpression" Mode="In" Type="String" />
+            <Parameter Name="searchKeyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="procGetMasterTemplates" ReturnType="Collection(AMCPatientEmailModel.procGetMasterTemplates_Result)">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortExpression" Mode="In" Type="String" />
+            <Parameter Name="searchKeyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Permissions" EntityType="AMCPatientEmailModel.Permission" />
+          <AssociationSet Name="FK__Permissio__Group__0519C6AF" Association="AMCPatientEmailModel.FK__Permissio__Group__0519C6AF">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
+          <EntitySet Name="Emails" EntityType="AMCPatientEmailModel.Email" />
+          <AssociationSet Name="FK__SentEmail__Email__4BAC3F29" Association="AMCPatientEmailModel.FK__SentEmail__Email__4BAC3F29">
+            <End Role="Email" EntitySet="Emails" />
+            <End Role="SentEmailAttachment" EntitySet="SentEmailAttachments" />
+          </AssociationSet>
+          <FunctionImport Name="procGetEmailsByUser" ReturnType="Collection(AMCPatientEmailModel.procGetEmailsByUser_Result)">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortExpression" Mode="In" Type="String" />
+            <Parameter Name="searchKeyword" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="sentBy" Mode="In" Type="String" />
+            <Parameter Name="patientNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="EmailTemplateCategories" EntityType="AMCPatientEmailModel.EmailTemplateCategory" />
+          <EntitySet Name="EmailTemplates" EntityType="AMCPatientEmailModel.EmailTemplate" />
+          <AssociationSet Name="FK__EmailAtta__Email__412EB0B6" Association="AMCPatientEmailModel.FK__EmailAtta__Email__412EB0B6">
+            <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+            <End Role="EmailAttachment" EntitySet="EmailAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmailTemp__Email__619B8048" Association="AMCPatientEmailModel.FK__EmailTemp__Email__619B8048">
+            <End Role="EmailTemplateCategory" EntitySet="EmailTemplateCategories" />
+            <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmailTemp__Templ__3C69FB99" Association="AMCPatientEmailModel.FK__EmailTemp__Templ__3C69FB99">
+            <End Role="MasterTemplate" EntitySet="MasterTemplates" />
+            <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <EntitySet Name="UserSignatures" EntityType="AMCPatientEmailModel.UserSignature" />
+          <FunctionImport Name="GetBrowsedFileNamesByTemplateId" ReturnType="Collection(AMCPatientEmailModel.GetBrowsedFileNamesByTemplateId_Result)">
+          <Parameter Name="emailTemplateId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="procGetEmailTemplatesByCategoryId" ReturnType="Collection(AMCPatientEmailModel.procGetEmailTemplatesByCategoryId_Result)">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortExpression" Mode="In" Type="String" />
+            <Parameter Name="searchKeyword" Mode="In" Type="String" />
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK__Email__EmailTemp__6E01572D" Association="AMCPatientEmailModel.FK__Email__EmailTemp__6E01572D">
+            <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <FunctionImport Name="GetEmailFilters" ReturnType="Collection(AMCPatientEmailModel.GetEmailFilters_Result)">
+            </FunctionImport>
+          <FunctionImport Name="procGetEmailsByUserWithFilter" ReturnType="Collection(AMCPatientEmailModel.procGetEmailsByUserWithFilter_Result)">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortExpression" Mode="In" Type="String" />
+            <Parameter Name="searchKeyword" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="sentBy" Mode="In" Type="String" />
+            <Parameter Name="patientNumber" Mode="In" Type="String" />
+            <Parameter Name="templateName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="DocumentTemplates" EntityType="AMCPatientEmailModel.DocumentTemplate" />
+          <EntitySet Name="EmailJobs" EntityType="AMCPatientEmailModel.EmailJob" />
+          <FunctionImport Name="GetScheduledEmailData" ReturnType="Collection(AMCPatientEmailModel.GetScheduledEmailData_Result)" />
+          <FunctionImport Name="GetDoctorForPatient" ReturnType="Collection(AMCPatientEmailModel.GetDoctorForPatient_Result)">
+          <Parameter Name="patientNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Doctors" EntityType="AMCPatientEmailModel.Doctor" />
+          <EntitySet Name="InstructionTemplates" EntityType="AMCPatientEmailModel.InstructionTemplate" />
+          <FunctionImport Name="GetInstructionTemplateByNames" ReturnType="Collection(AMCPatientEmailModel.GetInstructionTemplateByNames_Result)">
+          <Parameter Name="names" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="PharmacyWorksheets" EntityType="AMCPatientEmailModel.PharmacyWorksheet" />
+          <AssociationSet Name="FK__PharmacyW__Docum__3587F3E0" Association="AMCPatientEmailModel.FK__PharmacyW__Docum__3587F3E0">
+            <End Role="DocumentTemplate" EntitySet="DocumentTemplates" />
+            <End Role="PharmacyWorksheet" EntitySet="PharmacyWorksheets" />
+          </AssociationSet>
+          <FunctionImport Name="GetScheduledPharmacyWorksheets" ReturnType="Collection(AMCPatientEmailModel.GetScheduledPharmacyWorksheets_Result)" />
+          <FunctionImport Name="GetExcelJobs" ReturnType="Collection(AMCPatientEmailModel.GetExcelJobs_Result)" />
+          <EntitySet Name="ExcelJobs" EntityType="AMCPatientEmailModel.ExcelJob" />
+          <EntitySet Name="PrintJobs" EntityType="AMCPatientEmailModel.PrintJob" />
+          <AssociationSet Name="FK__PrintJob__Docume__4C6B5938" Association="AMCPatientEmailModel.FK__PrintJob__Docume__4C6B5938">
+            <End Role="DocumentTemplate" EntitySet="DocumentTemplates" />
+            <End Role="PrintJob" EntitySet="PrintJobs" />
+          </AssociationSet>
+          <FunctionImport Name="GetPrintJobs" ReturnType="Collection(AMCPatientEmailModel.GetPrintJobs_Result)" />
+          </EntityContainer>
+        <EntityType Name="MasterTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Header" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Footer" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <NavigationProperty Name="EmailTemplates" Relationship="AMCPatientEmailModel.FK__EmailTemp__Templ__3C69FB99" FromRole="MasterTemplate" ToRole="EmailTemplate" />
+        </EntityType>
+        <EntityType Name="SQLQuery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Query" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+        </EntityType>
+        <EntityType Name="EmailAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Url" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EmailTemplateId" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <NavigationProperty Name="EmailTemplate" Relationship="AMCPatientEmailModel.FK__EmailAtta__Email__412EB0B6" FromRole="EmailAttachment" ToRole="EmailTemplate" />
+          <Property Type="Boolean" Name="IsBrowsed" />
+        </EntityType>
+        <EntityType Name="SentEmailAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Url" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EmailId" />
+          <NavigationProperty Name="Email" Relationship="AMCPatientEmailModel.FK__SentEmail__Email__4BAC3F29" FromRole="SentEmailAttachment" ToRole="Email" />
+        </EntityType>
+        <ComplexType Name="sp_GetResult_Result">
+          <Property Type="String" Name="Result" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="procGetUsersInGroupsByGroupId_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="procGetAllUsersInGroups_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="procGetPermissionForUser_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="PermisssionName" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="GroupId" Nullable="true" />
+          <Property Type="Boolean" Name="CanCreateGroup" Nullable="true" />
+          <Property Type="Boolean" Name="CanEditGroup" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteGroup" Nullable="true" />
+          <Property Type="Boolean" Name="CanCreateTemplate" Nullable="true" />
+          <Property Type="Boolean" Name="CanEditTemplate" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteTemplate" Nullable="true" />
+          <Property Type="Boolean" Name="CanEditOtherTemplate" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteOtherTemplate" Nullable="true" />
+          <Property Type="Boolean" Name="CanSendEmail" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="Boolean" Name="CanCreateSQLQuery" Nullable="true" />
+          <Property Type="Boolean" Name="CanEditSQLQuery" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteSQLQuery" Nullable="true" />
+          <Property Type="Boolean" Name="CanEditOtherGroup" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteOtherGroup" Nullable="true" />
+          <Property Type="Boolean" Name="CanEditOtherSQLQuery" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteOtherSQLQuery" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteEmail" Nullable="true" />
+          <Property Type="Boolean" Name="CanDeleteOtherEmail" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GroupName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <NavigationProperty Name="UsersInGroups" Relationship="AMCPatientEmailModel.FK__UsersInGr__Group__09DE7BCC" FromRole="Group" ToRole="UsersInGroup" />
+          <NavigationProperty Name="Permissions" Relationship="AMCPatientEmailModel.FK__Permissio__Group__0519C6AF" FromRole="Group" ToRole="Permission" />
+        </EntityType>
+        <EntityType Name="UsersInGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="GroupId" />
+          <Property Type="String" Name="UserId" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <NavigationProperty Name="Group" Relationship="AMCPatientEmailModel.FK__UsersInGr__Group__09DE7BCC" FromRole="UsersInGroup" ToRole="Group" />
+        </EntityType>
+        <Association Name="FK__UsersInGr__Group__09DE7BCC">
+          <End Type="AMCPatientEmailModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.UsersInGroup" Role="UsersInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersInGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TagCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CategoryName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <NavigationProperty Name="TagSQLs" Relationship="AMCPatientEmailModel.FK__TagSQL__TagCateg__59FA5E80" FromRole="TagCategory" ToRole="TagSQL" />
+        </EntityType>
+        <EntityType Name="TagSQL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Query" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TagCategoryId" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <NavigationProperty Name="TagCategory" Relationship="AMCPatientEmailModel.FK__TagSQL__TagCateg__59FA5E80" FromRole="TagSQL" ToRole="TagCategory" />
+        </EntityType>
+        <Association Name="FK__TagSQL__TagCateg__59FA5E80">
+          <End Type="AMCPatientEmailModel.TagCategory" Role="TagCategory" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.TagSQL" Role="TagSQL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagSQL">
+              <PropertyRef Name="TagCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="procGetTagSQLByTagCategory_Result">
+          <Property Type="Int32" Name="Rownum" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Query" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TotalPages" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="procGetEmailTemplates_Result">
+          <Property Type="Int32" Name="Rownum" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="TotalPages" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="procGetMasterTemplates_Result">
+          <Property Type="Int32" Name="Rownum" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="TotalPages" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PermisssionName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GroupId" />
+          <Property Type="Boolean" Name="CanCreateGroup" />
+          <Property Type="Boolean" Name="CanEditGroup" />
+          <Property Type="Boolean" Name="CanDeleteGroup" />
+          <Property Type="Boolean" Name="CanCreateTemplate" />
+          <Property Type="Boolean" Name="CanEditTemplate" />
+          <Property Type="Boolean" Name="CanDeleteTemplate" />
+          <Property Type="Boolean" Name="CanEditOtherTemplate" />
+          <Property Type="Boolean" Name="CanDeleteOtherTemplate" />
+          <Property Type="Boolean" Name="CanSendEmail" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="Boolean" Name="CanCreateSQLQuery" />
+          <Property Type="Boolean" Name="CanEditSQLQuery" />
+          <Property Type="Boolean" Name="CanDeleteSQLQuery" />
+          <Property Type="Boolean" Name="CanEditOtherGroup" />
+          <Property Type="Boolean" Name="CanDeleteOtherGroup" />
+          <Property Type="Boolean" Name="CanEditOtherSQLQuery" />
+          <Property Type="Boolean" Name="CanDeleteOtherSQLQuery" />
+          <Property Type="Boolean" Name="CanDeleteEmail" />
+          <Property Type="Boolean" Name="CanDeleteOtherEmail" />
+          <NavigationProperty Name="Group" Relationship="AMCPatientEmailModel.FK__Permissio__Group__0519C6AF" FromRole="Permission" ToRole="Group" />
+        </EntityType>
+        <Association Name="FK__Permissio__Group__0519C6AF">
+          <End Type="AMCPatientEmailModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.Permission" Role="Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="From" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="To" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cc" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Bcc" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Subject" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="HasAttachments" />
+          <Property Type="Boolean" Name="IsDraft" />
+          <Property Type="String" Name="SentBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="SentOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="ActivityRecId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PatientRecId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PatientNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PatientFullName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SentEmailAttachments" Relationship="AMCPatientEmailModel.FK__SentEmail__Email__4BAC3F29" FromRole="Email" ToRole="SentEmailAttachment" />
+          <Property Type="Int32" Name="EmailTemplateId" />
+          <NavigationProperty Name="EmailTemplate" Relationship="AMCPatientEmailModel.FK__Email__EmailTemp__6E01572D" FromRole="Email" ToRole="EmailTemplate" />
+          <Property Name="LetterRequired" Type="Boolean" />
+          <Property Name="Letter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SendASSMS" Type="Boolean" />
+          <Property Name="PatientFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentCategory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StorePatientLetter" Type="Boolean" />
+          <Property Name="SendUnEncryptedPatientLetter" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK__SentEmail__Email__4BAC3F29">
+          <End Type="AMCPatientEmailModel.Email" Role="Email" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.SentEmailAttachment" Role="SentEmailAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Email">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SentEmailAttachment">
+              <PropertyRef Name="EmailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="procGetEmailsByUser_Result">
+          <Property Type="Int32" Name="Rownum" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="From" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Subject" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="HasAttachments" Nullable="true" />
+          <Property Type="String" Name="SentBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SentOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="TotalPages" Nullable="true" />
+          <Property Type="String" Name="EmailTemplateName" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="SendASSMS" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="EmailTemplateCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CategoryName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <NavigationProperty Name="EmailTemplates" Relationship="AMCPatientEmailModel.FK__EmailTemp__Email__619B8048" FromRole="EmailTemplateCategory" ToRole="EmailTemplate" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="From" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="To" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cc" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Bcc" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Subject" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TemplateId" />
+          <Property Type="Int32" Name="EmailTemplateCategoryId" />
+          <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AttachmentHasBusiness" />
+          <Property Type="String" Name="AttachmentBusinessFilter" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AttachmentBusinessInclude" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AttachmentHasDirectory" />
+          <Property Type="String" Name="AttachmentDirectoryPath" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AttachmentDirectoryFilter" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AttachmentDirectoryInclude" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="PromptForAttachments" />
+          <Property Type="Boolean" Name="SelectAllAttachments" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <NavigationProperty Name="EmailAttachments" Relationship="AMCPatientEmailModel.FK__EmailAtta__Email__412EB0B6" FromRole="EmailTemplate" ToRole="EmailAttachment" />
+          <NavigationProperty Name="EmailTemplateCategory" Relationship="AMCPatientEmailModel.FK__EmailTemp__Email__619B8048" FromRole="EmailTemplate" ToRole="EmailTemplateCategory" />
+          <NavigationProperty Name="MasterTemplate" Relationship="AMCPatientEmailModel.FK__EmailTemp__Templ__3C69FB99" FromRole="EmailTemplate" ToRole="MasterTemplate" />
+          <NavigationProperty Name="Emails" Relationship="AMCPatientEmailModel.FK__Email__EmailTemp__6E01572D" FromRole="EmailTemplate" ToRole="Email" />
+          <Property Name="RequireLetter" Type="Boolean" />
+          <Property Name="Letter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StorePatientLetter" Type="Boolean" />
+          <Property Name="SendASSMS" Type="Boolean" />
+          <Property Name="PatientFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentCategory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IncludeInstructions" Type="Boolean" />
+          <Property Name="InstructionFilter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CombineMultipleInstructions" Type="Boolean" />
+          <Property Name="SendUnEncryptedPatientLetter" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK__EmailAtta__Email__412EB0B6">
+          <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.EmailAttachment" Role="EmailAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailAttachment">
+              <PropertyRef Name="EmailTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmailTemp__Email__619B8048">
+          <End Type="AMCPatientEmailModel.EmailTemplateCategory" Role="EmailTemplateCategory" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplateCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplate">
+              <PropertyRef Name="EmailTemplateCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmailTemp__Templ__3C69FB99">
+          <End Type="AMCPatientEmailModel.MasterTemplate" Role="MasterTemplate" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplate">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserSignature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Signature" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetBrowsedFileNamesByTemplateId_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="procGetEmailTemplatesByCategoryId_Result">
+          <Property Type="Int32" Name="Rownum" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="TotalPages" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK__Email__EmailTemp__6E01572D">
+          <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="0..1" />
+          <End Type="AMCPatientEmailModel.Email" Role="Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="EmailTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetEmailFilters_Result">
+          <Property Type="String" Name="UserName" Nullable="true" />
+          <Property Type="String" Name="TemplateName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="procGetEmailsByUserWithFilter_Result">
+          <Property Type="Int32" Name="Rownum" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="From" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Subject" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="HasAttachments" Nullable="true" />
+          <Property Type="String" Name="SentBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SentOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="EmailTemplateName" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="TotalPages" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="DocumentTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TemplateName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TemplatePath" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <NavigationProperty Name="PharmacyWorksheets" Relationship="AMCPatientEmailModel.FK__PharmacyW__Docum__3587F3E0" FromRole="DocumentTemplate" ToRole="PharmacyWorksheet" />
+          <NavigationProperty Name="PrintJobs" Relationship="AMCPatientEmailModel.FK__PrintJob__Docume__4C6B5938" FromRole="DocumentTemplate" ToRole="PrintJob" />
+        </EntityType>
+        <EntityType Name="EmailJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TemplateId" Nullable="false" />
+          <Property Type="String" Name="TemplateName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="SendDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="EmailFailed" Nullable="false" />
+          <Property Type="Boolean" Name="EmailSent" Nullable="false" />
+          <Property Type="String" Name="PatientNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PatientRecId" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetScheduledEmailData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="TemplateId" Nullable="false" />
+          <Property Type="String" Name="TemplateName" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="SendDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="EmailFailed" Nullable="false" />
+          <Property Type="Boolean" Name="EmailSent" Nullable="false" />
+          <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="36" />
+          <Property Type="String" Name="Prescription" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="GetDoctorForPatient_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ImageName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="InstructionTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TemplatePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="GetInstructionTemplateByNames_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="TemplateName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TemplatePath" Nullable="false" MaxLength="500" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="PharmacyWorksheet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentTemplateName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PatientNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PatientRecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Process" Type="Boolean" Nullable="false" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessedOn" Type="DateTime" Precision="3" />
+          <Property Name="ProcessFailed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessFailedCount" Type="Int16" />
+          <Property Name="ProcessFailedReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Prescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DocumentTemplate" Relationship="AMCPatientEmailModel.FK__PharmacyW__Docum__3587F3E0" FromRole="PharmacyWorksheet" ToRole="DocumentTemplate" />
+          <Property Name="ActivityRecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="XSORecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PatientFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__PharmacyW__Docum__3587F3E0">
+          <End Type="AMCPatientEmailModel.DocumentTemplate" Role="DocumentTemplate" Multiplicity="1" />
+          <End Type="AMCPatientEmailModel.PharmacyWorksheet" Role="PharmacyWorksheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PharmacyWorksheet">
+              <PropertyRef Name="DocumentTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetScheduledPharmacyWorksheets_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="DocumentTemplateId" Nullable="false" />
+          <Property Type="String" Name="DocumentTemplateName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="36" />
+          <Property Type="DateTime" Name="ProcessOn" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="Process" Nullable="false" />
+          <Property Type="Boolean" Name="IsProcessed" Nullable="false" />
+          <Property Type="DateTime" Name="ProcessedOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="ProcessFailed" Nullable="false" />
+          <Property Type="Int16" Name="ProcessFailedCount" Nullable="true" />
+          <Property Type="String" Name="ProcessFailedReason" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Prescription" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="AddedOn" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ActivityRecId" Nullable="true" MaxLength="36" />
+          <Property Type="String" Name="XSORecId" Nullable="true" MaxLength="36" />
+          <Property Type="String" Name="Flag" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Filename" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetExcelJobs_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ProcName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Process" Nullable="false" />
+          <Property Type="Boolean" Name="IsProcessed" Nullable="false" />
+          <Property Type="DateTime" Name="ProcessedOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="ProcessFailed" Nullable="false" />
+          <Property Type="Int16" Name="ProcessFailedCount" Nullable="true" />
+          <Property Type="String" Name="ProcessFailedReason" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="AddedOn" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Filename" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmailSubject" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="EmailBody" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="ExcelJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Process" Type="Boolean" Nullable="false" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessedOn" Type="DateTime" Precision="3" />
+          <Property Name="ProcessFailed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessFailedCount" Type="Int16" />
+          <Property Name="ProcessFailedReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmailSubject" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="EmailBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PrintJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentTemplateName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PatientNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PatientRecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Process" Type="Boolean" Nullable="false" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessedOn" Type="DateTime" Precision="3" />
+          <Property Name="ProcessFailed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessFailedCount" Type="Int16" />
+          <Property Name="ProcessFailedReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PatientFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DocumentTemplate" Relationship="AMCPatientEmailModel.FK__PrintJob__Docume__4C6B5938" FromRole="PrintJob" ToRole="DocumentTemplate" />
+          <Property Name="SaveInCRM" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PrintJob__Docume__4C6B5938">
+          <End Type="AMCPatientEmailModel.DocumentTemplate" Role="DocumentTemplate" Multiplicity="1" />
+          <End Type="AMCPatientEmailModel.PrintJob" Role="PrintJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrintJob">
+              <PropertyRef Name="DocumentTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetPrintJobs_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="DocumentTemplateId" Nullable="false" />
+          <Property Type="String" Name="DocumentTemplateName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="36" />
+          <Property Type="Boolean" Name="Process" Nullable="false" />
+          <Property Type="Boolean" Name="IsProcessed" Nullable="false" />
+          <Property Type="DateTime" Name="ProcessedOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="ProcessFailed" Nullable="false" />
+          <Property Type="Int16" Name="ProcessFailedCount" Nullable="true" />
+          <Property Type="String" Name="ProcessFailedReason" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Filename" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="AddedOn" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="SaveInCRM" Nullable="false" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AMCPatientEmailModelStoreContainer" CdmEntityContainer="AMCPatientEmailEntities">
+          <EntitySetMapping Name="MasterTemplates">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.MasterTemplate">
+              <MappingFragment StoreEntitySet="MasterTemplate">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Footer" ColumnName="Footer" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SQLQueries">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.SQLQuery">
+              <MappingFragment StoreEntitySet="SQLQuery">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailAttachments">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailAttachment">
+              <MappingFragment StoreEntitySet="EmailAttachments">
+                <ScalarProperty Name="IsBrowsed" ColumnName="IsBrowsed" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="EmailTemplateId" ColumnName="EmailTemplateId" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SentEmailAttachments">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.SentEmailAttachment">
+              <MappingFragment StoreEntitySet="SentEmailAttachments">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="procGetUsersInGroupsByGroupId" FunctionName="AMCPatientEmailModel.Store.procGetUsersInGroupsByGroupId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetUsersInGroupsByGroupId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="procGetAllUsersInGroups" FunctionName="AMCPatientEmailModel.Store.procGetAllUsersInGroups">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetAllUsersInGroups_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="procGetPermissionForUser" FunctionName="AMCPatientEmailModel.Store.procGetPermissionForUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetPermissionForUser_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PermisssionName" ColumnName="PermisssionName" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="CanCreateGroup" ColumnName="CanCreateGroup" />
+                <ScalarProperty Name="CanEditGroup" ColumnName="CanEditGroup" />
+                <ScalarProperty Name="CanDeleteGroup" ColumnName="CanDeleteGroup" />
+                <ScalarProperty Name="CanCreateTemplate" ColumnName="CanCreateTemplate" />
+                <ScalarProperty Name="CanEditTemplate" ColumnName="CanEditTemplate" />
+                <ScalarProperty Name="CanDeleteTemplate" ColumnName="CanDeleteTemplate" />
+                <ScalarProperty Name="CanEditOtherTemplate" ColumnName="CanEditOtherTemplate" />
+                <ScalarProperty Name="CanDeleteOtherTemplate" ColumnName="CanDeleteOtherTemplate" />
+                <ScalarProperty Name="CanSendEmail" ColumnName="CanSendEmail" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CanCreateSQLQuery" ColumnName="CanCreateSQLQuery" />
+                <ScalarProperty Name="CanEditSQLQuery" ColumnName="CanEditSQLQuery" />
+                <ScalarProperty Name="CanDeleteSQLQuery" ColumnName="CanDeleteSQLQuery" />
+                <ScalarProperty Name="CanEditOtherGroup" ColumnName="CanEditOtherGroup" />
+                <ScalarProperty Name="CanDeleteOtherGroup" ColumnName="CanDeleteOtherGroup" />
+                <ScalarProperty Name="CanEditOtherSQLQuery" ColumnName="CanEditOtherSQLQuery" />
+                <ScalarProperty Name="CanDeleteOtherSQLQuery" ColumnName="CanDeleteOtherSQLQuery" />
+                <ScalarProperty Name="CanDeleteEmail" ColumnName="CanDeleteEmail" />
+                <ScalarProperty Name="CanDeleteOtherEmail" ColumnName="CanDeleteOtherEmail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersInGroups">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.UsersInGroup">
+              <MappingFragment StoreEntitySet="UsersInGroup">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagCategories">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.TagCategory">
+              <MappingFragment StoreEntitySet="TagCategory">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagSQLs">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.TagSQL">
+              <MappingFragment StoreEntitySet="TagSQL">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TagCategoryId" ColumnName="TagCategoryId" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="procGetTagSQLByTagCategory" FunctionName="AMCPatientEmailModel.Store.procGetTagSQLByTagCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetTagSQLByTagCategory_Result">
+                <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="procGetEmailTemplates" FunctionName="AMCPatientEmailModel.Store.procGetEmailTemplates">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailTemplates_Result">
+                <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="procGetMasterTemplates" FunctionName="AMCPatientEmailModel.Store.procGetMasterTemplates">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetMasterTemplates_Result">
+                <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.Permission">
+              <MappingFragment StoreEntitySet="Permission">
+                <ScalarProperty Name="CanDeleteOtherEmail" ColumnName="CanDeleteOtherEmail" />
+                <ScalarProperty Name="CanDeleteEmail" ColumnName="CanDeleteEmail" />
+                <ScalarProperty Name="CanDeleteOtherSQLQuery" ColumnName="CanDeleteOtherSQLQuery" />
+                <ScalarProperty Name="CanEditOtherSQLQuery" ColumnName="CanEditOtherSQLQuery" />
+                <ScalarProperty Name="CanDeleteOtherGroup" ColumnName="CanDeleteOtherGroup" />
+                <ScalarProperty Name="CanEditOtherGroup" ColumnName="CanEditOtherGroup" />
+                <ScalarProperty Name="CanDeleteSQLQuery" ColumnName="CanDeleteSQLQuery" />
+                <ScalarProperty Name="CanEditSQLQuery" ColumnName="CanEditSQLQuery" />
+                <ScalarProperty Name="CanCreateSQLQuery" ColumnName="CanCreateSQLQuery" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CanSendEmail" ColumnName="CanSendEmail" />
+                <ScalarProperty Name="CanDeleteOtherTemplate" ColumnName="CanDeleteOtherTemplate" />
+                <ScalarProperty Name="CanEditOtherTemplate" ColumnName="CanEditOtherTemplate" />
+                <ScalarProperty Name="CanDeleteTemplate" ColumnName="CanDeleteTemplate" />
+                <ScalarProperty Name="CanEditTemplate" ColumnName="CanEditTemplate" />
+                <ScalarProperty Name="CanCreateTemplate" ColumnName="CanCreateTemplate" />
+                <ScalarProperty Name="CanDeleteGroup" ColumnName="CanDeleteGroup" />
+                <ScalarProperty Name="CanEditGroup" ColumnName="CanEditGroup" />
+                <ScalarProperty Name="CanCreateGroup" ColumnName="CanCreateGroup" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="PermisssionName" ColumnName="PermisssionName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="SendUnEncryptedPatientLetter" ColumnName="SendUnEncryptedPatientLetter" />
+                <ScalarProperty Name="StorePatientLetter" ColumnName="StorePatientLetter" />
+                <ScalarProperty Name="AttachmentDescription" ColumnName="AttachmentDescription" />
+                <ScalarProperty Name="AttachmentCategory" ColumnName="AttachmentCategory" />
+                <ScalarProperty Name="PatientFileName" ColumnName="PatientFileName" />
+                <ScalarProperty Name="SendASSMS" ColumnName="SendASSMS" />
+                <ScalarProperty Name="Letter" ColumnName="Letter" />
+                <ScalarProperty Name="LetterRequired" ColumnName="LetterRequired" />
+                <ScalarProperty Name="EmailTemplateId" ColumnName="EmailTemplateId" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+                <ScalarProperty Name="ActivityRecId" ColumnName="ActivityRecId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SentOn" ColumnName="SentOn" />
+                <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+                <ScalarProperty Name="IsDraft" ColumnName="IsDraft" />
+                <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+                <ScalarProperty Name="Cc" ColumnName="Cc" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="procGetEmailsByUser" FunctionName="AMCPatientEmailModel.Store.procGetEmailsByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailsByUser_Result">
+                <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+                <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+                <ScalarProperty Name="SentOn" ColumnName="SentOn" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+                <ScalarProperty Name="EmailTemplateName" ColumnName="EmailTemplateName" />
+                <ScalarProperty Name="SendASSMS" ColumnName="SendASSMS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="EmailTemplateCategories">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailTemplateCategory">
+              <MappingFragment StoreEntitySet="EmailTemplateCategory">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplates">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailTemplate">
+              <MappingFragment StoreEntitySet="EmailTemplate">
+                <ScalarProperty Name="SendUnEncryptedPatientLetter" ColumnName="SendUnEncryptedPatientLetter" />
+                <ScalarProperty Name="CombineMultipleInstructions" ColumnName="CombineMultipleInstructions" />
+                <ScalarProperty Name="InstructionFilter" ColumnName="InstructionFilter" />
+                <ScalarProperty Name="IncludeInstructions" ColumnName="IncludeInstructions" />
+                <ScalarProperty Name="AttachmentDescription" ColumnName="AttachmentDescription" />
+                <ScalarProperty Name="AttachmentCategory" ColumnName="AttachmentCategory" />
+                <ScalarProperty Name="PatientFileName" ColumnName="PatientFileName" />
+                <ScalarProperty Name="SendASSMS" ColumnName="SendASSMS" />
+                <ScalarProperty Name="StorePatientLetter" ColumnName="StorePatientLetter" />
+                <ScalarProperty Name="Letter" ColumnName="Letter" />
+                <ScalarProperty Name="RequireLetter" ColumnName="RequireLetter" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SelectAllAttachments" ColumnName="SelectAllAttachments" />
+                <ScalarProperty Name="PromptForAttachments" ColumnName="PromptForAttachments" />
+                <ScalarProperty Name="AttachmentDirectoryInclude" ColumnName="AttachmentDirectoryInclude" />
+                <ScalarProperty Name="AttachmentDirectoryFilter" ColumnName="AttachmentDirectoryFilter" />
+                <ScalarProperty Name="AttachmentDirectoryPath" ColumnName="AttachmentDirectoryPath" />
+                <ScalarProperty Name="AttachmentHasDirectory" ColumnName="AttachmentHasDirectory" />
+                <ScalarProperty Name="AttachmentBusinessInclude" ColumnName="AttachmentBusinessInclude" />
+                <ScalarProperty Name="AttachmentBusinessFilter" ColumnName="AttachmentBusinessFilter" />
+                <ScalarProperty Name="AttachmentHasBusiness" ColumnName="AttachmentHasBusiness" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="EmailTemplateCategoryId" ColumnName="EmailTemplateCategoryId" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+                <ScalarProperty Name="Cc" ColumnName="Cc" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSignatures">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.UserSignature">
+              <MappingFragment StoreEntitySet="UserSignatures">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetBrowsedFileNamesByTemplateId" FunctionName="AMCPatientEmailModel.Store.GetBrowsedFileNamesByTemplateId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetBrowsedFileNamesByTemplateId_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="procGetEmailTemplatesByCategoryId" FunctionName="AMCPatientEmailModel.Store.procGetEmailTemplatesByCategoryId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailTemplatesByCategoryId_Result">
+                <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmailFilters" FunctionName="AMCPatientEmailModel.Store.GetEmailFilters" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetEmailFilters_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="procGetEmailsByUserWithFilter" FunctionName="AMCPatientEmailModel.Store.procGetEmailsByUserWithFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.procGetEmailsByUserWithFilter_Result">
+                <ScalarProperty Name="Rownum" ColumnName="Rownum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="HasAttachments" ColumnName="HasAttachments" />
+                <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+                <ScalarProperty Name="SentOn" ColumnName="SentOn" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="EmailTemplateName" ColumnName="EmailTemplateName" />
+                <ScalarProperty Name="TotalPages" ColumnName="TotalPages" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="DocumentTemplates">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.DocumentTemplate">
+              <MappingFragment StoreEntitySet="DocumentTemplate">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TemplatePath" ColumnName="TemplatePath" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailJobs">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.EmailJob">
+              <MappingFragment StoreEntitySet="EmailJob">
+                <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+                <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+                <ScalarProperty Name="EmailFailed" ColumnName="EmailFailed" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetScheduledEmailData" FunctionName="AMCPatientEmailModel.Store.GetScheduledEmailData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetScheduledEmailData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="EmailFailed" ColumnName="EmailFailed" />
+                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+                <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDoctorForPatient" FunctionName="AMCPatientEmailModel.Store.GetDoctorForPatient">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetDoctorForPatient_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstructionTemplates">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.InstructionTemplate">
+              <MappingFragment StoreEntitySet="InstructionTemplate">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TemplatePath" ColumnName="TemplatePath" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetInstructionTemplateByNames" FunctionName="AMCPatientEmailModel.Store.GetInstructionTemplateByNames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetInstructionTemplateByNames_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplatePath" ColumnName="TemplatePath" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PharmacyWorksheets">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.PharmacyWorksheet">
+              <MappingFragment StoreEntitySet="PharmacyWorksheet">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="XSORecId" ColumnName="XSORecId" />
+                <ScalarProperty Name="ActivityRecId" ColumnName="ActivityRecId" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+                <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+                <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+                <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+                <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="ProcessOn" ColumnName="ProcessOn" />
+                <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+                <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetScheduledPharmacyWorksheets" FunctionName="AMCPatientEmailModel.Store.GetScheduledPharmacyWorksheets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetScheduledPharmacyWorksheets_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+                <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+                <ScalarProperty Name="ProcessOn" ColumnName="ProcessOn" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+                <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+                <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+                <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+                <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="ActivityRecId" ColumnName="ActivityRecId" />
+                <ScalarProperty Name="XSORecId" ColumnName="XSORecId" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetExcelJobs" FunctionName="AMCPatientEmailModel.Store.GetExcelJobs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetExcelJobs_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProcName" ColumnName="ProcName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+                <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+                <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+                <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+                <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="ExcelJobs">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.ExcelJob">
+              <MappingFragment StoreEntitySet="ExcelJob">
+                <ScalarProperty Name="EmailBody" ColumnName="EmailBody" />
+                <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+                <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+                <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+                <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ProcName" ColumnName="ProcName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintJobs">
+            <EntityTypeMapping TypeName="AMCPatientEmailModel.PrintJob">
+              <MappingFragment StoreEntitySet="PrintJob">
+                <ScalarProperty Name="SaveInCRM" ColumnName="SaveInCRM" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+                <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+                <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+                <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+                <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPrintJobs" FunctionName="AMCPatientEmailModel.Store.GetPrintJobs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AMCPatientEmailModel.GetPrintJobs_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocumentTemplateId" ColumnName="DocumentTemplateId" />
+                <ScalarProperty Name="DocumentTemplateName" ColumnName="DocumentTemplateName" />
+                <ScalarProperty Name="PatientNumber" ColumnName="PatientNumber" />
+                <ScalarProperty Name="PatientRecId" ColumnName="PatientRecId" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="ProcessedOn" ColumnName="ProcessedOn" />
+                <ScalarProperty Name="ProcessFailed" ColumnName="ProcessFailed" />
+                <ScalarProperty Name="ProcessFailedCount" ColumnName="ProcessFailedCount" />
+                <ScalarProperty Name="ProcessFailedReason" ColumnName="ProcessFailedReason" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="SaveInCRM" ColumnName="SaveInCRM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="AMCPEModel">
+        <EntityTypeShape EntityType="AMCPatientEmailModel.MasterTemplate" Width="1.5" PointX="5.125" PointY="8.375" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.SQLQuery" Width="1.5" PointX="7.375" PointY="4.625" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.EmailAttachment" Width="1.5" PointX="7.375" PointY="1" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.SentEmailAttachment" Width="1.5" PointX="9.375" PointY="8.375" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.Group" Width="1.5" PointX="0.75" PointY="1.875" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.UsersInGroup" Width="1.5" PointX="2.875" PointY="6.875" Height="2.5571907552083317" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__UsersInGr__Group__09DE7BCC" >
+          <ConnectorPoint PointX="1.5" PointY="4.6244921875" />
+          <ConnectorPoint PointX="1.5" PointY="8.1535953776041659" />
+          <ConnectorPoint PointX="2.875" PointY="8.1535953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AMCPatientEmailModel.TagCategory" Width="1.5" PointX="9.375" PointY="1.125" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.TagSQL" Width="1.5" PointX="11.625" PointY="1" Height="1.2110807291666665" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__TagSQL__TagCateg__59FA5E80" >
+          <ConnectorPoint PointX="10.875" PointY="1.6680403645833333" />
+          <ConnectorPoint PointX="11.625" PointY="1.6680403645833333" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AMCPatientEmailModel.Permission" Width="1.5" PointX="2.875" PointY="1" Height="5.4417122395833317" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__Permissio__Group__0519C6AF" >
+          <ConnectorPoint PointX="2.25" PointY="3.24974609375" />
+          <ConnectorPoint PointX="2.875" PointY="3.24974609375" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AMCPatientEmailModel.Email" Width="1.5" PointX="7.375" PointY="8.375" Height="4.2879036458333317" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__SentEmail__Email__4BAC3F29" >
+          <ConnectorPoint PointX="8.875" PointY="9.3651432291666659" />
+          <ConnectorPoint PointX="9.375" PointY="9.3651432291666659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AMCPatientEmailModel.EmailTemplateCategory" Width="1.5" PointX="9.375" PointY="4.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.EmailTemplate" Width="1.5" PointX="5.125" PointY="1" Height="6.5955208333333317" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__EmailAtta__Email__412EB0B6" >
+          <ConnectorPoint PointX="6.625" PointY="2.7593489583333328" />
+          <ConnectorPoint PointX="7.375" PointY="2.7593489583333328" />
+        </AssociationConnector>
+        <AssociationConnector Association="AMCPatientEmailModel.FK__EmailTemp__Email__619B8048" >
+          <ConnectorPoint PointX="10.125" PointY="7.3071907552083317" />
+          <ConnectorPoint PointX="10.125" PointY="7.7085579427083335" />
+          <ConnectorPoint PointX="6.625" PointY="7.7085579427083335" />
+        </AssociationConnector>
+        <AssociationConnector Association="AMCPatientEmailModel.FK__EmailTemp__Templ__3C69FB99" >
+          <ConnectorPoint PointX="5.875" PointY="8.375" />
+          <ConnectorPoint PointX="5.875" PointY="7.787822265625" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AMCPatientEmailModel.UserSignature" Width="1.5" PointX="0.75" PointY="10.75" Height="2.9417936197916674" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__Email__EmailTemp__6E01572D" >
+          <ConnectorPoint PointX="6.625" PointY="7.787822265625" />
+          <ConnectorPoint PointX="7" PointY="8.162822265625" />
+          <ConnectorPoint PointX="7" PointY="7.9988471538461541" />
+          <ConnectorPoint PointX="7.3761528461538459" PointY="8.375" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AMCPatientEmailModel.DocumentTemplate" Width="1.5" PointX="11.375" PointY="4.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.EmailJob" Width="1.5" PointX="11.375" PointY="7.75" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.Doctor" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.InstructionTemplate" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.PharmacyWorksheet" Width="1.5" PointX="13.625" PointY="4.875" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__PharmacyW__Docum__3587F3E0" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.ExcelJob" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="AMCPatientEmailModel.PrintJob" Width="1.5" PointX="13.625" PointY="11" />
+        <AssociationConnector Association="AMCPatientEmailModel.FK__PrintJob__Docume__4C6B5938" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

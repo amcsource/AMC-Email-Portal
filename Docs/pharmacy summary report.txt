@@ -1,0 +1,137 @@
+-- Pharmacy Summary Report --
+
+Declare @PresDate date
+Set @PresDate = '2018-02-21'
+Select
+xsoPrescription.Purpose as [Purpose],
+LEFT(xfp1doctor,CHARINDEX(' ',xfp1doctor + ' ')-1) AS [Dr Title],
+CASE WHEN LEN(xfp1doctor) - LEN(REPLACE(xfP1Doctor,' ','')) > 0  THEN PARSENAME(REPLACE(xfp1doctor,' ','.'),3) ELSE NULL END AS [Dr FirstName],
+CASE WHEN LEN(xfp1doctor) - LEN(REPLACE(xfP1Doctor,' ','')) > 1  THEN PARSENAME(REPLACE(xfp1doctor,' ','.'),2) ELSE NULL END AS [Dr LastName],
+CASE WHEN LEN(xfp1doctor) - LEN(REPLACE(xfp1doctor,' ','')) > 0 THEN PARSENAME(REPLACE(xfp1doctor,' ','.'),1)  ELSE NULL END AS [Dr Prescriber #],
+Contact.FullName as [Patient Name],
+CASE when xfGender = 'Male' then 'M' Else 'F' END as [Patient Gender],
+CONVERT (varchar, Contact.Birthdate, 101) as [Patient DOB],
+RTRIM( LTRIM( REPLACE( REPLACE( REPLACE( REPLACE(CONVERT(NVARCHAR(MAX), Address.Address), ',', ''), CHAR(10), ''), CHAR(13), ''), CHAR(9), ''))) AS [Delivery Address],
+Address.City as [Delivery Suburb],
+Address.State as [Delivery State],
+Address.Zip as [Delivery PostCode],
+Contact.xfDeliveryInstruction as [Delivery Instructions],
+xsoPrescription.xfFormulaType as [Formaula Type], 
+(case when isnull(xsoPrescription.xfP1Hormone1_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone1_long + '%' ), '')) end ) as [P1_H1_ID1],
+case when xsoPrescription.xfP1Hormone1_long is null then '' else xsoPrescription.xfP1Hormone1_long end as [P1_H1], 
+case when xsoPrescription.xfP1Dose1 is null then '' else xsoPrescription.xfP1Dose1 end as [P1_H1_D1], xsoPrescription.xfP1Unit1 as [P1_H1_U1],
+
+(case when isnull(xsoPrescription.xfP1Hormone2_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone2_long + '%' ), '')) else ''  end ) as [P1_H2_ID2],
+case when xsoPrescription.xfP1Hormone2_long is null then  '' else xsoPrescription.xfP1Hormone2_long end as [P1_H2], 
+case when xsoPrescription.xfP1Dose2 is null then  '' else xsoPrescription.xfP1Dose2 end as [P1_H2_D2], xsoPrescription.xfP1Unit2 as [P1_H2_U2],
+
+(case when isnull(xsoPrescription.xfP1Hormone3_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone3_long + '%' ), ''))  else ''  end ) as [P1_H3_ID3],
+case when xsoPrescription.xfP1Hormone3_long is null then ''  else xsoPrescription.xfP1Hormone3_long end as [P1_H3], 
+case when xsoPrescription.xfP1Dose3 is null then ''  else xsoPrescription.xfP1Dose3 end as [P1_H3_D3], xsoPrescription.xfP1Unit3  as [P1_H3_U3],
+
+(case when isnull(xsoPrescription.xfP1Hormone4_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone4_long + '%' ), '')) else ''  end ) as [P1_H4_ID4],
+case when xsoPrescription.xfP1Hormone4_long is null then ''  else xsoPrescription.xfP1Hormone4_long end as [P1_H4], 
+case when xsoPrescription.xfP1Dose4 is null then ''  else xsoPrescription.xfP1Dose4 end as [P1_H4_D4], xsoPrescription.xfP1Unit4 as [P1_H4_U4],
+
+(case when isnull(xsoPrescription.xfP1Hormone5_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone5_long + '%' ), '')) else ''  end ) as [P1_H5_ID5],
+case when xsoPrescription.xfP1Hormone5_long is null then ''  else xsoPrescription.xfP1Hormone5_long end as [P1_H5], 
+case when xsoPrescription.xfP1Dose5 is null then ''  else xsoPrescription.xfP1Dose5  end as [P1_H5_D5], xsoPrescription.xfP1Unit5 as [P1_H5_U5],
+
+(case when isnull(xsoPrescription.xfP1Hormone6_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone6_long + '%' ),  '')) else ''  end ) as [P1_H6_ID6],
+case when xsoPrescription.xfP1Hormone6_long is null then ''  else xsoPrescription.xfP1Hormone6_long end as [P1_H6], 
+case when xsoPrescription.xfP1Dose6 is null then ''  else xsoPrescription.xfP1Dose6 end as [P1_H6_D6], xsoPrescription.xfP1Unit6 as [P1_H6_U6],
+
+(case when isnull(xsoPrescription.xfP1Hormone7_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone7_long + '%' ), '')) else ''  end ) as [P1_H7_ID7],
+case when xsoPrescription.xfP1Hormone7_long is null then ''  else xsoPrescription.xfP1Hormone7_long end as [P1_H7], 
+case when xsoPrescription.xfP1Dose7 is null then ''  else xsoPrescription.xfP1Dose7 end as [P1_H7_D7], xsoPrescription.xfP1Unit7  as [P1_H7_U7],
+
+(case when isnull(xsoPrescription.xfP1Hormone8_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP1Hormone8_long + '%' ), '')) else ''  end ) as [P1_H8_ID8],
+case when xsoPrescription.xfP1Hormone8_long is null then  '' else xsoPrescription.xfP1Hormone8_long end as [P1_H8], 
+case when xsoPrescription.xfP1Dose8 is null then ''  else xsoPrescription.xfP1Dose8 end as [P1_H8_D8], xsoPrescription.xfP1Unit8 as [P1_H8_U8],
+ 
+(case when isnull(xsoPrescription.xfP2Hormone1_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone1_long + '%' ), '')) else '' end ) as [P2_H1_ID1],
+case when xsoPrescription.xfP2Hormone1_long is null then '' else xsoPrescription.xfP2Hormone1_long end as [P2_H1], 
+case when xsoPrescription.xfP2Dose1 is null then '' else xsoPrescription.xfP2Dose1 end as [P2_H1_D1], xsoPrescription.xfP2Unit1 as [P2_H1_U1],
+
+(case when isnull(xsoPrescription.xfP2Hormone2_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone2_long + '%' ), '')) else ''  end ) as [P2_H2_ID2],
+case when xsoPrescription.xfP2Hormone2_long is null then ''  else xsoPrescription.xfP2Hormone2_long end as [P2_H2], 
+case when xsoPrescription.xfP2Dose2 is null then ''  else xsoPrescription.xfP2Dose2 end as [P2_H2_D2], xsoPrescription.xfP2Unit2 as [P2_H2_U2],
+
+(case when isnull(xsoPrescription.xfP2Hormone3_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone3_long + '%' ), '')) else ''  end ) as [P2_H3_ID3],
+case when xsoPrescription.xfP2Hormone3_long is null then ''  else xsoPrescription.xfP2Hormone3_long end as [P2_H3], 
+case when xsoPrescription.xfP2Dose3 IS null then ''  else xsoPrescription.xfP2Dose3 end as [P2_H3_D3], xsoPrescription.xfP2Unit3 as [P2_H3_U3],
+
+(case when isnull(xsoPrescription.xfP2Hormone4_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone4_long + '%' ), '')) else ''  end ) as [P2_H4_ID4],
+case when xsoPrescription.xfP2Hormone4_long is null then ''  else xsoPrescription.xfP2Hormone4_long  end as [P2_H4], 
+case when xsoPrescription.xfP2Dose4 is null then ''  else xsoPrescription.xfP2Dose4 end as [P2_H4_D4], xsoPrescription.xfP2Unit4 as [P2_H4_U4],
+
+(case when isnull(xsoPrescription.xfP2Hormone5_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone5_long + '%' ), '')) else ''  end ) as [P2_H5_ID5],
+case when xsoPrescription.xfP2Hormone5_long is null then ''  else xsoPrescription.xfP2Hormone5_long  end as [P2_H5], 
+case when xsoPrescription.xfP2Dose5 is null then ''  else xsoPrescription.xfP2Dose5 end as [P2_H5_D5], xsoPrescription.xfP2Unit5 as [P2_H5_U5],
+
+(case when isnull(xsoPrescription.xfP2Hormone6_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone6_long + '%' ), '')) else ''  end ) as [P2_H6_ID6],
+case when xsoPrescription.xfP2Hormone6_long is null then ''  else xsoPrescription.xfP2Hormone6_long end as [P2_H6], 
+case when xsoPrescription.xfP2Dose6 is null then ''  else xsoPrescription.xfP2Dose6 end as [P2_H6_D6], xsoPrescription.xfP2Unit6 as [P2_H6_U6],
+
+(case when isnull(xsoPrescription.xfP2Hormone7_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone7_long + '%' ), '')) else ''  end ) as [P2_H7_ID7],
+case when xsoPrescription.xfP2Hormone7_long is null then ''  else xsoPrescription.xfP2Hormone7_long end as [P2_H7], 
+case when xsoPrescription.xfP2Dose7 is null then ''  else xsoPrescription.xfP2Dose7 end as [P2_H7_D7], xsoPrescription.xfP2Unit7 as [P2_H7_U7],
+
+(case when isnull(xsoPrescription.xfP2Hormone8_long,'') <> '' then Convert(varchar, ISNULL((SELECT top 1 [xfRefCode] FROM [xvoValidationReference]
+  where xfReferenceObject = 'xsoPrescription'
+  and xfReferenceField = 'xfHormone' and [xvoValidationReference].[xfDescription] like '%' + xsoPrescription.xfP2Hormone8_long + '%' ), '')) else ''  end ) as [P2_H8_ID8],
+case when xsoPrescription.xfP2Hormone8_long IS null then ''  else xsoPrescription.xfP2Hormone8_long end as [P2_H8], 
+case when xsoPrescription.xfP2Dose8 is null then ''  else xsoPrescription.xfP2Dose8 end as [P2_H8_D8], xsoPrescription.xfP2Unit8 as [P2_H8_U8],
+
+xsoPrescription.xfP1Flavor as [Flavour],
+xsoPrescription.xfP1Application as [Application],
+Replace(CONVERT(NVARCHAR(max), xsoPrescription.xfP1Quantity), ',' , '') as [Quantity], 
+Replace(CONVERT(NVARCHAR(max), xsoPrescription.xfP1Amount), ',' , '') as [Amount], 
+Replace(CONVERT(NVARCHAR(max), xsoPrescription.xfP1RepeatsLeft), ',' , '') as [Refills Left],
+Replace(CONVERT(NVARCHAR(max), xsoPrescription.xfP1Instruction), ',' , '. ') as [P1 Instructions],
+Replace(CONVERT(NVARCHAR(max), xsoPrescription.xfP2Instruction), ',' , '. ') as [P2 Instructions],
+convert(varchar, xsoPrescription.xfPrescribeDate, 101) as [Prescribe Date]
+from contact inner join xsoPrescription on contact.RecId = xsoPrescription.xfContactRecID inner join
+Address on contact.RecId = Address.ParentLink_RecID inner join Activity on contact.RecId = Activity.ParentLink_RecID
+
+where Activity.Status != 'Completed'
+and Activity.ActivityType = 'SALE'
+and Activity.ActivityResult = 'Task - NUGEN SALES'
+and  ( (Activity.xfProcessed is null or Activity.xfProcessed = 0)
+or (Activity.xfCancelled is null or Activity.xfCancelled = 0) )
+and Convert(VARCHAR(10),Activity.StartDateTime,101) =  Convert(Varchar(10),@PresDate,101)
+and xsoPrescription.Purpose = Activity.xfPrescriptionType
+and Address.AddressType = 'Mail'
+and Address.Purpose = 'Delivery'
+
+

@@ -1,0 +1,1102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GMEEDevelopmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="RecId" />
+    </Key>
+    <Property Name="AccountName" Type="varchar" MaxLength="40" />
+    <Property Name="ActivityResult" Type="varchar" MaxLength="100" />
+    <Property Name="ActivityResult_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="ActivityType" Type="varchar" MaxLength="30" />
+    <Property Name="ActivityType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="ActualDemo" Type="int" />
+    <Property Name="ActualDisCall" Type="int" />
+    <Property Name="ActualDisMeet" Type="int" />
+    <Property Name="ActualFace" Type="int" />
+    <Property Name="ActualInbound" Type="int" />
+    <Property Name="ActualLiveEvt" Type="int" />
+    <Property Name="ActualOutbound" Type="int" />
+    <Property Name="ActualPOC" Type="int" />
+    <Property Name="ActualProposal" Type="int" />
+    <Property Name="ActualPtnCall" Type="int" />
+    <Property Name="ActualPtnMeet" Type="int" />
+    <Property Name="ActualTradeShow" Type="int" />
+    <Property Name="ActualUserGrp" Type="int" />
+    <Property Name="ActualWebinar" Type="int" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="30" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="DueDateTime" Type="datetime" />
+    <Property Name="DueDateTime_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="EmployeeFullName" Type="varchar" MaxLength="250" />
+    <Property Name="EndDateTime" Type="datetime" />
+    <Property Name="EndDateTime_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="EntryID" Type="varchar" MaxLength="1024" />
+    <Property Name="FiscalYearLastMonth" Type="tinyint" />
+    <Property Name="ForecastMonth" Type="varchar" MaxLength="10" />
+    <Property Name="ForecastQuarter" Type="varchar" MaxLength="8" />
+    <Property Name="ForecastWeek" Type="varchar" MaxLength="5" />
+    <Property Name="ForecastYear" Type="varchar" MaxLength="6" />
+    <Property Name="GeographyCode" Type="tinyint" />
+    <Property Name="GeographyName" Type="varchar" MaxLength="255" />
+    <Property Name="GeographyName_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="HierarchyID" Type="int" />
+    <Property Name="LastModBy" Type="varchar" MaxLength="30" />
+    <Property Name="LastModDateTime" Type="datetime" />
+    <Property Name="LeadName" Type="varchar" MaxLength="40" />
+    <Property Name="OpportunityName" Type="varchar" MaxLength="100" />
+    <Property Name="Owner" Type="varchar" MaxLength="30" />
+    <Property Name="Owner_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="OwnerTeam" Type="varchar" MaxLength="30" />
+    <Property Name="OwnerType" Type="varchar" MaxLength="30" />
+    <Property Name="ParentLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="ParentLink_Category" Type="varchar" MaxLength="30" />
+    <Property Name="ParentName" Type="varchar" MaxLength="255" />
+    <Property Name="PlannedDemo" Type="int" />
+    <Property Name="PlannedDisCall" Type="int" />
+    <Property Name="PlannedDisMeet" Type="int" />
+    <Property Name="PlannedFace" Type="int" />
+    <Property Name="PlannedInbound" Type="int" />
+    <Property Name="PlannedLiveEvt" Type="int" />
+    <Property Name="PlannedOutbound" Type="int" />
+    <Property Name="PlannedPOC" Type="int" />
+    <Property Name="PlannedProposal" Type="int" />
+    <Property Name="PlannedPtnCall" Type="int" />
+    <Property Name="PlannedPtnMeet" Type="int" />
+    <Property Name="PlannedTradeShow" Type="int" />
+    <Property Name="PlannedUserGrp" Type="int" />
+    <Property Name="PlannedWebinar" Type="int" />
+    <Property Name="PopulateSalesAcitivyFields" Type="varchar" MaxLength="2" />
+    <Property Name="Priority" Type="varchar" MaxLength="20" />
+    <Property Name="Priority_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Purpose" Type="varchar" MaxLength="60" />
+    <Property Name="Purpose_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="RecId" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="RegionCode" Type="tinyint" />
+    <Property Name="RegionName" Type="varchar" MaxLength="255" />
+    <Property Name="RegionName_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="StartDateTime" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="25" />
+    <Property Name="Status_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Subject" Type="varchar" MaxLength="255" />
+    <Property Name="TerritoryCode" Type="tinyint" />
+    <Property Name="TerritoryName" Type="varchar" MaxLength="255" />
+    <Property Name="TerritoryName_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Owner1" Type="varchar" MaxLength="200" />
+    <Property Name="xpDisplayName" Type="varchar" MaxLength="255" />
+    <Property Name="Notes" Type="text" />
+    <Property Name="xfCallResult" Type="varchar" MaxLength="50" />
+    <Property Name="xfCallResult_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="ActivityLocation" Type="varchar" MaxLength="40" />
+    <Property Name="ActivityLocation_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="DateRejected" Type="datetime" />
+    <Property Name="DueTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="ExternalTaskLinkID" Type="varchar" MaxLength="255" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="TimeLength" Type="smallint" />
+    <Property Name="xfWizardName" Type="varchar" MaxLength="100" />
+    <Property Name="xfWizardID" Type="varchar" MaxLength="32" />
+    <Property Name="xfAddPharmacy" Type="bit" />
+    <Property Name="xfPrescription" Type="varchar" MaxLength="25" />
+    <Property Name="AllDayEvent" Type="bit" />
+    <Property Name="ConversationIndex" Type="varchar" MaxLength="100" />
+    <Property Name="ExternalCalendarLinkID" Type="varchar" MaxLength="255" />
+    <Property Name="PercentComplete" Type="smallint" />
+    <Property Name="Reminder" Type="bit" />
+    <Property Name="ReminderTime" Type="smallint" />
+    <Property Name="xfPrescription#" Type="varchar" MaxLength="100" />
+    <Property Name="xfPrescription#_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPaymentStatus" Type="varchar" MaxLength="25" />
+    <Property Name="xfPaymentStatus_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPrescriptionType" Type="varchar" MaxLength="100" />
+    <Property Name="xfPrescriptionType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfApptResultCode" Type="varchar" MaxLength="50" />
+    <Property Name="xfApptResultCode_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfActivityControl" Type="varchar" MaxLength="50" />
+    <Property Name="xfActivityControl_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfDDRCharged" Type="bit" />
+    <Property Name="xfTeleEnquiry" Type="bit" />
+    <Property Name="xfProcessed" Type="bit" />
+    <Property Name="xfCancelled" Type="bit" />
+    <Property Name="xfAdvancedProcess" Type="bit" />
+  </EntityType>
+  <EntityType Name="Attachment">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="RecID" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="ParentLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="ParentLink_Category" Type="varchar" MaxLength="32" />
+    <Property Name="ATTACHNAME" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ATTACHDESC" Type="varchar" MaxLength="255" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="30" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="LastModDateTime" Type="datetime" />
+    <Property Name="LastModBy" Type="varchar" MaxLength="30" />
+    <Property Name="Path" Type="varchar" MaxLength="100" />
+    <Property Name="Host" Type="varchar" MaxLength="100" />
+    <Property Name="xfCategory" Type="varchar" MaxLength="100" />
+    <Property Name="xfCategory_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfYear" Type="varchar" MaxLength="25" />
+    <Property Name="xfMonth" Type="varchar" MaxLength="25" />
+    <Property Name="xfYear_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMonth_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfEstrogen" Type="bit" />
+    <Property Name="xfEncryption" Type="bit" />
+    <Property Name="xfEmail" Type="bit" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="RecId" />
+    </Key>
+    <Property Name="AccountLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="AccountLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="AccountLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="AccountName" Type="varchar" MaxLength="100" />
+    <Property Name="AssistancePhoneExt" Type="varchar" MaxLength="5" />
+    <Property Name="Assistant" Type="varchar" MaxLength="40" />
+    <Property Name="AssistantPhone" Type="varchar" MaxLength="14" />
+    <Property Name="Birthdate" Type="datetime" />
+    <Property Name="BirthdayNextMonth" Type="bit" />
+    <Property Name="ContactID" Type="varchar" MaxLength="30" />
+    <Property Name="ContactSupervisorName" Type="varchar" MaxLength="100" />
+    <Property Name="ContactType" Type="varchar" MaxLength="40" />
+    <Property Name="ContactType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="30" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="Department" Type="varchar" MaxLength="50" />
+    <Property Name="Department_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="DisplayName" Type="varchar" MaxLength="255" />
+    <Property Name="FirstName" Type="varchar" MaxLength="40" />
+    <Property Name="FullName" Type="varchar" MaxLength="255" />
+    <Property Name="GeographyCode" Type="tinyint" />
+    <Property Name="GeographyName" Type="varchar" MaxLength="255" />
+    <Property Name="GeographyName_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="HierarchyID" Type="int" />
+    <Property Name="LastModBy" Type="varchar" MaxLength="30" />
+    <Property Name="LastModDateTime" Type="datetime" />
+    <Property Name="LastName" Type="varchar" MaxLength="40" />
+    <Property Name="LoginUserLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="LoginUserLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="LoginUserLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="40" />
+    <Property Name="Owner" Type="varchar" MaxLength="30" />
+    <Property Name="Owner_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="OwnerTeam" Type="varchar" MaxLength="30" />
+    <Property Name="OwnerType" Type="varchar" MaxLength="30" />
+    <Property Name="ParentLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="ParentLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="ParentLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone1Link_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone1Link_Category" Type="varchar" MaxLength="61" />
+    <Property Name="Phone1Link_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone2Link_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone2Link_Category" Type="varchar" MaxLength="61" />
+    <Property Name="Phone2Link_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone3Link_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone3Link_Category" Type="varchar" MaxLength="61" />
+    <Property Name="Phone3Link_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone4Link_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="Phone4Link_Category" Type="varchar" MaxLength="61" />
+    <Property Name="Phone4Link_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="PreferredMethodContact" Type="varchar" MaxLength="25" />
+    <Property Name="PreferredMethodConta_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Prefix" Type="varchar" MaxLength="30" />
+    <Property Name="Prefix_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="PrimaryAddressLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="PrimaryAddressLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="PrimaryAddressLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="PrimaryEmail" Type="varchar" MaxLength="100" />
+    <Property Name="PrimaryEmailLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="PrimaryEmailLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="PrimaryEmailLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="PrimaryWebLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="PrimaryWebLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="PrimaryWebLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="RecId" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="RegionCode" Type="tinyint" />
+    <Property Name="RegionName" Type="varchar" MaxLength="255" />
+    <Property Name="RegionName_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Source" Type="varchar" MaxLength="60" />
+    <Property Name="Source_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Spouse" Type="varchar" MaxLength="120" />
+    <Property Name="Suffix" Type="varchar" MaxLength="30" />
+    <Property Name="Suffix_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="SupervisorLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="SupervisorLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="SupervisorLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="Territory" Type="varchar" MaxLength="60" />
+    <Property Name="Territory_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="TerritoryCode" Type="tinyint" />
+    <Property Name="TerritoryName" Type="varchar" MaxLength="255" />
+    <Property Name="TerritoryName_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Title" Type="varchar" MaxLength="60" />
+    <Property Name="Title_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedicareNumber" Type="varchar" MaxLength="20" />
+    <Property Name="xfEnquiryDate" Type="datetime" />
+    <Property Name="xfPatientNumber" Type="varchar" MaxLength="15" />
+    <Property Name="xfAge" Type="smallint" />
+    <Property Name="xfPensionerHealthNumber" Type="varchar" MaxLength="20" />
+    <Property Name="xfPrivateHealthFund" Type="varchar" MaxLength="25" />
+    <Property Name="xfPrivateHealthFund_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfStage" Type="varchar" MaxLength="25" />
+    <Property Name="xfStage_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPaymentPlan" Type="varchar" MaxLength="25" />
+    <Property Name="xfPaymentPlan_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xf1stDispenseDate" Type="datetime" />
+    <Property Name="xfStatus" Type="varchar" MaxLength="25" />
+    <Property Name="xfStatus_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfApplication" Type="varchar" MaxLength="50" />
+    <Property Name="xfPaymentType" Type="varchar" MaxLength="50" />
+    <Property Name="xfPaymentType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfLostReason" Type="varchar" MaxLength="50" />
+    <Property Name="xfLostReason_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPatientType" Type="varchar" MaxLength="25" />
+    <Property Name="xfPatientType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedHysterectomyCondition" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedHysterectomyCondition_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPrivPassword" Type="varchar" MaxLength="100" />
+    <Property Name="xfPrivNotes" Type="text" />
+    <Property Name="xfPrivSecret" Type="varchar" MaxLength="200" />
+    <Property Name="xfPrivLeaveMessage" Type="varchar" MaxLength="25" />
+    <Property Name="xfPrivLeaveMessage_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPrivAcceptanceCheck" Type="bit" />
+    <Property Name="xfMedAlcoholAmount" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedAlcoholConsumption" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedAlcoholConsumption_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedAllergies" Type="text" />
+    <Property Name="xfMedBloodPressure" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedBreastCancer" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedBreastCancer_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedCurrentHRT" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedCurrentHRT_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedCurrentHRTBrand" Type="varchar" MaxLength="250" />
+    <Property Name="xfMedCurrentHRTSideEffects" Type="text" />
+    <Property Name="xfMedCurrentMedicalConditions" Type="text" />
+    <Property Name="xfMedCurrentMedication" Type="text" />
+    <Property Name="xfMedCurrentSupplement" Type="text" />
+    <Property Name="xfMedDurationOfSymptoms" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedDVT_PE" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedDVT_PE_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedHeartCondition" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedHeartCondition_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedHeight" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedHotFlushes" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedHotFlushes_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedHotFlushesFrequency" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedHysterectomyReason" Type="text" />
+    <Property Name="xfMedHysterectomyReason_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedLastBoneDensity" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedLastBP" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedLastMamogram" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedLastPapSmear" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedLastPeriodDate" Type="varchar" MaxLength="100" />
+    <Property Name="xfMedMenstruateCondition" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedMenstruateCondition_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedMenstruateFrequency" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedSymDrySkin" Type="bit" />
+    <Property Name="xfMedSymVaginalDryness" Type="bit" />
+    <Property Name="xfMedSymHeadaches" Type="bit" />
+    <Property Name="xfMedSymFatigue" Type="bit" />
+    <Property Name="xfMedSymLackOfEnergy" Type="bit" />
+    <Property Name="xfMedSymBreastTenderness" Type="bit" />
+    <Property Name="xfMedSymBloating" Type="bit" />
+    <Property Name="xfMedSymFluidRetention" Type="bit" />
+    <Property Name="xfMedSymWeightGain" Type="bit" />
+    <Property Name="xfMedSymIrritability" Type="bit" />
+    <Property Name="xfMedSymAnxiety" Type="bit" />
+    <Property Name="xfMedSymMoodSwings" Type="bit" />
+    <Property Name="xfMedSymPoorSleep" Type="bit" />
+    <Property Name="xfMedSymMuscleAndJointPain" Type="bit" />
+    <Property Name="xfMedSymMemoryProblems" Type="bit" />
+    <Property Name="xfMedSymLowLibido" Type="bit" />
+    <Property Name="xfMedSymAcneAndPimples" Type="bit" />
+    <Property Name="xfMedSymFacialHair" Type="bit" />
+    <Property Name="xfMedSymMoreEmotional" Type="bit" />
+    <Property Name="xfMedSymDepression" Type="bit" />
+    <Property Name="xfMedSymCravings" Type="bit" />
+    <Property Name="xfMedSymNausea" Type="bit" />
+    <Property Name="xfMedSymFoggyHead" Type="bit" />
+    <Property Name="xfMedSymLackOfMotivation" Type="bit" />
+    <Property Name="xfMedSymVoiceChanging" Type="bit" />
+    <Property Name="xfMedMostBotheringSymptoms" Type="text" />
+    <Property Name="xfMedPreviousHRT" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedPreviousHRT_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedPreviousHRTDose" Type="varchar" MaxLength="200" />
+    <Property Name="xfMedPreviousHRTBrand" Type="varchar" MaxLength="200" />
+    <Property Name="xfMedPreviousHRTDuration" Type="varchar" MaxLength="200" />
+    <Property Name="xfMedPreviousHRTSideEffects" Type="text" />
+    <Property Name="xfMedCurrentHRTDose" Type="varchar" MaxLength="250" />
+    <Property Name="xfMedCurrentHRTDuration" Type="varchar" MaxLength="250" />
+    <Property Name="xfMedStroke" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedStroke_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedWeight" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedOtherSurgeries" Type="text" />
+    <Property Name="xfMedSmoke" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedSmoke_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedSmokeAmount" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedNightSweats" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedNightSweats_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedOverheating" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedOverheating_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedNightSweatsFrequency" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedNightSweatsFrequency_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedOverheatingDuration" Type="varchar" MaxLength="25" />
+    <Property Name="xfDeliveryCourier" Type="varchar" MaxLength="25" />
+    <Property Name="xfDeliveryCourier_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfDeliveryInstruction" Type="varchar" MaxLength="100" />
+    <Property Name="xfDeliveryInstruction_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="DeliveryAddressLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="DeliveryAddressLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="DeliveryAddressLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="xfApptDoctorName" Type="varchar" MaxLength="100" />
+    <Property Name="xfApptDoctorName_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfApptDate" Type="datetime" />
+    <Property Name="xfApptAM_PM" Type="varchar" MaxLength="25" />
+    <Property Name="xfApptAM_PM_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfApptTime" Type="varchar" MaxLength="5" />
+    <Property Name="xfSystemMessage" Type="varchar" MaxLength="100" />
+    <Property Name="xfSpecialNotes" Type="text" />
+    <Property Name="xfGender" Type="varchar" MaxLength="25" />
+    <Property Name="xfGender_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedHysterectomyDate" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedHotFlushesAmount" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedNightSweatsAmount" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedCurrentContraceptive" Type="varchar" MaxLength="100" />
+    <Property Name="xfMedCurrentContraceptive_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfGPSuburb" Type="varchar" MaxLength="25" />
+    <Property Name="xfHasGPDetails" Type="varchar" MaxLength="10" />
+    <Property Name="xfCardName" Type="varchar" MaxLength="100" />
+    <Property Name="xfCardNumber1" Type="varchar" MaxLength="4" />
+    <Property Name="xfCardNumber2" Type="varchar" MaxLength="4" />
+    <Property Name="xfCardNumber3" Type="varchar" MaxLength="4" />
+    <Property Name="xfCardNumber4" Type="varchar" MaxLength="4" />
+    <Property Name="xfCardExpiryMonth" Type="varchar" MaxLength="2" />
+    <Property Name="xfCardExpiryMonth_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCardExpiryYear" Type="varchar" MaxLength="2" />
+    <Property Name="xfCardExpiryYear_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfLocalStateTime" Type="datetime" />
+    <Property Name="xfApptState" Type="varchar" MaxLength="25" />
+    <Property Name="xfApptCountry" Type="varchar" MaxLength="25" />
+    <Property Name="xfApptSystemDateAndTime" Type="datetime" />
+    <Property Name="xfApptLocalTimeZoneOffset" Type="smallint" />
+    <Property Name="xfApptLocalStateTime" Type="datetime" />
+    <Property Name="xfTempDateTime" Type="datetime" />
+    <Property Name="xfApptPurpose" Type="varchar" MaxLength="60" />
+    <Property Name="xfApptPurpose_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfMedWhenSymptomOccur" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedOtherSymptoms" Type="text" />
+    <Property Name="xfEmailAddress" Type="varchar" MaxLength="100" />
+    <Property Name="xfFCW_LastPathologyTest" Type="varchar" MaxLength="250" />
+    <Property Name="xfFCW_OkForSalesConsultant" Type="bit" />
+    <Property Name="xfFCW_DelaySalesConsultTo" Type="bit" />
+    <Property Name="xfFCW_DelaySalesConsultToDate" Type="datetime" />
+    <Property Name="xfFCW_PathologyRequired" Type="bit" />
+    <Property Name="xfReadOnly_Home_Address" Type="text" />
+    <Property Name="xfReadOnly_Home_City" Type="varchar" MaxLength="40" />
+    <Property Name="xfReadOnly_Home_State" Type="varchar" MaxLength="40" />
+    <Property Name="xfReadOnly_Home_Zip" Type="varchar" MaxLength="14" />
+    <Property Name="xfReadOnly_Home_Country" Type="varchar" MaxLength="40" />
+    <Property Name="xfReadOnly_HomePH_Phone" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Home_DoNotContact" Type="bit" />
+    <Property Name="xfReadOnly_Work_Phone" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Work_DoNotContact" Type="bit" />
+    <Property Name="xfReadOnly_Mobile_Phone" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Mobile_DoNotContact" Type="bit" />
+    <Property Name="xfReadOnly_Mobile_DoNotSMS" Type="bit" />
+    <Property Name="xfReadOnly_Fax_Phone" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Fax_DoNotContact" Type="bit" />
+    <Property Name="xfReadOnly_HomePH_DoNotContact" Type="bit" />
+    <Property Name="xfReadOnly_Del_Address" Type="text" />
+    <Property Name="xfReadOnly_Del_City" Type="varchar" MaxLength="40" />
+    <Property Name="xfReadOnly_Del_State" Type="varchar" MaxLength="40" />
+    <Property Name="xfReadOnly_Del_Country" Type="varchar" MaxLength="40" />
+    <Property Name="xfReadOnly_Del_Zip" Type="varchar" MaxLength="14" />
+    <Property Name="xfOneOff_ValidFrom" Type="datetime" />
+    <Property Name="xfOneOff_ValidTo" Type="datetime" />
+    <Property Name="xfOneOff_Address" Type="text" />
+    <Property Name="xfOneOff_City" Type="varchar" MaxLength="40" />
+    <Property Name="xfOneOff_State" Type="varchar" MaxLength="40" />
+    <Property Name="xfOneOff_State_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfOneOff_Country" Type="varchar" MaxLength="40" />
+    <Property Name="xfOneOff_Country_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfOneOff_Zip" Type="varchar" MaxLength="11" />
+    <Property Name="xfOneOff_OneOffChange" Type="bit" />
+    <Property Name="xfReadOnly_Pres1_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres2_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres3_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres4_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres5_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres6_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres7_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_PExtra_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_PSupp_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_PHCG_Pack1" Type="varchar" MaxLength="255" />
+    <Property Name="xfCRW_PathologyRequired" Type="bit" />
+    <Property Name="xfCRW_LastPathologyTest" Type="varchar" MaxLength="250" />
+    <Property Name="xfFCW_ContactNotes" Type="text" />
+    <Property Name="xfCRW_ContactNotes" Type="text" />
+    <Property Name="xfActiveWizardName" Type="varchar" MaxLength="50" />
+    <Property Name="xfReadOnly_COM_P1_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_PExtra_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_PSupp_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_PHCG_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_P2_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_P3_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_P4_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_P5_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_P6_Changed" Type="bit" />
+    <Property Name="xfReadOnly_COM_P7_Changed" Type="bit" />
+    <Property Name="xfGMCERecID" Type="varchar" MaxLength="32" />
+    <Property Name="xfCardNotes" Type="text" />
+    <Property Name="xfSW_PendingPayment" Type="bit" />
+    <Property Name="xfSW_TaskStartDate" Type="datetime" />
+    <Property Name="xfSW_TaskPurpose" Type="varchar" MaxLength="60" />
+    <Property Name="xfSW_TaskSubject" Type="varchar" MaxLength="255" />
+    <Property Name="xfSW_TaskNotes" Type="text" />
+    <Property Name="xfSW_TaskUser" Type="varchar" MaxLength="100" />
+    <Property Name="xfSW_ContactNotes" Type="text" />
+    <Property Name="xfSW_DelAddress" Type="text" />
+    <Property Name="xfSW_DelCity" Type="varchar" MaxLength="40" />
+    <Property Name="xfSW_DelState" Type="varchar" MaxLength="40" />
+    <Property Name="xfSW_DelZip" Type="varchar" MaxLength="14" />
+    <Property Name="xfSW_DelCountry" Type="varchar" MaxLength="40" />
+    <Property Name="xfReadOnly_SW_DDR1" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDR2" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDR3" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDR4" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDR5" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDR6" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDR7" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDRHCG" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDRExtra" Type="bit" />
+    <Property Name="xfReadOnly_SW_DDRSupp" Type="bit" />
+    <Property Name="xfReadOnly_Pres1_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Pres2_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Pres3_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Pres4_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Pres5_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Pres6_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_Pres7_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_PExtra_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_PHCG_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfReadOnly_PSupp_MedUser" Type="varchar" MaxLength="25" />
+    <Property Name="xfCCAW_BulkProcessing" Type="bit" />
+    <Property Name="xfCon_NoteID" Type="varchar" MaxLength="25" />
+    <Property Name="xfCon_DispatchDate" Type="varchar" MaxLength="25" />
+    <Property Name="xfCon_CarrierName" Type="varchar" MaxLength="100" />
+    <Property Name="xfMMW_Complete1" Type="bit" />
+    <Property Name="xfMMW_Complete2" Type="bit" />
+    <Property Name="xfMMW_ContactNotes1" Type="text" />
+    <Property Name="xfMMW_ContactNotes2" Type="text" />
+    <Property Name="xfMFU_EditSalesDate1" Type="bit" />
+    <Property Name="xfMFU_SalesDate1" Type="datetime" />
+    <Property Name="xfMFU_SalesDateReason1" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres1_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres1_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres1_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres2_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres3_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres4_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres5_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres6_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres7_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_PExtra_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_PHCG_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_PSupp_Pack2" Type="varchar" MaxLength="255" />
+    <Property Name="xfReadOnly_Pres2_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres3_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres4_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres5_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres6_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres7_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_PExtra_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_PExtra_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_PHCG_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_PHCG_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_PSupp_FormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_PSupp_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres3_PatientType" Type="varchar" MaxLength="112" />
+    <Property Name="xfReadOnly_Pres4_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres5_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres6_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres7_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfReadOnly_Pres2_PatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfMFU_EditSalesDate2" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate3" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate4" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate5" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate6" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate7" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate_HCG" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate_Supp" Type="bit" />
+    <Property Name="xfMFU_EditSalesDate_Extra" Type="bit" />
+    <Property Name="xfMFU_SalesDate2" Type="datetime" />
+    <Property Name="xfMFU_SalesDate3" Type="datetime" />
+    <Property Name="xfMFU_SalesDate4" Type="datetime" />
+    <Property Name="xfMFU_SalesDate5" Type="datetime" />
+    <Property Name="xfMFU_SalesDate6" Type="datetime" />
+    <Property Name="xfMFU_SalesDate7" Type="datetime" />
+    <Property Name="xfMFU_SalesDate_HCG" Type="datetime" />
+    <Property Name="xfMFU_SalesDate_Supp" Type="datetime" />
+    <Property Name="xfMFU_SalesDate_Extra" Type="datetime" />
+    <Property Name="xfMFU_SalesDateReason2" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason3" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason4" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason5" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason6" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason7" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason_HCG" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason_Supp" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_SalesDateReason_Extra" Type="varchar" MaxLength="255" />
+    <Property Name="xf_CAW_NewHome_Address" Type="text" />
+    <Property Name="xf_CAW_NewHome_State" Type="varchar" MaxLength="40" />
+    <Property Name="xf_CAW_NewHome_City" Type="varchar" MaxLength="40" />
+    <Property Name="xf_CAW_NewHome_Zip" Type="varchar" MaxLength="14" />
+    <Property Name="xf_CAW_NewHome_Country" Type="varchar" MaxLength="40" />
+    <Property Name="xf_CAW_NewDel_Address" Type="varchar" MaxLength="40" />
+    <Property Name="xf_CAW_NewDel_State" Type="varchar" MaxLength="40" />
+    <Property Name="xf_CAW_NewDel_City" Type="varchar" MaxLength="49" />
+    <Property Name="xf_CAW_NewDel_Country" Type="varchar" MaxLength="40" />
+    <Property Name="xf_CAW_NewDel_Zip" Type="varchar" MaxLength="14" />
+    <Property Name="xfMFU_DDR_isRequested" Type="bit" />
+    <Property Name="xfMFU_Path_IsRequested" Type="bit" />
+    <Property Name="xfMFU_DDR_StartDate" Type="datetime" />
+    <Property Name="xfMFU_DDR_Purpose" Type="varchar" MaxLength="60" />
+    <Property Name="xfMFU_DDR_User" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_DDR_Subject" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_DDR_Notes" Type="text" />
+    <Property Name="xfMFU_Path_StartDate" Type="datetime" />
+    <Property Name="xfMFU_Path_Purpose" Type="varchar" MaxLength="60" />
+    <Property Name="xfMFU_Path_User" Type="varchar" MaxLength="100" />
+    <Property Name="xfMFU_Path_Subject" Type="varchar" MaxLength="255" />
+    <Property Name="xfMFU_Path_Notes" Type="text" />
+    <Property Name="xfMFU_ContactNotes" Type="text" />
+    <Property Name="xfCCAW_ScheduledDate" Type="datetime" />
+    <Property Name="xfRefNum" Type="varchar" MaxLength="50" />
+    <Property Name="xfDDR_USER" Type="varchar" MaxLength="100" />
+    <Property Name="xfDDR_USER_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfApptDoctorShortName" Type="varchar" MaxLength="100" />
+    <Property Name="ActivityPurposeField" Type="varchar" MaxLength="60" />
+    <Property Name="xfMedHotFlushesFrequency_Valid" Type="nvarchar" MaxLength="32" />
+    <Property Name="xfOneOffDeliveryInstructions" Type="varchar" MaxLength="100" />
+    <Property Name="xfOneOffDeliveryInstructions_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfReceiptFlag" Type="bit" />
+    <Property Name="xfSupplementStatus" Type="varchar" MaxLength="25" />
+    <Property Name="xfSupplementStatus_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfSuppReceiptNotes" Type="text" />
+    <Property Name="xfPossibleCancellationFlag" Type="bit" />
+    <Property Name="xfPossibleCancellationReason" Type="text" />
+    <Property Name="xfMedOvaries" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedOvaries_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfUterus" Type="varchar" MaxLength="25" />
+    <Property Name="xfUterus_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfOvariesDate" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedOvariesReason" Type="varchar" MaxLength="50" />
+    <Property Name="xfMedUterusDate" Type="varchar" MaxLength="25" />
+    <Property Name="xfMedUterusReason" Type="varchar" MaxLength="50" />
+    <Property Name="xfSuppSaleFlag" Type="bit" />
+    <Property Name="xfShakeItStartDate" Type="datetime" />
+    <Property Name="xfShakeItFlagScheduleEmails" Type="bit" />
+    <Property Name="xfShakeItStatus" Type="varchar" MaxLength="25" />
+    <Property Name="xfShakeItStatus_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCreditCardMask" Type="varchar" MaxLength="4" />
+    <Property Name="xfSWSendWelcomeEmail" Type="bit" />
+    <Property Name="xfPatientStatus" Type="varchar" MaxLength="100" />
+    <Property Name="xfCW_IsRecovered" Type="bit" />
+    <Property Name="xfCW_IsEscalated" Type="bit" />
+    <Property Name="xfCW_IsCancelled" Type="bit" />
+    <Property Name="xfCW_Notes" Type="text" />
+    <Property Name="xfSWNotInterested" Type="bit" />
+    <Property Name="xfSWProgramType" Type="varchar" MaxLength="50" />
+    <Property Name="xfReceipts" Type="varchar" MaxLength="50" />
+    <Property Name="xfReceipts_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfSupplementClub" Type="varchar" MaxLength="25" />
+    <Property Name="xfSupplementClub_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPreferredClinicalAssistant" Type="varchar" MaxLength="50" />
+    <Property Name="xfPreferredClinicalAssistant_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfSWSendPeriWelcomeEmail" Type="bit" />
+    <Property Name="xfClinicalNotes" Type="varchar" MaxLength="300" />
+    <Property Name="xfDoctorNotes" Type="text" />
+    <Property Name="xf2ndPathClinicalNotes" Type="varchar" MaxLength="300" />
+    <Property Name="xfBestTimeToCall" Type="varchar" MaxLength="100" />
+    <Property Name="xfCiscoGUIDAttachment" Type="varchar" MaxLength="32" />
+    <Property Name="xfReactivationDate" Type="datetime" />
+    <Property Name="xfCRWSendCOMEmailFlag" Type="bit" />
+    <Property Name="xfPtPrint" Type="varchar" MaxLength="25" />
+    <Property Name="xfPtPrint_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfBCDiagDate" Type="varchar" MaxLength="25" />
+    <Property Name="xfBCType" Type="varchar" MaxLength="200" />
+    <Property Name="xfBCGeneticStudies" Type="varchar" MaxLength="200" />
+    <Property Name="xfBCReceptor" Type="varchar" MaxLength="250" />
+    <Property Name="xfBCPastTreatments" Type="varchar" MaxLength="250" />
+    <Property Name="xfBCCurrentTreatments" Type="varchar" MaxLength="250" />
+    <Property Name="xfBCFamilyHist" Type="varchar" MaxLength="250" />
+    <Property Name="xfBCHistology" Type="varchar" MaxLength="250" />
+    <Property Name="xfBCHistology_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfSW_RequestGPLetter" Type="bit" />
+    <Property Name="xfCRW_OtherNotes" Type="text" />
+    <Property Name="xfBulkEmailFlag" Type="bit" />
+    <Property Name="xfBulkEmailFlagNew" Type="bit" />
+    <Property Name="xfGenericFlag1" Type="bit" />
+    <Property Name="xfGenericFlag2" Type="bit" />
+    <Property Name="xfGenericFlag3" Type="bit" />
+    <Property Name="xfEPBulkSMSFlag1" Type="bit" />
+    <Property Name="xfEPBulkSMSFlag2" Type="bit" />
+    <Property Name="xfEPBulkEmailReceipts" Type="bit" />
+    <Property Name="xfEPBulkEmailGeneric" Type="bit" />
+    <Property Name="xfMedSymPainfulIntercourse" Type="bit" />
+    <Property Name="xfGPAddress" Type="varchar" MaxLength="150" />
+    <Property Name="xfGPCountry" Type="varchar" MaxLength="25" />
+    <Property Name="xfGPEmail" Type="varchar" MaxLength="50" />
+    <Property Name="xfGPFax" Type="varchar" MaxLength="25" />
+    <Property Name="xfGPLastName" Type="varchar" MaxLength="25" />
+    <Property Name="xfGPName" Type="varchar" MaxLength="25" />
+    <Property Name="xfGPNameOfPractice" Type="varchar" MaxLength="100" />
+    <Property Name="xfGPPhone" Type="varchar" MaxLength="25" />
+    <Property Name="xfGPPostalCode" Type="varchar" MaxLength="6" />
+    <Property Name="xfGPState" Type="varchar" MaxLength="25" />
+    <Property Name="xfGPState_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfGPCountry_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="CurrentDateAndTime" Type="datetime" />
+    <Property Name="xfMedLastPath" Type="varchar" MaxLength="200" />
+    <Property Name="xfMedLastPath_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfNotForCourier" Type="bit" />
+    <Property Name="xfDiagnosis" Type="text" />
+    <Property Name="OophorectomyDate" Type="varchar" MaxLength="25" />
+    <Property Name="OophorectomyReason" Type="varchar" MaxLength="200" />
+    <Property Name="xfCurrentUser" Type="varchar" MaxLength="250" />
+    <Property Name="xfMedHistLastUpdate" Type="datetime" />
+    <Property Name="xfMedPreviousWhyPatientStopHRT" Type="text" />
+    <Property Name="xfMedWhyPatientStopCurrentHRT" Type="text" />
+    <Property Name="xfClinicalAsst" Type="varchar" MaxLength="50" />
+    <Property Name="xfClinicalAsst_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCRWSendApptConfEmailFlag" Type="bit" />
+    <Property Name="xfGiftSent" Type="varchar" MaxLength="25" />
+    <Property Name="xfGiftSent_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfNumberOfYears" Type="varchar" MaxLength="25" />
+    <Property Name="xf12MonthPathFlag1" Type="bit" />
+    <Property Name="xf12MonthPathFlag2" Type="bit" />
+    <Property Name="xf12MonthPathFlag3" Type="bit" />
+    <Property Name="xf12MonthPathFlag4" Type="bit" />
+    <Property Name="xf12MonthPathText" Type="varchar" MaxLength="50" />
+    <Property Name="xfLeadsReceivedDate" Type="datetime" />
+    <Property Name="xf12MonthForceFlag" Type="bit" />
+    <Property Name="xfPortalAccess" Type="bit" />
+    <Property Name="xfLastPathologySent" Type="datetime" />
+    <Property Name="xfSendStatus" Type="varchar" MaxLength="200" />
+    <Property Name="xfLastPathNotes" Type="text" />
+    <Property Name="xfEwayToken" Type="varchar" MaxLength="100" />
+    <Property Name="xfDoNotSmsMobile" Type="bit" />
+    <Property Name="xfDoNotSmsEmail" Type="bit" />
+    <Property Name="xfOptOut" Type="bit" />
+    <Property Name="xfMedSymIncontinence" Type="bit" />
+    <Property Name="xfNoSMSConf" Type="bit" />
+  </EntityType>
+  <EntityType Name="xsoPrescription">
+    <Key>
+      <PropertyRef Name="RecId" />
+    </Key>
+    <Property Name="RecId" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="LastModDateTime" Type="datetime" />
+    <Property Name="LastModBy" Type="varchar" MaxLength="200" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" />
+    <Property Name="OwnerType" Type="varchar" MaxLength="30" />
+    <Property Name="Owner" Type="varchar" MaxLength="200" />
+    <Property Name="OwnerTeam" Type="varchar" MaxLength="30" />
+    <Property Name="ParentLink_RecID" Type="varchar" MaxLength="32" />
+    <Property Name="ParentLink_Category" Type="varchar" MaxLength="61" />
+    <Property Name="ParentLink_VRecID" Type="varchar" MaxLength="32" />
+    <Property Name="xfFormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfFormulaType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Application" Type="varchar" MaxLength="100" />
+    <Property Name="xfP1Application_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Doctor" Type="varchar" MaxLength="100" />
+    <Property Name="xfP1Doctor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Application" Type="varchar" MaxLength="100" />
+    <Property Name="xfP2Application_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Doctor" Type="varchar" MaxLength="100" />
+    <Property Name="xfP2Doctor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfPatientType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="Purpose" Type="varchar" MaxLength="25" />
+    <Property Name="Purpose_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Flavor" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Flavor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Flavor" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Flavor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1TotalRepeats" Type="smallint" />
+    <Property Name="xfP1TotalRepeats_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone1" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone2" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone3" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone4" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone5" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone6" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone7" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Hormone8" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone1" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone2" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone3" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone4" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone5" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone6" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone7" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Hormone8" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose1" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose2" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose3" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose4" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose5" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose6" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose7" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Dose8" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Dose8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose1" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose2" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose3" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose4" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose5" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose6" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose7" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Dose8" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Dose8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Instruction" Type="text" />
+    <Property Name="xfP1Instruction_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Instruction" Type="text" />
+    <Property Name="xfP2Instruction_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfSource" Type="varchar" MaxLength="25" />
+    <Property Name="xfContactRecID" Type="varchar" MaxLength="32" />
+    <Property Name="xfPharmacy" Type="varchar" MaxLength="25" />
+    <Property Name="xfPharmacy_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfDispenseDate" Type="datetime" />
+    <Property Name="xfPrescribeDate" Type="datetime" />
+    <Property Name="xfCodeType" Type="varchar" MaxLength="25" />
+    <Property Name="xfCodeType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Amount" Type="smallint" />
+    <Property Name="xfP2Amount" Type="smallint" />
+    <Property Name="xfP1Quantity" Type="smallint" />
+    <Property Name="xfP2Quantity" Type="smallint" />
+    <Property Name="xfP1RepeatsUsed" Type="smallint" />
+    <Property Name="xfP2RepeatsUsed" Type="smallint" />
+    <Property Name="xfP1RepeatsLeft" Type="smallint" />
+    <Property Name="xfP2RepeatsLeft" Type="smallint" />
+    <Property Name="PrimaryCurrencyCode" Type="varchar" MaxLength="3" />
+    <Property Name="TransactionCurrencyCode" Type="varchar" MaxLength="3" />
+    <Property Name="TransactionCurrencyCode_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1MedCostPCV" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfP1MedCost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfP2MedCostPCV" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfP2MedCost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfP2TotalRepeats" Type="smallint" />
+    <Property Name="xfDispensingNumber" Type="varchar" MaxLength="15" />
+    <Property Name="xfScriptNumber" Type="varchar" MaxLength="15" />
+    <Property Name="xfSystemMessage" Type="varchar" MaxLength="200" />
+    <Property Name="xfP1PrescriptionText" Type="text" />
+    <Property Name="xfP2PrescriptionText" Type="text" />
+    <Property Name="xfDispensingNumber_Fetch" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOM" Type="bit" />
+    <Property Name="xfCOMFormulaType" Type="varchar" MaxLength="100" />
+    <Property Name="xfCOMFormulaType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit1" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit2" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit3" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit4" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit5" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit6" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit7" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP1Unit8" Type="varchar" MaxLength="5" />
+    <Property Name="xfP1Unit8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit1" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit2" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit3" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit4" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit5" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit6" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit7" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfP2Unit8" Type="varchar" MaxLength="5" />
+    <Property Name="xfP2Unit8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMPatientType" Type="varchar" MaxLength="100" />
+    <Property Name="xfCOMPatientType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMCodeType" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMCodeType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMPharmacy" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMPharmacy_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Doctor" Type="varchar" MaxLength="100" />
+    <Property Name="xfCOMP1Doctor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Application" Type="varchar" MaxLength="100" />
+    <Property Name="xfCOMP1Application_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Amount" Type="smallint" />
+    <Property Name="xfCOMP1Quantity" Type="smallint" />
+    <Property Name="xfCOMP1Flavor" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Flavor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1RepeatsUsed" Type="smallint" />
+    <Property Name="xfCOMP1RepeatsLeft" Type="smallint" />
+    <Property Name="xfCOMP1TotalRepeats" Type="smallint" />
+    <Property Name="xfCOMP1Instruction" Type="text" />
+    <Property Name="xfCOMP1Instruction_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone1" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone2" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone3" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone4" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone5" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone6" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone7" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Hormone8" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose1" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose2" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose3" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose4" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose5" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose6" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose7" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Dose8" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Dose8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit1" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit2" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit3" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit4" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit5" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit6" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit7" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP1Unit8" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP1Unit8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Doctor" Type="varchar" MaxLength="100" />
+    <Property Name="xfCOMP2Doctor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Application" Type="varchar" MaxLength="100" />
+    <Property Name="xfCOMP2Application_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Amount" Type="smallint" />
+    <Property Name="xfCOMP2Quantity" Type="smallint" />
+    <Property Name="xfCOMP2Flavor" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Flavor_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2RepeatsUsed" Type="smallint" />
+    <Property Name="xfCOMP2RepeatsLeft" Type="smallint" />
+    <Property Name="xfCOMP2TotalRepeats" Type="smallint" />
+    <Property Name="xfCOMP1MedCostPCV" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfCOMP1MedCost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfCOMP2MedCostPCV" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfCOMP2MedCost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="xfCOMP2Instruction" Type="text" />
+    <Property Name="xfCOMP2Instruction_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone1" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone2" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone3" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone4" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone5" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone6" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone7" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Hormone8" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose1" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose2" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose3" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose4" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose5" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose6" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose7" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Dose8" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Dose8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit1" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit1_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit2" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit2_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit3" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit3_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit4" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit4_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit5" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit5_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit6" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit6_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit7" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit7_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfCOMP2Unit8" Type="varchar" MaxLength="5" />
+    <Property Name="xfCOMP2Unit8_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfWizardSource" Type="varchar" MaxLength="50" />
+    <Property Name="xfCOMP1PrescriptionText" Type="text" />
+    <Property Name="xfCOMP2PrescriptionText" Type="text" />
+    <Property Name="xfIsComUpdated" Type="bit" />
+    <Property Name="xfCOMP1Hormone1_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone2_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone3_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone4_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone5_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone6_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone7_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP1Hormone8_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone1_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone2_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone3_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone4_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone5_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone6_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone7_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfCOMP2Hormone8_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone1_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone2_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone3_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone4_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone5_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone6_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone7_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP1Hormone8_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone1_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone2_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone3_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone4_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone5_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone6_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone7_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfP2Hormone8_long" Type="varchar" MaxLength="25" />
+    <Property Name="xfReseDispensingNumber" Type="bit" />
+    <Property Name="xfResetScriptNumber" Type="bit" />
+    <Property Name="xfFlagPres" Type="bit" />
+    <Property Name="xfFlagDispenseNo" Type="bit" />
+    <Property Name="xfNextDDRChargeDate" Type="datetime" />
+    <Property Name="xfDDRStartDate" Type="datetime" />
+    <Property Name="xfPrescriptionType" Type="varchar" MaxLength="100" />
+    <Property Name="xfPrescriptionType_Valid" Type="varchar" MaxLength="32" />
+    <Property Name="xfPrintWS" Type="bit" />
+    <Property Name="xfPrintReceipt" Type="bit" />
+    <Property Name="xfGenericPrint1" Type="bit" />
+    <Property Name="xfGenericPrint2" Type="bit" />
+    <Property Name="xfGenericPrint3" Type="bit" />
+    <Property Name="xfSpecialReceiptRequired" Type="bit" />
+    <Property Name="xfNoReceiptRequired" Type="bit" />
+    <Property Name="xfRemake" Type="bit" />
+    <Property Name="xfProviderNumber" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Function Name="GetPatientsForBulkEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientType" Type="nvarchar" Mode="In" />
+    <Parameter Name="pageIndex" Type="int" Mode="In" />
+    <Parameter Name="pageSize" Type="int" Mode="In" />
+    <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+    <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetPatientsForBulkPrint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientType" Type="nvarchar" Mode="In" />
+    <Parameter Name="pageIndex" Type="int" Mode="In" />
+    <Parameter Name="pageSize" Type="int" Mode="In" />
+    <Parameter Name="sortExpression" Type="nvarchar" Mode="In" />
+    <Parameter Name="searchKeyword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="procGetResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sql" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="procGetResultBusiness" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sql" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="procGetTagSQLValues" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tagIds" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PatientRecID" Type="nvarchar" Mode="In" />
+    <Parameter Name="PatientNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CurrentUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="PresType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_BulkPrint_Attachment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XSORecID" Type="nvarchar" Mode="In" />
+    <Parameter Name="parentType" Type="nvarchar" Mode="In" />
+    <Parameter Name="CONTACTRECID" Type="nvarchar" Mode="In" />
+    <Parameter Name="TaskUser" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="AttachmentPath" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="AttachmentName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="destFolderId" Type="nvarchar" Mode="In" />
+    <Parameter Name="attachDESC" Type="nvarchar" Mode="In" />
+    <Parameter Name="xfCategory" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_BulkPrint_Attachment_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONTACTRECID" Type="nvarchar" Mode="In" />
+    <Parameter Name="destFolderId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UpdatePatientFlag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="patientType" Type="nvarchar" Mode="In" />
+    <Parameter Name="patientRecId" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="GMEEDevelopmentModelStoreContainer">
+    <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="xsoPrescription" EntityType="Self.xsoPrescription" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

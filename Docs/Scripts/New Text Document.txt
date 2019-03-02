@@ -1,0 +1,11 @@
+CREATE PROC dbo.[GetDoctorForPatient]  
+(  
+ @patientNumber NVARCHAR(20)  
+)  
+AS  
+BEGIN  
+ SELECT TOP(1) d.*  
+ FROM Doctors d  
+ JOIN GMEEProduction.dbo.xmoWizardClinicalReview cr ON d.DoctorName = cr.xfPathDoctor  
+ WHERE cr.xfPatientNumber = @patientNumber AND cr.xfPatientNumber IS NOT NULL AND d.IsDeleted = 0  
+END

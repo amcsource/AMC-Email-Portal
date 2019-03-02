@@ -1,0 +1,31 @@
+1. Credit Deduction
+Credits would be deducted as soon as order is scheduled but in case order is not complete (driver is not assigned) 
+then deducted amount would be credited back.
+
+2. Tier 
+No advance purchase is possible with Tier
+
+3. Driver (Accept/Deny)
+If driver denies then request would go to Admin to assign driver
+(would not consider point 11 as it may take a lot of time while searching for driver and have driver accept the request)
+
+4. No refund policy except no fulfilment condition.
+Refund will be made when driver is not assigned for shceduled order
+If order is not delivered (fulfilled) then driver and customer will discuss it offline - no refund would be made in this case
+
+5. Schedule your Delivery 
+Suppose customer scheduled order with 1 package but actual order was received with 2 packages.
+How additional package cost would be charged from customer?
+
+6. A to B Delivery
+Will this be considered as enterprise level service and would it deduct the amount for packages and visits from existing packages for personal
+
+
+
+--General things
+1. There would not be any oversized package thing, those would be managed by means of Tiers and any package (including PayAsYouGo) 
+can have oversize fee
+2. There would be single PayAsYouGo package in entire system
+3. All scheduled orders would be processed on date of schedule, no advance driver assignment
+4. After driver is assigned(accepts the assignment), customer would have provision to deny the assigned driver. 
+In this case admin would be notified and assign driver manually.

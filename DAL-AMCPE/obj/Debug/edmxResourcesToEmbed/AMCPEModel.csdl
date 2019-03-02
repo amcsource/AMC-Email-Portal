@@ -1,0 +1,807 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AMCPatientEmailModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="AMCPatientEmailEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MasterTemplates" EntityType="AMCPatientEmailModel.MasterTemplate" />
+    <EntitySet Name="SQLQueries" EntityType="AMCPatientEmailModel.SQLQuery" />
+    <EntitySet Name="EmailAttachments" EntityType="AMCPatientEmailModel.EmailAttachment" />
+    <EntitySet Name="SentEmailAttachments" EntityType="AMCPatientEmailModel.SentEmailAttachment" />
+    <FunctionImport Name="sp_GetResult" ReturnType="Collection(AMCPatientEmailModel.sp_GetResult_Result)">
+      <Parameter Name="sql" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procGetUsersInGroupsByGroupId" ReturnType="Collection(AMCPatientEmailModel.procGetUsersInGroupsByGroupId_Result)">
+      <Parameter Name="groupId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="procGetAllUsersInGroups" ReturnType="Collection(AMCPatientEmailModel.procGetAllUsersInGroups_Result)" />
+    <FunctionImport Name="procGetPermissionForUser" ReturnType="Collection(AMCPatientEmailModel.procGetPermissionForUser_Result)">
+      <Parameter Name="userId" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Groups" EntityType="AMCPatientEmailModel.Group" />
+    <EntitySet Name="UsersInGroups" EntityType="AMCPatientEmailModel.UsersInGroup" />
+    <AssociationSet Name="FK__UsersInGr__Group__09DE7BCC" Association="AMCPatientEmailModel.FK__UsersInGr__Group__09DE7BCC">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="UsersInGroup" EntitySet="UsersInGroups" />
+    </AssociationSet>
+    <EntitySet Name="TagCategories" EntityType="AMCPatientEmailModel.TagCategory" />
+    <EntitySet Name="TagSQLs" EntityType="AMCPatientEmailModel.TagSQL" />
+    <AssociationSet Name="FK__TagSQL__TagCateg__59FA5E80" Association="AMCPatientEmailModel.FK__TagSQL__TagCateg__59FA5E80">
+      <End Role="TagCategory" EntitySet="TagCategories" />
+      <End Role="TagSQL" EntitySet="TagSQLs" />
+    </AssociationSet>
+    <FunctionImport Name="procGetTagSQLByTagCategory" ReturnType="Collection(AMCPatientEmailModel.procGetTagSQLByTagCategory_Result)">
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+      <Parameter Name="tagCategoryId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="procGetEmailTemplates" ReturnType="Collection(AMCPatientEmailModel.procGetEmailTemplates_Result)">
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procGetMasterTemplates" ReturnType="Collection(AMCPatientEmailModel.procGetMasterTemplates_Result)">
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Permissions" EntityType="AMCPatientEmailModel.Permission" />
+    <AssociationSet Name="FK__Permissio__Group__0519C6AF" Association="AMCPatientEmailModel.FK__Permissio__Group__0519C6AF">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Permission" EntitySet="Permissions" />
+    </AssociationSet>
+    <EntitySet Name="Emails" EntityType="AMCPatientEmailModel.Email" />
+    <AssociationSet Name="FK__SentEmail__Email__4BAC3F29" Association="AMCPatientEmailModel.FK__SentEmail__Email__4BAC3F29">
+      <End Role="Email" EntitySet="Emails" />
+      <End Role="SentEmailAttachment" EntitySet="SentEmailAttachments" />
+    </AssociationSet>
+    <FunctionImport Name="procGetEmailsByUser" ReturnType="Collection(AMCPatientEmailModel.procGetEmailsByUser_Result)">
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="String" />
+      <Parameter Name="sentBy" Mode="In" Type="String" />
+      <Parameter Name="patientNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="EmailTemplateCategories" EntityType="AMCPatientEmailModel.EmailTemplateCategory" />
+    <EntitySet Name="EmailTemplates" EntityType="AMCPatientEmailModel.EmailTemplate" />
+    <AssociationSet Name="FK__EmailAtta__Email__412EB0B6" Association="AMCPatientEmailModel.FK__EmailAtta__Email__412EB0B6">
+      <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+      <End Role="EmailAttachment" EntitySet="EmailAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EmailTemp__Email__619B8048" Association="AMCPatientEmailModel.FK__EmailTemp__Email__619B8048">
+      <End Role="EmailTemplateCategory" EntitySet="EmailTemplateCategories" />
+      <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EmailTemp__Templ__3C69FB99" Association="AMCPatientEmailModel.FK__EmailTemp__Templ__3C69FB99">
+      <End Role="MasterTemplate" EntitySet="MasterTemplates" />
+      <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+    </AssociationSet>
+    <EntitySet Name="UserSignatures" EntityType="AMCPatientEmailModel.UserSignature" />
+    <FunctionImport Name="GetBrowsedFileNamesByTemplateId" ReturnType="Collection(AMCPatientEmailModel.GetBrowsedFileNamesByTemplateId_Result)">
+      <Parameter Name="emailTemplateId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="procGetEmailTemplatesByCategoryId" ReturnType="Collection(AMCPatientEmailModel.procGetEmailTemplatesByCategoryId_Result)">
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+      <Parameter Name="categoryId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <AssociationSet Name="FK__Email__EmailTemp__6E01572D" Association="AMCPatientEmailModel.FK__Email__EmailTemp__6E01572D">
+      <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+      <End Role="Email" EntitySet="Emails" />
+    </AssociationSet>
+    <FunctionImport Name="GetEmailFilters" ReturnType="Collection(AMCPatientEmailModel.GetEmailFilters_Result)" />
+    <FunctionImport Name="procGetEmailsByUserWithFilter" ReturnType="Collection(AMCPatientEmailModel.procGetEmailsByUserWithFilter_Result)">
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="String" />
+      <Parameter Name="sentBy" Mode="In" Type="String" />
+      <Parameter Name="patientNumber" Mode="In" Type="String" />
+      <Parameter Name="templateName" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="DocumentTemplates" EntityType="AMCPatientEmailModel.DocumentTemplate" />
+    <EntitySet Name="EmailJobs" EntityType="AMCPatientEmailModel.EmailJob" />
+    <FunctionImport Name="GetScheduledEmailData" ReturnType="Collection(AMCPatientEmailModel.GetScheduledEmailData_Result)" />
+    <FunctionImport Name="GetDoctorForPatient" ReturnType="Collection(AMCPatientEmailModel.GetDoctorForPatient_Result)">
+      <Parameter Name="patientNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Doctors" EntityType="AMCPatientEmailModel.Doctor" />
+    <EntitySet Name="InstructionTemplates" EntityType="AMCPatientEmailModel.InstructionTemplate" />
+    <FunctionImport Name="GetInstructionTemplateByNames" ReturnType="Collection(AMCPatientEmailModel.GetInstructionTemplateByNames_Result)">
+      <Parameter Name="names" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="PharmacyWorksheets" EntityType="AMCPatientEmailModel.PharmacyWorksheet" />
+    <AssociationSet Name="FK__PharmacyW__Docum__3587F3E0" Association="AMCPatientEmailModel.FK__PharmacyW__Docum__3587F3E0">
+      <End Role="DocumentTemplate" EntitySet="DocumentTemplates" />
+      <End Role="PharmacyWorksheet" EntitySet="PharmacyWorksheets" />
+    </AssociationSet>
+    <FunctionImport Name="GetScheduledPharmacyWorksheets" ReturnType="Collection(AMCPatientEmailModel.GetScheduledPharmacyWorksheets_Result)" />
+    <FunctionImport Name="GetExcelJobs" ReturnType="Collection(AMCPatientEmailModel.GetExcelJobs_Result)" />
+    <EntitySet Name="ExcelJobs" EntityType="AMCPatientEmailModel.ExcelJob" />
+    <EntitySet Name="PrintJobs" EntityType="AMCPatientEmailModel.PrintJob" />
+    <AssociationSet Name="FK__PrintJob__Docume__4C6B5938" Association="AMCPatientEmailModel.FK__PrintJob__Docume__4C6B5938">
+      <End Role="DocumentTemplate" EntitySet="DocumentTemplates" />
+      <End Role="PrintJob" EntitySet="PrintJobs" />
+    </AssociationSet>
+    <FunctionImport Name="GetPrintJobs" ReturnType="Collection(AMCPatientEmailModel.GetPrintJobs_Result)" />
+  </EntityContainer>
+  <EntityType Name="MasterTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Header" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Footer" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <NavigationProperty Name="EmailTemplates" Relationship="AMCPatientEmailModel.FK__EmailTemp__Templ__3C69FB99" FromRole="MasterTemplate" ToRole="EmailTemplate" />
+  </EntityType>
+  <EntityType Name="SQLQuery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Query" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+  </EntityType>
+  <EntityType Name="EmailAttachment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Url" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="EmailTemplateId" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <NavigationProperty Name="EmailTemplate" Relationship="AMCPatientEmailModel.FK__EmailAtta__Email__412EB0B6" FromRole="EmailAttachment" ToRole="EmailTemplate" />
+    <Property Type="Boolean" Name="IsBrowsed" />
+  </EntityType>
+  <EntityType Name="SentEmailAttachment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Url" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="EmailId" />
+    <NavigationProperty Name="Email" Relationship="AMCPatientEmailModel.FK__SentEmail__Email__4BAC3F29" FromRole="SentEmailAttachment" ToRole="Email" />
+  </EntityType>
+  <ComplexType Name="sp_GetResult_Result">
+    <Property Type="String" Name="Result" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="procGetUsersInGroupsByGroupId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="GroupName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="UserId" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="procGetAllUsersInGroups_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="GroupName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="UserId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="procGetPermissionForUser_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="PermisssionName" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="GroupId" Nullable="true" />
+    <Property Type="Boolean" Name="CanCreateGroup" Nullable="true" />
+    <Property Type="Boolean" Name="CanEditGroup" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteGroup" Nullable="true" />
+    <Property Type="Boolean" Name="CanCreateTemplate" Nullable="true" />
+    <Property Type="Boolean" Name="CanEditTemplate" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteTemplate" Nullable="true" />
+    <Property Type="Boolean" Name="CanEditOtherTemplate" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteOtherTemplate" Nullable="true" />
+    <Property Type="Boolean" Name="CanSendEmail" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Boolean" Name="CanCreateSQLQuery" Nullable="true" />
+    <Property Type="Boolean" Name="CanEditSQLQuery" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteSQLQuery" Nullable="true" />
+    <Property Type="Boolean" Name="CanEditOtherGroup" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteOtherGroup" Nullable="true" />
+    <Property Type="Boolean" Name="CanEditOtherSQLQuery" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteOtherSQLQuery" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteEmail" Nullable="true" />
+    <Property Type="Boolean" Name="CanDeleteOtherEmail" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="GroupName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <NavigationProperty Name="UsersInGroups" Relationship="AMCPatientEmailModel.FK__UsersInGr__Group__09DE7BCC" FromRole="Group" ToRole="UsersInGroup" />
+    <NavigationProperty Name="Permissions" Relationship="AMCPatientEmailModel.FK__Permissio__Group__0519C6AF" FromRole="Group" ToRole="Permission" />
+  </EntityType>
+  <EntityType Name="UsersInGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="GroupId" />
+    <Property Type="String" Name="UserId" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <NavigationProperty Name="Group" Relationship="AMCPatientEmailModel.FK__UsersInGr__Group__09DE7BCC" FromRole="UsersInGroup" ToRole="Group" />
+  </EntityType>
+  <Association Name="FK__UsersInGr__Group__09DE7BCC">
+    <End Type="AMCPatientEmailModel.Group" Role="Group" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.UsersInGroup" Role="UsersInGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersInGroup">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TagCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CategoryName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <NavigationProperty Name="TagSQLs" Relationship="AMCPatientEmailModel.FK__TagSQL__TagCateg__59FA5E80" FromRole="TagCategory" ToRole="TagSQL" />
+  </EntityType>
+  <EntityType Name="TagSQL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Query" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="TagCategoryId" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <NavigationProperty Name="TagCategory" Relationship="AMCPatientEmailModel.FK__TagSQL__TagCateg__59FA5E80" FromRole="TagSQL" ToRole="TagCategory" />
+  </EntityType>
+  <Association Name="FK__TagSQL__TagCateg__59FA5E80">
+    <End Type="AMCPatientEmailModel.TagCategory" Role="TagCategory" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.TagSQL" Role="TagSQL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TagCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TagSQL">
+        <PropertyRef Name="TagCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="procGetTagSQLByTagCategory_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Query" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="procGetEmailTemplates_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="procGetMasterTemplates_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="PermisssionName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="GroupId" />
+    <Property Type="Boolean" Name="CanCreateGroup" />
+    <Property Type="Boolean" Name="CanEditGroup" />
+    <Property Type="Boolean" Name="CanDeleteGroup" />
+    <Property Type="Boolean" Name="CanCreateTemplate" />
+    <Property Type="Boolean" Name="CanEditTemplate" />
+    <Property Type="Boolean" Name="CanDeleteTemplate" />
+    <Property Type="Boolean" Name="CanEditOtherTemplate" />
+    <Property Type="Boolean" Name="CanDeleteOtherTemplate" />
+    <Property Type="Boolean" Name="CanSendEmail" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <Property Type="Boolean" Name="CanCreateSQLQuery" />
+    <Property Type="Boolean" Name="CanEditSQLQuery" />
+    <Property Type="Boolean" Name="CanDeleteSQLQuery" />
+    <Property Type="Boolean" Name="CanEditOtherGroup" />
+    <Property Type="Boolean" Name="CanDeleteOtherGroup" />
+    <Property Type="Boolean" Name="CanEditOtherSQLQuery" />
+    <Property Type="Boolean" Name="CanDeleteOtherSQLQuery" />
+    <Property Type="Boolean" Name="CanDeleteEmail" />
+    <Property Type="Boolean" Name="CanDeleteOtherEmail" />
+    <NavigationProperty Name="Group" Relationship="AMCPatientEmailModel.FK__Permissio__Group__0519C6AF" FromRole="Permission" ToRole="Group" />
+  </EntityType>
+  <Association Name="FK__Permissio__Group__0519C6AF">
+    <End Type="AMCPatientEmailModel.Group" Role="Group" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.Permission" Role="Permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permission">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="From" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="To" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Cc" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Bcc" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Subject" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="HasAttachments" />
+    <Property Type="Boolean" Name="IsDraft" />
+    <Property Type="String" Name="SentBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="SentOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <Property Type="String" Name="ActivityRecId" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PatientRecId" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PatientNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PatientFullName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SentEmailAttachments" Relationship="AMCPatientEmailModel.FK__SentEmail__Email__4BAC3F29" FromRole="Email" ToRole="SentEmailAttachment" />
+    <Property Type="Int32" Name="EmailTemplateId" />
+    <NavigationProperty Name="EmailTemplate" Relationship="AMCPatientEmailModel.FK__Email__EmailTemp__6E01572D" FromRole="Email" ToRole="EmailTemplate" />
+    <Property Name="LetterRequired" Type="Boolean" />
+    <Property Name="Letter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SendASSMS" Type="Boolean" />
+    <Property Name="PatientFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentCategory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StorePatientLetter" Type="Boolean" />
+    <Property Name="SendUnEncryptedPatientLetter" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK__SentEmail__Email__4BAC3F29">
+    <End Type="AMCPatientEmailModel.Email" Role="Email" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.SentEmailAttachment" Role="SentEmailAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Email">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SentEmailAttachment">
+        <PropertyRef Name="EmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="procGetEmailsByUser_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="From" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Subject" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="HasAttachments" Nullable="true" />
+    <Property Type="String" Name="SentBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="SentOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+    <Property Type="String" Name="EmailTemplateName" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="SendASSMS" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="EmailTemplateCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CategoryName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <NavigationProperty Name="EmailTemplates" Relationship="AMCPatientEmailModel.FK__EmailTemp__Email__619B8048" FromRole="EmailTemplateCategory" ToRole="EmailTemplate" />
+  </EntityType>
+  <EntityType Name="EmailTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="From" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="To" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Cc" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Bcc" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Subject" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="TemplateId" />
+    <Property Type="Int32" Name="EmailTemplateCategoryId" />
+    <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="AttachmentHasBusiness" />
+    <Property Type="String" Name="AttachmentBusinessFilter" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AttachmentBusinessInclude" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="AttachmentHasDirectory" />
+    <Property Type="String" Name="AttachmentDirectoryPath" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AttachmentDirectoryFilter" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AttachmentDirectoryInclude" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="PromptForAttachments" />
+    <Property Type="Boolean" Name="SelectAllAttachments" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <NavigationProperty Name="EmailAttachments" Relationship="AMCPatientEmailModel.FK__EmailAtta__Email__412EB0B6" FromRole="EmailTemplate" ToRole="EmailAttachment" />
+    <NavigationProperty Name="EmailTemplateCategory" Relationship="AMCPatientEmailModel.FK__EmailTemp__Email__619B8048" FromRole="EmailTemplate" ToRole="EmailTemplateCategory" />
+    <NavigationProperty Name="MasterTemplate" Relationship="AMCPatientEmailModel.FK__EmailTemp__Templ__3C69FB99" FromRole="EmailTemplate" ToRole="MasterTemplate" />
+    <NavigationProperty Name="Emails" Relationship="AMCPatientEmailModel.FK__Email__EmailTemp__6E01572D" FromRole="EmailTemplate" ToRole="Email" />
+    <Property Name="RequireLetter" Type="Boolean" />
+    <Property Name="Letter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StorePatientLetter" Type="Boolean" />
+    <Property Name="SendASSMS" Type="Boolean" />
+    <Property Name="PatientFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentCategory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IncludeInstructions" Type="Boolean" />
+    <Property Name="InstructionFilter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CombineMultipleInstructions" Type="Boolean" />
+    <Property Name="SendUnEncryptedPatientLetter" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK__EmailAtta__Email__412EB0B6">
+    <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.EmailAttachment" Role="EmailAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmailTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmailAttachment">
+        <PropertyRef Name="EmailTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EmailTemp__Email__619B8048">
+    <End Type="AMCPatientEmailModel.EmailTemplateCategory" Role="EmailTemplateCategory" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmailTemplateCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmailTemplate">
+        <PropertyRef Name="EmailTemplateCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EmailTemp__Templ__3C69FB99">
+    <End Type="AMCPatientEmailModel.MasterTemplate" Role="MasterTemplate" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmailTemplate">
+        <PropertyRef Name="TemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserSignature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserId" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Signature" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="String" Name="DeletedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DeletedOn" Precision="3" />
+    <Property Type="Boolean" Name="IsDeleted" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetBrowsedFileNamesByTemplateId_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="procGetEmailTemplatesByCategoryId_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+  </ComplexType>
+  <Association Name="FK__Email__EmailTemp__6E01572D">
+    <End Type="AMCPatientEmailModel.EmailTemplate" Role="EmailTemplate" Multiplicity="0..1" />
+    <End Type="AMCPatientEmailModel.Email" Role="Email" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmailTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Email">
+        <PropertyRef Name="EmailTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetEmailFilters_Result">
+    <Property Type="String" Name="UserName" Nullable="true" />
+    <Property Type="String" Name="TemplateName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="procGetEmailsByUserWithFilter_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="From" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Subject" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="HasAttachments" Nullable="true" />
+    <Property Type="String" Name="SentBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="SentOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="EmailTemplateName" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="DocumentTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="TemplateName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TemplatePath" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <NavigationProperty Name="PharmacyWorksheets" Relationship="AMCPatientEmailModel.FK__PharmacyW__Docum__3587F3E0" FromRole="DocumentTemplate" ToRole="PharmacyWorksheet" />
+    <NavigationProperty Name="PrintJobs" Relationship="AMCPatientEmailModel.FK__PrintJob__Docume__4C6B5938" FromRole="DocumentTemplate" ToRole="PrintJob" />
+  </EntityType>
+  <EntityType Name="EmailJob">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="TemplateId" Nullable="false" />
+    <Property Type="String" Name="TemplateName" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="SendDate" Nullable="false" Precision="3" />
+    <Property Type="Boolean" Name="EmailFailed" Nullable="false" />
+    <Property Type="Boolean" Name="EmailSent" Nullable="false" />
+    <Property Type="String" Name="PatientNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PatientRecId" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="Prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetScheduledEmailData_Result">
+    <Property Type="Int64" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="TemplateId" Nullable="false" />
+    <Property Type="String" Name="TemplateName" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="SendDate" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="EmailFailed" Nullable="false" />
+    <Property Type="Boolean" Name="EmailSent" Nullable="false" />
+    <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="36" />
+    <Property Type="String" Name="Prescription" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="GetDoctorForPatient_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ImageName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="InstructionTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TemplatePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="GetInstructionTemplateByNames_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="TemplateName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="TemplatePath" Nullable="false" MaxLength="500" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="PharmacyWorksheet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentTemplateId" Type="Int32" Nullable="false" />
+    <Property Name="DocumentTemplateName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PatientNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PatientRecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Process" Type="Boolean" Nullable="false" />
+    <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+    <Property Name="ProcessedOn" Type="DateTime" Precision="3" />
+    <Property Name="ProcessFailed" Type="Boolean" Nullable="false" />
+    <Property Name="ProcessFailedCount" Type="Int16" />
+    <Property Name="ProcessFailedReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Prescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DocumentTemplate" Relationship="AMCPatientEmailModel.FK__PharmacyW__Docum__3587F3E0" FromRole="PharmacyWorksheet" ToRole="DocumentTemplate" />
+    <Property Name="ActivityRecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="XSORecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="Flag" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PatientFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__PharmacyW__Docum__3587F3E0">
+    <End Type="AMCPatientEmailModel.DocumentTemplate" Role="DocumentTemplate" Multiplicity="1" />
+    <End Type="AMCPatientEmailModel.PharmacyWorksheet" Role="PharmacyWorksheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PharmacyWorksheet">
+        <PropertyRef Name="DocumentTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetScheduledPharmacyWorksheets_Result">
+    <Property Type="Int64" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="DocumentTemplateId" Nullable="false" />
+    <Property Type="String" Name="DocumentTemplateName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="36" />
+    <Property Type="DateTime" Name="ProcessOn" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Process" Nullable="false" />
+    <Property Type="Boolean" Name="IsProcessed" Nullable="false" />
+    <Property Type="DateTime" Name="ProcessedOn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="ProcessFailed" Nullable="false" />
+    <Property Type="Int16" Name="ProcessFailedCount" Nullable="true" />
+    <Property Type="String" Name="ProcessFailedReason" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Prescription" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="AddedOn" Nullable="false" Precision="23" />
+    <Property Type="String" Name="ActivityRecId" Nullable="true" MaxLength="36" />
+    <Property Type="String" Name="XSORecId" Nullable="true" MaxLength="36" />
+    <Property Type="String" Name="Flag" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Filename" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetExcelJobs_Result">
+    <Property Type="Int64" Name="Id" Nullable="false" />
+    <Property Type="String" Name="ProcName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="Process" Nullable="false" />
+    <Property Type="Boolean" Name="IsProcessed" Nullable="false" />
+    <Property Type="DateTime" Name="ProcessedOn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="ProcessFailed" Nullable="false" />
+    <Property Type="Int16" Name="ProcessFailedCount" Nullable="true" />
+    <Property Type="String" Name="ProcessFailedReason" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="AddedOn" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Filename" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailSubject" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="EmailBody" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="ExcelJob">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProcName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Process" Type="Boolean" Nullable="false" />
+    <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+    <Property Name="ProcessedOn" Type="DateTime" Precision="3" />
+    <Property Name="ProcessFailed" Type="Boolean" Nullable="false" />
+    <Property Name="ProcessFailedCount" Type="Int16" />
+    <Property Name="ProcessFailedReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EmailSubject" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="EmailBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PrintJob">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentTemplateId" Type="Int32" Nullable="false" />
+    <Property Name="DocumentTemplateName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PatientNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PatientRecId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="Process" Type="Boolean" Nullable="false" />
+    <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+    <Property Name="ProcessedOn" Type="DateTime" Precision="3" />
+    <Property Name="ProcessFailed" Type="Boolean" Nullable="false" />
+    <Property Name="ProcessFailedCount" Type="Int16" />
+    <Property Name="ProcessFailedReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PatientFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DocumentTemplate" Relationship="AMCPatientEmailModel.FK__PrintJob__Docume__4C6B5938" FromRole="PrintJob" ToRole="DocumentTemplate" />
+    <Property Name="SaveInCRM" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__PrintJob__Docume__4C6B5938">
+    <End Type="AMCPatientEmailModel.DocumentTemplate" Role="DocumentTemplate" Multiplicity="1" />
+    <End Type="AMCPatientEmailModel.PrintJob" Role="PrintJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentTemplate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrintJob">
+        <PropertyRef Name="DocumentTemplateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetPrintJobs_Result">
+    <Property Type="Int64" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="DocumentTemplateId" Nullable="false" />
+    <Property Type="String" Name="DocumentTemplateName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="36" />
+    <Property Type="Boolean" Name="Process" Nullable="false" />
+    <Property Type="Boolean" Name="IsProcessed" Nullable="false" />
+    <Property Type="DateTime" Name="ProcessedOn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="ProcessFailed" Nullable="false" />
+    <Property Type="Int16" Name="ProcessFailedCount" Nullable="true" />
+    <Property Type="String" Name="ProcessFailedReason" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PatientFullName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Filename" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="AddedOn" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="SaveInCRM" Nullable="false" />
+  </ComplexType>
+</Schema>

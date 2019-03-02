@@ -1,0 +1,15 @@
+@import url("reset.css");
+/*@import url("http://fonts.googleapis.com/css?family=Roboto");*/
+@import url(http://fonts.googleapis.com/css?family=Exo:400,100,400italic,700);
+@import url("font-awesome.css");
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {
+	display: block;
+}
+mark, rp, rt, ruby, summary, time {
+	display: inline
+}
+.clr {
+	clear: both;
+	float: none;
+}

@@ -1,0 +1,269 @@
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Web;
+//using System.Web.Services;
+//using System.Web.UI;
+//using System.Web.UI.WebControls;
+
+//public partial class Demo_TestEditor : System.Web.UI.Page
+//{
+//    //private TXTextControl.DocumentServer.DocumentController documentController1;
+//    //private System.ComponentModel.IContainer components;
+//    //private TXTextControl.ServerTextControl serverTextControl1;
+//    private TXTextControl.DocumentServer.MailMerge mailMerge1;
+//    //private TXTextControl.ServerTextControl serverTextControl2;
+
+//    // wrapper IEnumerable object as merge data source
+//    public List<Report> Reports = new List<Report>();
+    
+//    // simple object with public properties that match
+//    // the merge field names in the template
+//    public class Report
+//    {
+//        public string Sender { get; set; }
+//        public string Name { get; set; }
+//        public string FullName { get; set; }
+//        public string State { get; set; }
+//        public string AddressLine { get; set; }
+//        public string Zip { get; set; }
+//        public string City { get; set; }
+//    }
+
+//    // create a data object with the form field entries
+//    private Report CreateBusinessObject()
+//    {
+//        Report report = new Report();
+//        report.Sender = "Peter Jackson";
+
+//        report.Name = "Rohit";
+//        report.FullName = "Rohit Ch";
+//        report.State = "Rajasthan";
+//        report.AddressLine = "Jawahar Nagar";
+//        report.Zip = "302004";
+//        report.City = "Jaipur";
+
+//        return report;
+//    }
+
+//    protected void Page_Load(object sender, EventArgs e)
+//    {
+//        if (!IsPostBack)
+//        {
+//            //Load from saved file
+//            TextControl1.LoadTextAsync(Server.MapPath("~/docs/Script Mockup.doc"), TXTextControl.Web.StreamType.MSWord);
+
+//            /////////////////////////
+
+//            //Load from saved file and mail merge and then load into editor
+//            //using (TXTextControl.ServerTextControl tx = new TXTextControl.ServerTextControl())
+//            //{
+//            //    tx.Create();
+//            //    TXTextControl.LoadSettings ls = new TXTextControl.LoadSettings();
+//            //    ls.ApplicationFieldFormat = TXTextControl.ApplicationFieldFormat.MSWord;
+
+//            //    tx.Load(Server.MapPath("~/docs/Script Mockup.doc"),
+//            //        TXTextControl.StreamType.MSWord, ls);
+
+//            //    string data;
+
+//            //    tx.Save(out data, TXTextControl.StringStreamType.RichTextFormat);
+//            //    data = data.Replace("Script Number", "Vikas");
+//            //    TextControl1.LoadTextAsync(data, TXTextControl.Web.StringStreamType.RichTextFormat);
+//            //}
+//        }
+//    }
+//    protected void btnSave_Click(object sender, EventArgs e)
+//    {
+//        try
+//        {
+//            ////[Working] Load text from control, manual mail merge and save in desired format
+//            //// create a new instance of ServerTextControl
+//            //using (TXTextControl.ServerTextControl tx = new TXTextControl.ServerTextControl())
+//            //{
+//            //    tx.Create();
+
+//            //    // load the data from text control
+//            //    string data;
+//            //    TextControl1.SaveText(out data, TXTextControl.Web.StringStreamType.RichTextFormat);
+//            //    data = data.Replace("[Replace]", "Vikas");
+
+//            //    tx.Load(data, TXTextControl.StringStreamType.RichTextFormat);
+
+//            //    TXTextControl.SaveSettings saveSettings = new TXTextControl.SaveSettings();
+
+//            //    // set the document access permissions based on the checkboxes
+//            //    TXTextControl.DocumentAccessPermissions permissions = new TXTextControl.DocumentAccessPermissions();
+
+//            //    //if (cbAllowHighLevelPrinting.Checked == true)
+//            //    //    permissions =
+//            //    //        TXTextControl.DocumentAccessPermissions.AllowHighLevelPrinting;
+
+//            //    //if (cbAllowDocumentAssembly.Checked == true)
+//            //    //    permissions = permissions |
+//            //    //        TXTextControl.DocumentAccessPermissions.AllowDocumentAssembly;
+
+//            //    //if (cbAllowExtractContents.Checked == true)
+//            //    //    permissions = permissions |
+//            //    //        TXTextControl.DocumentAccessPermissions.AllowExtractContents;
+
+//            //    //if (cbAllowGeneralEditing.Checked == true)
+//            //    //    permissions = permissions |
+//            //    //        TXTextControl.DocumentAccessPermissions.AllowGeneralEditing;
+
+//            //    //saveSettings.DocumentAccessPermissions = permissions;
+
+//            //    //saveSettings.MasterPassword = tbPassword.Text;
+//            //    saveSettings.UserPassword = "123";
+
+
+//            //    //Save the document as PDF
+//            //    tx.Save(Server.MapPath("/docs/Script Mockup.pdf"), TXTextControl.StreamType.AdobePDF, saveSettings);
+//            //}
+
+
+//            /////////////////////////////////////////////////////////////////////
+
+//            //string data;
+//            //TextControl1.SaveText(out data, TXTextControl.Web.StringStreamType.RichTextFormat);
+
+//            //data = data.Replace("Script Number", "Replaced Script Number");
+
+//            //TextControl1.LoadTextAsync(data, TXTextControl.Web.StreamType.WordprocessingML);
+//            //TextControl1.SaveText(Server.MapPath("/docs/sample_2.docx"), TXTextControl.Web.StreamType.WordprocessingML);
+
+
+
+
+//            /////////////////////////////////////////////////////////////////////
+
+//            //Mail merge
+//            using (TXTextControl.ServerTextControl tx = new TXTextControl.ServerTextControl())
+//            {
+//                tx.Create();
+//                byte[] data;
+//                TextControl1.SaveText(out data, TXTextControl.Web.BinaryStreamType.WordprocessingML);
+
+//                using (mailMerge1 = new TXTextControl.DocumentServer.MailMerge())
+//                {
+//                    mailMerge1.TextComponent = tx;
+
+//                    mailMerge1.LoadTemplateFromMemory(data, TXTextControl.DocumentServer.FileFormat.WordprocessingML);
+
+//                    //Dictionary<string, string> dict = new Dictionary<string, string>();
+//                    //dict.Add("State", "Jaipur");
+//                    //dict.Add("FullName", "Rohit");
+//                    Reports.Add(CreateBusinessObject());
+
+//                    mailMerge1.MergeObjects(Reports, true);
+
+//                    TXTextControl.SaveSettings saveSettings = new TXTextControl.SaveSettings();
+
+//                    // set the document access permissions based on the checkboxes
+//                    //TXTextControl.DocumentAccessPermissions permissions = new TXTextControl.DocumentAccessPermissions();
+
+//                    //if (cbAllowHighLevelPrinting.Checked == true)
+//                    //    permissions =
+//                    //        TXTextControl.DocumentAccessPermissions.AllowHighLevelPrinting;
+
+//                    //if (cbAllowDocumentAssembly.Checked == true)
+//                    //    permissions = permissions |
+//                    //        TXTextControl.DocumentAccessPermissions.AllowDocumentAssembly;
+
+//                    //if (cbAllowExtractContents.Checked == true)
+//                    //    permissions = permissions |
+//                    //        TXTextControl.DocumentAccessPermissions.AllowExtractContents;
+
+//                    //if (cbAllowGeneralEditing.Checked == true)
+//                    //    permissions = permissions |
+//                    //        TXTextControl.DocumentAccessPermissions.AllowGeneralEditing;
+
+//                    //saveSettings.DocumentAccessPermissions = permissions;
+
+//                    //saveSettings.MasterPassword = tbPassword.Text;
+//                    saveSettings.UserPassword = "123";
+
+
+//                    //Save the document as PDF
+//                    mailMerge1.SaveDocument(Server.MapPath("/docs/Script Mockup.pdf"), TXTextControl.StreamType.AdobePDF, saveSettings);
+
+
+//                    //// save the resulting document to a byte array
+//                    //mailMerge1.SaveDocumentToMemory(out data, TXTextControl.BinaryStreamType.AdobePDF, null);
+//                }
+//            }
+
+
+
+//            /////////////////////////////////////////////////////////////////////
+
+//            ////Save in desired file format
+//            //TextControl1.SaveText(Server.MapPath("/docs/sample.docx"), TXTextControl.Web.StreamType.WordprocessingML);
+
+
+//        }
+//        catch (Exception ex)
+//        {
+
+//        }
+//    }
+
+//    protected void btnPDF_Click(object sender, EventArgs e)
+//    {
+//        // create a new instance of ServerTextControl
+//        using (TXTextControl.ServerTextControl tx = new TXTextControl.ServerTextControl())
+//        {
+//            tx.Create();
+
+//            // load the sample document
+//            tx.Load(Server.MapPath("/docs/Script Mockup.doc"), TXTextControl.StreamType.MSWord);
+
+//            TXTextControl.SaveSettings saveSettings = new TXTextControl.SaveSettings();
+
+//            // set the document access permissions based on the checkboxes
+//            //TXTextControl.DocumentAccessPermissions permissions = new TXTextControl.DocumentAccessPermissions();
+
+
+//            //if (cbAllowHighLevelPrinting.Checked == true)
+//            //    permissions =
+//            //        TXTextControl.DocumentAccessPermissions.AllowHighLevelPrinting;
+
+//            //if (cbAllowDocumentAssembly.Checked == true)
+//            //    permissions = permissions |
+//            //        TXTextControl.DocumentAccessPermissions.AllowDocumentAssembly;
+
+//            //if (cbAllowExtractContents.Checked == true)
+//            //    permissions = permissions |
+//            //        TXTextControl.DocumentAccessPermissions.AllowExtractContents;
+
+//            //if (cbAllowGeneralEditing.Checked == true)
+//            //    permissions = permissions |
+//            //        TXTextControl.DocumentAccessPermissions.AllowGeneralEditing;
+
+//            //saveSettings.DocumentAccessPermissions = permissions;
+
+//            //saveSettings.MasterPassword = tbPassword.Text;
+//            saveSettings.UserPassword = "123";
+
+
+//            //Save the document as PDF
+//            tx.Save(Server.MapPath("/docs/Script Mockup.pdf"), TXTextControl.StreamType.AdobePDF, saveSettings);
+
+
+//            /////////////////////////////////////
+
+//            //// save the document as PDF in a byte array
+//            //byte[] data;
+//            //tx.Save(out data, TXTextControl.BinaryStreamType.AdobePDF, saveSettings);
+
+//            //// return the document to the browser for download
+//            //Response.Clear();
+//            //Response.AddHeader("content-disposition",
+//            //    String.Format("attachment;filename={0}", "txtextcontrol.pdf"));
+//            //Response.ContentType = "application/pdf";
+//            //Response.BinaryWrite(data);
+//            //Response.End();
+//        }
+//    }
+//}

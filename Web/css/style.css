@@ -1,0 +1,1018 @@
+@import url("reset.css");
+@import url("http://fonts.googleapis.com/css?family=Roboto");
+@import url("font-awesome.css");
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video
+{
+    display: block;
+}
+mark, rp, rt, ruby, summary, time
+{
+    display: inline;
+}
+.clr
+{
+    clear: both;
+    float: none;
+}
+body
+{
+    font-family: 'Roboto' , sans-serif;
+    font-size: 12px;
+    color: #FFF;
+    background: #d9e0e7;
+}
+
+*
+{
+    margin: 0;
+}
+html, body
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+input, button, textarea, select
+{
+    font-family: 'Roboto' , sans-serif;
+}
+.container
+{
+    width: 100%;
+    background: #2d353c;
+    padding-bottom: 127px;
+}
+.content
+{
+    width: 430px;
+    margin: auto;
+}
+.logo
+{
+    width: 100%;
+}
+.logo img
+{
+    margin: 58px 0 25px 116px;
+}
+.content_part
+{
+    width: 100%;
+    border-radius: 10px;
+    background: #1a2229;
+    height: 464px;
+}
+.header_content
+{
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 88px;
+    font-weight: bold;
+}
+.mail_box
+{
+    margin: auto;
+    width: 315px;
+}
+.label
+{
+    display: inline-block;
+    font-size: 14px;
+}
+.form-control
+{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    padding: 6px 9%;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 82%;
+    margin: 11px 0 25px 0px;
+}
+.login_button button
+{
+    background-color: #e74710;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    display: block;
+    font-size: 14px;
+    padding: 14px 0px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+    margin: 11px 0 25px 0px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+.login_button button:hover
+{
+    background: #f15f2c;
+}
+.login_button i
+{
+    margin: 3px 4px 0 0;
+}
+.forgot_password
+{
+    width: 100%;
+    font-size: 14px;
+    color: #FFF;
+    text-align: center;
+}
+.forgot_text
+{
+    text-align: left;
+}
+.forgot_text a
+{
+    text-align: left;
+    color: #FFF;
+}
+.login_text a
+{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #FFF;
+}
+.forgot_text_user
+{
+    text-align: left;
+    font-size: 14px;
+    color: #FFF;
+    float: right;
+}
+.forgot_text_user a
+{
+    text-align: right;
+    font-size: 14px;
+    color: #FFF;
+}
+.footer
+{
+    text-align: center;
+    color: #62666a;
+    font-size: 14px;
+    margin-top: 30px;
+}
+.email_box
+{
+    position: relative;
+}
+.email_box i
+{
+    position: absolute;
+    top: 44px;
+    color: #bfbfbf;
+    left: 7px;
+    font-size: 19px;
+}
+.paragraph_text
+{
+    width: 374px;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 32px;
+}
+/************deshbord page*************/
+.header
+{
+    width: 100%;
+    background: #fff;
+}
+.header_left
+{
+    width: 50%;
+}
+.header_left a img
+{
+    padding: 14px;
+}
+.navbar_right
+{
+    float: right;
+    padding: 15px;
+    width: 22%;
+    margin-top: -78px;
+    text-align: right;
+    color:#000;
+}
+
+.btn-u a
+{
+    border: #666 1px solid;
+    padding: 10px;
+    float: right;
+    font-size: 14px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+.btn-u i
+{
+    padding: 0px 7px 0 3px;
+    font-size: 18px;
+}
+.btn-u a:hover
+{
+    background: #E74710;
+    color: #fff;
+    border: #E74710 1px solid;
+}
+.wrapper
+{
+    width: 100%;
+}
+.clear
+{
+    clear: both;
+    float: none;
+}
+.nav_text
+{
+    float: left;
+}
+.nav_text li
+{
+    float: left;
+    margin: 15px 0 0 0;
+}
+.nav_text li:first-child
+{
+    border-right: 1px solid #fff;
+}
+.nav_text li a
+{
+    float: left;
+    text-decoration: none;
+    color: #FFF;
+    padding: 0 10px;
+}
+.nav_text li a:hover
+{
+    color: #E74710;
+}
+
+.leftnavInner li:first-child
+{
+    border-top: 0px none !important;
+}
+.leftnavInner li:last-child
+{
+    border-bottom: 0px none !important;
+}
+
+.activepage
+{
+    color: #E74710 !important;
+}
+.activeuser
+{
+    color: #451b67 !important;
+    font-size: 14px;
+    line-height: 13px;
+}
+.section
+{
+    width: 100%;
+    float: left; /*background:url(../images/left-bg.jpg) repeat-y left #d9e0e7;*/
+}
+.leftcolum
+{
+    float: left;
+    width: 17%;
+    background-color: #7e77be;
+    min-height: 505px;
+    height: auto;
+}
+.leftnav li
+{
+    padding: 11px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: #8a83d8 1px solid;
+}
+.leftnav li:first-child
+{
+    border-top: #55595e 1px solid;
+}
+.leftnav li i
+{
+    text-align: right;
+    padding: 2px 10px 0px 0px;
+    color: #fff;
+    font-size: 18px;
+}
+/*.leftnav li a{
+	color:#90959c;
+	text-decoration:none;
+}
+*/
+.leftnav li:hover
+{
+    background: #451b67;
+    cursor: pointer;
+}
+.icons
+{
+    float: right;
+    width: 10%;
+}
+.rightcolum
+{
+    border-radius: 5px;
+    background: #fff;
+    
+    width: 81%;
+    margin: 1% 1% 1% 18%;
+    min-height: 505px;
+}
+.mainheading
+{
+    background: #451b67;
+    border-radius: 5px 5px 0 0;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: normal;
+}
+.formdata
+{
+    padding: 20px;
+    color: #646566;
+    float: left;
+    width: 96%;
+}
+.form-elements
+{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.form-elements label
+{
+    float: left;
+    width: 20%;
+    margin: 0 15px 0 0;
+    text-align: right;
+    font-size: 14px;
+    padding: 15px 0;
+}
+.form-elements span.error
+{
+    padding-left: 175px;
+}
+.form-elements span.error-long
+{
+    padding-left: 225px;
+}
+
+.stylesheetimages
+{
+    float: left;
+    width: 382px;
+    margin: 15px 0 0 0;
+}
+.stylesheetimages .fileselect:last-child
+{
+    margin: 0 0 0 0 !important;
+}
+.stylesheetimages p
+{
+    font-size: 11px;
+    padding-bottom: 8px;
+}
+.fileselect
+{
+    margin: 0 0 15px 0;
+    float: left;
+    width: 100%;
+}
+.form-elements .inputtext
+{
+    float: left;
+    width: 74%;
+    border: 1px solid #82878c;
+    border-radius: 5px;
+    padding: 15px 10px;
+}
+.textarea
+{
+    float: left;
+    width: 74%;
+    border: 1px solid #82878c;
+    border-radius: 5px;
+    padding: 15px 10px;
+    height: 350px;
+}
+.form-elements .inputselect
+{
+    float: left;
+    width: 77%;
+    border: 1px solid #82878c;
+    border-radius: 5px;
+    padding: 15px 10px;
+}
+.tagTableSelect
+{
+    width: 72% !important;
+}
+
+.formbuttons
+{
+    float: left;
+    padding: 0 0 0 215px;
+    margin-top: 15px;
+}
+.submit-button
+{
+    background: #e74710;
+    border-radius: 3px;
+    color: #fff;
+    padding: 14px;
+    cursor: pointer;
+    margin: 0 6px 0 0;
+}
+.submit-button:hover
+{
+    background: #ed5a28;
+}
+.draft-button
+{
+    background: #5d85f7;
+    border-radius: 3px;
+    color: #fff;
+    padding: 14px;
+    cursor: pointer;
+    margin: 0 6px 0 0;
+}
+.draft-button:hover
+{
+    background: #4169E1;
+}
+.reset-button
+{
+    background: #818181;
+    border-radius: 3px;
+    color: #fff;
+    padding: 14px;
+    cursor: pointer;
+}
+.reset-button:hover
+{
+    background: #979696;
+}
+.formbuttons button i
+{
+    margin: 2px 0 0 0;
+}
+.macaddress-info
+{
+    text-align: center;
+    width: 70%;
+    font-size: 15px;
+    margin: 40px auto;
+}
+#example2 a
+{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+#example2 h3
+{
+    font-weight: normal;
+    float: left;
+    width: 73%;
+}
+.icons a
+{
+    display: inline !important;
+}
+
+
+table
+{
+    border-collapse: collapse;
+    margin: 12px;
+    width: 98%;
+}
+
+table tr:nth-child(2n+1)
+{
+    background: none repeat scroll 0 0 #dcd3e6;
+}
+table tr
+{
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+}
+
+table td
+{
+    border-bottom: 1px solid #ffffff;
+    color: #565656;
+    padding: 8px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+table th
+{
+    background: none repeat scroll 0 0 #131313;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 7px;
+    text-align: left;
+    text-shadow: 0 1px #242424;
+}
+
+/*.edit.table-icon {
+    background: url("../images/i_edit.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.table-icon {
+    margin-right: 5px;
+    padding: 1px 8px;
+}*/
+
+.rightcolum table a
+{
+    color: #000;
+    display: block;
+    float: left;
+    margin-right: 5px;
+    width: 22px;
+}
+.rightcolum table a i
+{
+    color: #000;
+    font-size: 18px;
+}
+
+
+
+.optionSelector_result
+{
+    border: 1px solid #ccc;
+    float: left;
+    padding: 5px;
+    width: 94%;
+    height: 225px;
+    overflow: auto;
+}
+.optionSelector_result ul
+{
+    float: left;
+    list-style: none outside none !important;
+    margin-left: 0 !important;
+}
+.optionSelector_result ul li
+{
+    float: left;
+    width: 100%;
+    cursor: pointer;
+    line-height: 22px;
+    color: #000;
+}
+.functionSelector_result, .querySelector_result
+{
+    height: 125px;
+}
+
+.tagSections
+{
+    float: left;
+    width: 22.5%;
+    margin-top: 10px;
+    color: #000;
+}
+
+.attachmentOption input[type='checkbox']
+{
+    float: left;
+    margin: 17px 10px;
+}
+.attachmentOption label
+{
+    text-align: left !important;
+}
+
+.attachOptionList
+{
+    float: right;
+    width: 80%;
+}
+.attachOptionList label
+{
+    float: left;
+    margin-left: 5px;
+    width: 120px;
+    text-align: left;
+}
+.attachOptionList input
+{
+    float: left;
+    margin-top: 18px;
+}
+
+.attachOptions
+{
+    float: left;
+    height: 35px;
+    margin-left: 7%;
+    padding-top: 15px;
+    width: 90%;
+}
+.attachOptions label
+{
+    float: left;
+    width: 30% !important;
+}
+.attachOptions input
+{
+    float: left;
+    margin: 3px 10px !important;
+}
+
+#tabs
+{
+    float: left;
+    width: 100%;
+}
+#tabs-body
+{
+    float: left;
+    width: 99.8%;
+    padding-bottom: 0 !important;
+}
+.body-editor .ui-tabs-nav
+{
+    margin-left: 0px !important;
+}
+.body-editor .ui-tabs .ui-tabs-panel
+{
+    padding: 1em 0 !important;
+}
+.body-editor .ui-tabs .ui-tabs-panel
+{
+    border: 1px solid #ccc !important;
+    border-top: none !important;
+}
+.body-editor .ui-widget-header
+{
+    background: none !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid #ccc !important;
+}
+.body-editor .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br
+{
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+.body-editor .ui-widget-content
+{
+    background: none !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    color: none !important;
+}
+.body-editor .ui-helper-reset
+{
+    font-size: 12px !important;
+}
+#tabs-attachment
+{
+    height: auto;
+    padding-bottom: 0 !important;
+}
+
+fieldset, ledend
+{
+    border: 1px solid #ccc;
+    font-size: 100%;
+    margin: 5px 5px 15px;
+    padding: 5px;
+    outline: 0;
+    vertical-align: top;
+}
+fieldset legend
+{
+    color: #000;
+    font-size: 14px;
+}
+
+table.checkBoxList
+{
+    width: 76%;
+    margin: 0px !important;
+}
+
+table.checkBoxList input[type="checkbox"]
+{
+    float: left;
+    margin-top: 14px;
+}
+table.checkBoxList input[type="checkbox"] + label
+{
+    float: left;
+    margin-top: -4px;
+    padding-left: 5px;
+    text-align: left;
+    width: 80%;
+}
+
+
+.form-elm
+{
+    height: 25px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.form-elm label
+{
+    float: left;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 70px;
+}
+.form-elm span
+{
+    float: left;
+    width: 85%;
+}
+.form-elm span p
+{
+    margin-bottom: 3px;
+}
+
+.no-record
+{
+    padding: 0 0 0 45%;
+    color: black;
+}
+
+.action
+{
+    border: 1px solid #451b67;
+    float: left;
+    height: 175px;
+    margin: 1%;
+    text-align: center;
+    width: 31%;
+}
+.action:hover
+{
+    background-color: #dcd3e6;
+}
+
+.email-attachments
+{
+    height: 550px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.pagination
+{
+    margin: 0 15px;
+    font-size: 15px;
+    color: black;
+}
+.pagination input
+{
+    float: left;
+    margin-right: 5px;
+}
+.pagination span
+{
+    float: left;
+}
+.pagination .pageText
+{
+    float: left;
+    margin-right: 10px;
+}
+.pagination a
+{
+    float: left;
+    height: 25px;
+    margin: 0 5px;
+    text-align: center;
+    width: 25px;
+}
+.pagination .gray
+{
+    color: Gray;
+    text-decoration: none;
+}
+.pagination .green
+{
+    color: Green;
+    text-decoration: underline;
+}
+
+.small
+{
+    width: 69% !important;
+}
+.browseDirectory
+{
+    height: 50px;
+    margin-left: 5px;
+    margin-top: 0;
+    width: 35px;
+}
+
+.aspNetDisabled
+{
+    background-color: #ccc;
+    cursor: default;
+}
+.aspNetDisabled:hover
+{
+    background-color: #ddd;
+    cursor: default;
+}
+
+a.aspNetDisabled
+{
+    background-color: transparent !important;
+}
+a.aspNetDisabled:hover
+{
+    background-color: transparent !important;
+}
+
+.message
+{
+    background-color: #89FF89;
+    color: Black;
+    height: 15px;
+    margin-top: 15px;
+    padding: 15px;
+    text-align: center;
+    width: 97%;
+}
+.norecord
+{
+    background-color: Red;
+}
+
+#search
+{
+    height: 35px;
+    margin: 10px;
+    width: 98%;
+}
+
+.search
+{
+    width: 49%;
+    float: left;
+}
+
+#search input[type='text'], .search input[type='text']
+{
+    border: 1px solid #ccc;
+    height: 30px;
+    margin-left: 2px;
+    padding-left: 5px;
+    width: 35%;
+}
+#search input[type='submit'], .search input[type='submit']
+{
+    background-color: #131313;
+    color: #fff;
+    font-size: 13px;
+    height: 34px;
+    margin-left: -3px;
+    width: 65px;
+}
+
+.ptNumber
+{
+    float: right;
+    text-align: right;
+    width: 40%;
+}
+.ptNumber input[type='text']
+{
+    width: 30% !important;
+}
+
+.center
+{
+    margin: auto;
+    padding: 10px;
+    width: 80%;
+    background-color: #FFF;
+    margin-top:50px;
+}
+
+.firstlink
+{
+    float: left;
+    width: 88%;
+}
+.firstlink i
+{
+    float: right;
+}
+
+.singlelink
+{
+    float: left;
+    width: 104%;
+}
+.singlelink i
+{
+    float: right;
+}
+
+input[type="image"].aspNetDisabled{background-color: transparent;}
+
+.BtnMinus{cursor: pointer;}
+
+
+#filter, #filterPatient
+{
+    height: 35px;
+    margin: 10px;
+    width: 98%;
+}
+
+#search .dropdown
+{
+    float: left;
+}
+
+#search .dropdown select
+{
+    border: 1px solid gray;
+    height: 34px;
+    width: 75px;
+}
+
+#search .ptNumber input[type='text']
+{
+    width: 60% !important;
+}
+
+#filter .pagesize, #filterPatient .dropdown
+{
+    float: right;
+}
+
+#filter .pagesize select, #filterPatient .dropdown select
+{
+    border: 1px solid gray;
+    height: 34px;
+    width: 75px;
+}
+
+#filterPatient label
+{
+    color: #000000;
+    float: left;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 9px;
+}
+
+#filterPatient .templates
+{
+    float: left;
+}
+
+#filterPatient .templates select
+{
+    border: 1px solid gray;
+    height: 34px;
+    width: 400px;
+}
+
+#filter input[type="submit"]
+{
+    background-color: #131313;
+    color: #fff;
+    font-size: 13px;
+    height: 34px;
+    width: 65px;
+    cursor: pointer;
+}

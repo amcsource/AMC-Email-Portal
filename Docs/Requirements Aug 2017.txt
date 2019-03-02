@@ -1,0 +1,23 @@
+so req #2
+in letter tab
+you have the feature store in patients file
+once ticked the pdf is stored unencrupted in patients file in crm
+when saved to the patient sfile witin our crm
+we would like to change the name of the file
+if store in patients file is ticked
+this should bring up 3 fields
+ill provide field names after
+when querys for these fields after
+these fields will be Save Name, Attachment Category, Description
+we used be able to use tags within these fields
+when letter is sent
+if store in patients file is ticked
+the letter will be saved with the new filename
+and attachment tegory and description is updated in the crm
+make sense?
+
+so in the manage template section
+if store in patients file is ticked
+you will display these 3 fields
+which we will fill in
+tags need to work in these fields i.e. in save name - I may use first name tag etc

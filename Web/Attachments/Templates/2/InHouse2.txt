@@ -1,0 +1,8 @@
+Object Name		Object Type		Description
+Customers		BASE TABLE		Conatins Customers Record
+VariableMasters		BASE TABLE		Stores all system variables
+VariableValues		BASE TABLE		Stores values per system variable
+bkup_Customers		BASE TABLE		back up of Customers table
+Users		BASE TABLE		Stores all users
+sp_GetAllCustomers		PROCEDURE		Returns all Customers who are active and not deleted
+sp_GetCustomerByLeadRefNo		PROCEDURE		Returns specific customer by its Lead Ref No

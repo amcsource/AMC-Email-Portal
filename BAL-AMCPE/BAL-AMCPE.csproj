@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{828C001D-4F11-4BBD-8B6C-0FFC3F2E61BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BAL_AMCPE</RootNamespace>
+    <AssemblyName>BAL-AMCPE</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Code7248.word_reader">
+      <HintPath>..\..\..\read word file\read word file\bin\Code7248.word_reader.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\..\read word file\read word file\bin\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\..\..\read word file\read word file\bin\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Document, Version=25.3.30.1297, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\GemBox.Document.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet, Version=39.3.30.1153, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\read word file\read word file\bin\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>C:\Users\admin\Downloads\itextsharp\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>C:\Users\admin\Downloads\MetroWPFTemplate-master\MetroWPFTemplate-master\Metro WPF Template\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.office.interop.word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Users\admin\Downloads\microsoft.office.interop.word.dll\microsoft.office.interop.word.dll</HintPath>
+    </Reference>
+    <Reference Include="Neodynamic.SDK.ThermalLabel">
+      <HintPath>..\..\..\read word file\read word file\bin\Neodynamic.SDK.ThermalLabel.dll</HintPath>
+    </Reference>
+    <Reference Include="Neodynamic.SDK.WebClientPrint">
+      <HintPath>..\..\..\read word file\read word file\bin\Neodynamic.SDK.WebClientPrint.dll</HintPath>
+    </Reference>
+    <Reference Include="NetOffice">
+      <HintPath>..\..\..\read word file\read word file\bin\NetOffice.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="read word file">
+      <HintPath>..\..\..\read word file\read word file\bin\read word file.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TallComponents.PDF.Kit, Version=4.0.31.0, Culture=neutral, PublicKeyToken=76bf2dedaa68ccb5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\TallComponents.PDF.Kit.dll</HintPath>
+    </Reference>
+    <Reference Include="WebClientPrintMVC5Sample">
+      <HintPath>..\..\..\read word file\read word file\bin\WebClientPrintMVC5Sample.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attachments.cs" />
+    <Compile Include="BulkEmail.cs" />
+    <Compile Include="Connections\SqlClientCon.cs" />
+    <Compile Include="PrintJobProcess.cs" />
+    <Compile Include="ExcelJobProcess.cs" />
+    <Compile Include="EmailPharmacyWorksheet.cs" />
+    <Compile Include="InstructionTemplates.cs" />
+    <Compile Include="EmailJobProcess.cs" />
+    <Compile Include="DocumentTemplates.cs" />
+    <Compile Include="EmailTemplateCategory.cs" />
+    <Compile Include="GetWordPlainText.cs" />
+    <Compile Include="ListtoDataTableConverter.cs" />
+    <Compile Include="PatientActivity.cs" />
+    <Compile Include="PDFParser.cs" />
+    <Compile Include="RawPrinterHelper.cs" />
+    <Compile Include="RawPrinterHelper1.cs" />
+    <Compile Include="Doctors.cs" />
+    <Compile Include="TagSQL.cs" />
+    <Compile Include="TagCategory.cs" />
+    <Compile Include="EmailAttachments.cs" />
+    <Compile Include="Emails.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="PermissionSession.cs" />
+    <Compile Include="SQLQueries.cs" />
+    <Compile Include="EmailTemplates.cs" />
+    <Compile Include="Groups.cs" />
+    <Compile Include="MasterTemplates.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserGroup.cs" />
+    <Compile Include="UserSignature.cs" />
+    <Compile Include="Utility\DatalUtility.cs" />
+    <Compile Include="WordApplication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL-AMCPE\DAL-AMCPE.csproj">
+      <Project>{57469600-3EBC-4C55-B5F1-02188B373476}</Project>
+      <Name>DAL-AMCPE</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ACTIVEXLib">
+      <Guid>{EA3E6E3C-5130-49C1-8EDE-F889CD0F4429}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

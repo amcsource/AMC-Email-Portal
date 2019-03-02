@@ -1,0 +1,1154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GMEEDevelopmentModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="GMEEDevelopmentEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="procGetColumnNamesByTableName" ReturnType="Collection(GMEEDevelopmentModel.procGetColumnNamesByTableName_Result)">
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procGetResult" ReturnType="Collection(GMEEDevelopmentModel.procGetResult_Result)">
+      <Parameter Name="sql" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetPatientsForBulkEmail" ReturnType="Collection(GMEEDevelopmentModel.GetPatientsForBulkEmail_Result)">
+      <Parameter Name="patientType" Mode="In" Type="String" />
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdatePatientFlag">
+      <Parameter Name="patientType" Mode="In" Type="String" />
+      <Parameter Name="patientRecId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetPatientsForBulkPrint" ReturnType="Collection(GMEEDevelopmentModel.GetPatientsForBulkPrint_Result)">
+      <Parameter Name="patientType" Mode="In" Type="String" />
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="obj_sp_BulkPrint_Attachment">
+      <Parameter Name="XSORecID" Mode="In" Type="String" />
+      <Parameter Name="parentType" Mode="In" Type="String" />
+      <Parameter Name="CONTACTRECID" Mode="In" Type="String" />
+      <Parameter Name="TaskUser" Mode="In" Type="String" />
+      <Parameter Name="AttachmentPath" Mode="In" Type="String" />
+      <Parameter Name="AttachmentName" Mode="In" Type="String" />
+      <Parameter Name="destFolderId" Mode="In" Type="String" />
+      <Parameter Name="attachDESC" Mode="In" Type="String" />
+      <Parameter Name="xfCategory" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetPatientsForBulkPrint1" ReturnType="Collection(GMEEDevelopmentModel.GetPatientsForBulkPrint_Result)">
+      <Parameter Name="patientType" Mode="In" Type="String" />
+      <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="pageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortExpression" Mode="In" Type="String" />
+      <Parameter Name="searchKeyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Activities" EntityType="GMEEDevelopmentModel.Activity" />
+    <EntitySet Name="Attachments" EntityType="GMEEDevelopmentModel.Attachment" />
+    <EntitySet Name="Contacts" EntityType="GMEEDevelopmentModel.Contact" />
+    <EntitySet Name="xsoPrescriptions" EntityType="GMEEDevelopmentModel.xsoPrescription" />
+    <FunctionImport Name="procGetTagSQLValues" ReturnType="Collection(GMEEDevelopmentModel.procGetTagSQLValues_Result)">
+      <Parameter Name="tagIds" Mode="In" Type="String" />
+      <Parameter Name="PatientRecID" Mode="In" Type="String" />
+      <Parameter Name="PatientNumber" Mode="In" Type="String" />
+      <Parameter Name="CurrentUser" Mode="In" Type="String" />
+      <Parameter Name="PresType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procGetResultBusiness" ReturnType="Collection(GMEEDevelopmentModel.procGetResultBusiness_Result)">
+      <Parameter Name="sql" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_BulkPrint_Attachment_Delete">
+      <Parameter Name="CONTACTRECID" Mode="In" Type="String" />
+      <Parameter Name="destFolderId" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_GetColumnNamesByTableName_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="procGetColumnNamesByTableName_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="procGetResult_Result">
+    <Property Type="String" Name="Result" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetPatientsForBulkEmail_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="PatientName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Stage" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+    <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetPatientsForBulkPrint_Result">
+    <Property Type="Int32" Name="Rownum" Nullable="true" />
+    <Property Type="String" Name="PatientRecId" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="PatientNumber" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="PatientName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Source" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Stage" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="TotalPages" Nullable="true" />
+    <Property Type="String" Name="XSORecID" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="PresType" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="RecId" />
+    </Key>
+    <Property Type="String" Name="AccountName" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActivityResult" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActivityResult_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActivityType" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActivityType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ActualDemo" />
+    <Property Type="Int32" Name="ActualDisCall" />
+    <Property Type="Int32" Name="ActualDisMeet" />
+    <Property Type="Int32" Name="ActualFace" />
+    <Property Type="Int32" Name="ActualInbound" />
+    <Property Type="Int32" Name="ActualLiveEvt" />
+    <Property Type="Int32" Name="ActualOutbound" />
+    <Property Type="Int32" Name="ActualPOC" />
+    <Property Type="Int32" Name="ActualProposal" />
+    <Property Type="Int32" Name="ActualPtnCall" />
+    <Property Type="Int32" Name="ActualPtnMeet" />
+    <Property Type="Int32" Name="ActualTradeShow" />
+    <Property Type="Int32" Name="ActualUserGrp" />
+    <Property Type="Int32" Name="ActualWebinar" />
+    <Property Type="String" Name="CreatedBy" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+    <Property Type="DateTime" Name="DueDateTime" Precision="3" />
+    <Property Type="String" Name="DueDateTime_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmployeeFullName" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="EndDateTime" Precision="3" />
+    <Property Type="String" Name="EndDateTime_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EntryID" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="FiscalYearLastMonth" />
+    <Property Type="String" Name="ForecastMonth" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ForecastQuarter" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ForecastWeek" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ForecastYear" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="GeographyCode" />
+    <Property Type="String" Name="GeographyName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GeographyName_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="HierarchyID" />
+    <Property Type="String" Name="LastModBy" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="LastModDateTime" Precision="3" />
+    <Property Type="String" Name="LeadName" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OpportunityName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Owner" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Owner_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OwnerTeam" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OwnerType" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_Category" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="PlannedDemo" />
+    <Property Type="Int32" Name="PlannedDisCall" />
+    <Property Type="Int32" Name="PlannedDisMeet" />
+    <Property Type="Int32" Name="PlannedFace" />
+    <Property Type="Int32" Name="PlannedInbound" />
+    <Property Type="Int32" Name="PlannedLiveEvt" />
+    <Property Type="Int32" Name="PlannedOutbound" />
+    <Property Type="Int32" Name="PlannedPOC" />
+    <Property Type="Int32" Name="PlannedProposal" />
+    <Property Type="Int32" Name="PlannedPtnCall" />
+    <Property Type="Int32" Name="PlannedPtnMeet" />
+    <Property Type="Int32" Name="PlannedTradeShow" />
+    <Property Type="Int32" Name="PlannedUserGrp" />
+    <Property Type="Int32" Name="PlannedWebinar" />
+    <Property Type="String" Name="PopulateSalesAcitivyFields" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Priority" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Priority_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Purpose" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Purpose_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RecId" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Type="Byte" Name="RegionCode" />
+    <Property Type="String" Name="RegionName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RegionName_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="StartDateTime" Precision="3" />
+    <Property Type="String" Name="Status" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Status_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Subject" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="TerritoryCode" />
+    <Property Type="String" Name="TerritoryName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TerritoryName_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Owner1" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xpDisplayName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Notes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCallResult" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCallResult_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActivityLocation" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActivityLocation_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateRejected" Precision="3" />
+    <Property Type="DateTime" Name="DueTime" Precision="3" />
+    <Property Type="DateTime" Name="EndTime" Precision="3" />
+    <Property Type="String" Name="ExternalTaskLinkID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="StartTime" Precision="3" />
+    <Property Type="Int16" Name="TimeLength" />
+    <Property Type="String" Name="xfWizardName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfWizardID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfAddPharmacy" />
+    <Property Type="String" Name="xfPrescription" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="AllDayEvent" />
+    <Property Type="String" Name="ConversationIndex" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ExternalCalendarLinkID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="PercentComplete" />
+    <Property Type="Boolean" Name="Reminder" />
+    <Property Type="Int16" Name="ReminderTime" />
+    <Property Type="String" Name="xfPrescription_" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrescription__Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPaymentStatus" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPaymentStatus_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrescriptionType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrescriptionType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptResultCode" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptResultCode_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="xfActivityControl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="xfActivityControl_Valid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="xfDDRCharged" Type="Boolean" />
+    <Property Name="xfTeleEnquiry" Type="Boolean" />
+    <Property Name="xfProcessed" Type="Boolean" />
+    <Property Name="xfCancelled" Type="Boolean" />
+    <Property Name="xfAdvancedProcess" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Attachment">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Type="String" Name="RecID" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="ParentLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_Category" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATTACHNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATTACHDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CreatedBy" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+    <Property Type="DateTime" Name="LastModDateTime" Precision="3" />
+    <Property Type="String" Name="LastModBy" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Path" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Host" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCategory" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCategory_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfYear" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMonth" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfYear_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMonth_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="xfEstrogen" Type="Boolean" />
+    <Property Name="xfEncryption" Type="Boolean" />
+    <Property Name="xfEmail" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="RecId" />
+    </Key>
+    <Property Type="String" Name="AccountLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AccountLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AccountLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AccountName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AssistancePhoneExt" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Assistant" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AssistantPhone" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Birthdate" Precision="3" />
+    <Property Type="Boolean" Name="BirthdayNextMonth" />
+    <Property Type="String" Name="ContactID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactSupervisorName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactType" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CreatedBy" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+    <Property Type="String" Name="Department" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Department_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DisplayName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FirstName" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FullName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="GeographyCode" />
+    <Property Type="String" Name="GeographyName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GeographyName_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="HierarchyID" />
+    <Property Type="String" Name="LastModBy" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="LastModDateTime" Precision="3" />
+    <Property Type="String" Name="LastName" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LoginUserLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LoginUserLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LoginUserLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MiddleName" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Owner" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Owner_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OwnerTeam" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OwnerType" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone1Link_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone1Link_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone1Link_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone2Link_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone2Link_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone2Link_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone3Link_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone3Link_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone3Link_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone4Link_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone4Link_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone4Link_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PreferredMethodContact" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PreferredMethodConta_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Prefix" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Prefix_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryAddressLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryAddressLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryAddressLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryEmail" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryEmailLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryEmailLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryEmailLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryWebLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryWebLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PrimaryWebLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RecId" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Type="Byte" Name="RegionCode" />
+    <Property Type="String" Name="RegionName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RegionName_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Source" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Source_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Spouse" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Suffix" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Suffix_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SupervisorLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SupervisorLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SupervisorLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Territory" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Territory_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="TerritoryCode" />
+    <Property Type="String" Name="TerritoryName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TerritoryName_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Title" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Title_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedicareNumber" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfEnquiryDate" Precision="3" />
+    <Property Type="String" Name="xfPatientNumber" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="xfAge" />
+    <Property Type="String" Name="xfPensionerHealthNumber" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrivateHealthFund" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrivateHealthFund_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfStage" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfStage_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPaymentPlan" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPaymentPlan_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xf1stDispenseDate" Precision="3" />
+    <Property Type="String" Name="xfStatus" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfStatus_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApplication" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPaymentType" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPaymentType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfLostReason" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfLostReason_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPatientType" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPatientType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHysterectomyCondition" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHysterectomyCondition_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrivPassword" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrivNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrivSecret" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrivLeaveMessage" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrivLeaveMessage_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfPrivAcceptanceCheck" />
+    <Property Type="String" Name="xfMedAlcoholAmount" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedAlcoholConsumption" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedAlcoholConsumption_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedAllergies" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedBloodPressure" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedBreastCancer" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedBreastCancer_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentHRT" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentHRT_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentHRTBrand" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentHRTSideEffects" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentMedicalConditions" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentMedication" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentSupplement" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedDurationOfSymptoms" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedDVT_PE" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedDVT_PE_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHeartCondition" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHeartCondition_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHeight" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHotFlushes" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHotFlushes_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHotFlushesFrequency" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHysterectomyReason" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHysterectomyReason_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedLastBoneDensity" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedLastBP" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedLastMamogram" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedLastPapSmear" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedLastPeriodDate" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedMenstruateCondition" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedMenstruateCondition_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedMenstruateFrequency" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfMedSymDrySkin" />
+    <Property Type="Boolean" Name="xfMedSymVaginalDryness" />
+    <Property Type="Boolean" Name="xfMedSymHeadaches" />
+    <Property Type="Boolean" Name="xfMedSymFatigue" />
+    <Property Type="Boolean" Name="xfMedSymLackOfEnergy" />
+    <Property Type="Boolean" Name="xfMedSymBreastTenderness" />
+    <Property Type="Boolean" Name="xfMedSymBloating" />
+    <Property Type="Boolean" Name="xfMedSymFluidRetention" />
+    <Property Type="Boolean" Name="xfMedSymWeightGain" />
+    <Property Type="Boolean" Name="xfMedSymIrritability" />
+    <Property Type="Boolean" Name="xfMedSymAnxiety" />
+    <Property Type="Boolean" Name="xfMedSymMoodSwings" />
+    <Property Type="Boolean" Name="xfMedSymPoorSleep" />
+    <Property Type="Boolean" Name="xfMedSymMuscleAndJointPain" />
+    <Property Type="Boolean" Name="xfMedSymMemoryProblems" />
+    <Property Type="Boolean" Name="xfMedSymLowLibido" />
+    <Property Type="Boolean" Name="xfMedSymAcneAndPimples" />
+    <Property Type="Boolean" Name="xfMedSymFacialHair" />
+    <Property Type="Boolean" Name="xfMedSymMoreEmotional" />
+    <Property Type="Boolean" Name="xfMedSymDepression" />
+    <Property Type="Boolean" Name="xfMedSymCravings" />
+    <Property Type="Boolean" Name="xfMedSymNausea" />
+    <Property Type="Boolean" Name="xfMedSymFoggyHead" />
+    <Property Type="Boolean" Name="xfMedSymLackOfMotivation" />
+    <Property Type="Boolean" Name="xfMedSymVoiceChanging" />
+    <Property Type="String" Name="xfMedMostBotheringSymptoms" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedPreviousHRT" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedPreviousHRT_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedPreviousHRTDose" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedPreviousHRTBrand" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedPreviousHRTDuration" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedPreviousHRTSideEffects" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentHRTDose" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentHRTDuration" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedStroke" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedStroke_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedWeight" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOtherSurgeries" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedSmoke" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedSmoke_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedSmokeAmount" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedNightSweats" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedNightSweats_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOverheating" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOverheating_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedNightSweatsFrequency" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedNightSweatsFrequency_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOverheatingDuration" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDeliveryCourier" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDeliveryCourier_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDeliveryInstruction" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDeliveryInstruction_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DeliveryAddressLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DeliveryAddressLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DeliveryAddressLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptDoctorName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptDoctorName_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfApptDate" Precision="3" />
+    <Property Type="String" Name="xfApptAM_PM" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptAM_PM_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptTime" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSystemMessage" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSpecialNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGender" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGender_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHysterectomyDate" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHotFlushesAmount" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedNightSweatsAmount" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentContraceptive" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedCurrentContraceptive_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPSuburb" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfHasGPDetails" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardNumber1" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardNumber2" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardNumber3" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardNumber4" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardExpiryMonth" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardExpiryMonth_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardExpiryYear" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardExpiryYear_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfLocalStateTime" Precision="3" />
+    <Property Type="String" Name="xfApptState" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptCountry" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfApptSystemDateAndTime" Precision="3" />
+    <Property Type="Int16" Name="xfApptLocalTimeZoneOffset" />
+    <Property Type="DateTime" Name="xfApptLocalStateTime" Precision="3" />
+    <Property Type="DateTime" Name="xfTempDateTime" Precision="3" />
+    <Property Type="String" Name="xfApptPurpose" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptPurpose_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedWhenSymptomOccur" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOtherSymptoms" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfEmailAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfFCW_LastPathologyTest" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfFCW_OkForSalesConsultant" />
+    <Property Type="Boolean" Name="xfFCW_DelaySalesConsultTo" />
+    <Property Type="DateTime" Name="xfFCW_DelaySalesConsultToDate" Precision="3" />
+    <Property Type="Boolean" Name="xfFCW_PathologyRequired" />
+    <Property Type="String" Name="xfReadOnly_Home_Address" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Home_City" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Home_State" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Home_Zip" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Home_Country" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_HomePH_Phone" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReadOnly_Home_DoNotContact" />
+    <Property Type="String" Name="xfReadOnly_Work_Phone" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReadOnly_Work_DoNotContact" />
+    <Property Type="String" Name="xfReadOnly_Mobile_Phone" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReadOnly_Mobile_DoNotContact" />
+    <Property Type="Boolean" Name="xfReadOnly_Mobile_DoNotSMS" />
+    <Property Type="String" Name="xfReadOnly_Fax_Phone" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReadOnly_Fax_DoNotContact" />
+    <Property Type="Boolean" Name="xfReadOnly_HomePH_DoNotContact" />
+    <Property Type="String" Name="xfReadOnly_Del_Address" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Del_City" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Del_State" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Del_Country" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Del_Zip" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfOneOff_ValidFrom" Precision="3" />
+    <Property Type="DateTime" Name="xfOneOff_ValidTo" Precision="3" />
+    <Property Type="String" Name="xfOneOff_Address" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOneOff_City" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOneOff_State" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOneOff_State_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOneOff_Country" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOneOff_Country_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOneOff_Zip" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfOneOff_OneOffChange" />
+    <Property Type="String" Name="xfReadOnly_Pres1_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres2_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres3_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres4_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres5_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres6_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres7_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PExtra_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PSupp_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PHCG_Pack1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfCRW_PathologyRequired" />
+    <Property Type="String" Name="xfCRW_LastPathologyTest" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfFCW_ContactNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCRW_ContactNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfActiveWizardName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_P1_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_PExtra_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_PSupp_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_PHCG_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_P2_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_P3_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_P4_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_P5_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_P6_Changed" />
+    <Property Type="Boolean" Name="xfReadOnly_COM_P7_Changed" />
+    <Property Type="String" Name="xfGMCERecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCardNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfSW_PendingPayment" />
+    <Property Type="DateTime" Name="xfSW_TaskStartDate" Precision="3" />
+    <Property Type="String" Name="xfSW_TaskPurpose" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_TaskSubject" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_TaskNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_TaskUser" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_ContactNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_DelAddress" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_DelCity" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_DelState" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_DelZip" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSW_DelCountry" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDR1" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDR2" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDR3" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDR4" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDR5" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDR6" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDR7" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDRHCG" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDRExtra" />
+    <Property Type="Boolean" Name="xfReadOnly_SW_DDRSupp" />
+    <Property Type="String" Name="xfReadOnly_Pres1_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres2_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres3_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres4_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres5_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres6_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres7_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PExtra_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PHCG_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PSupp_MedUser" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfCCAW_BulkProcessing" />
+    <Property Type="String" Name="xfCon_NoteID" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCon_DispatchDate" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCon_CarrierName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfMMW_Complete1" />
+    <Property Type="Boolean" Name="xfMMW_Complete2" />
+    <Property Type="String" Name="xfMMW_ContactNotes1" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMMW_ContactNotes2" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate1" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate1" Precision="3" />
+    <Property Type="String" Name="xfMFU_SalesDateReason1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres1_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres1_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres1_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres2_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres3_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres4_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres5_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres6_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres7_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PExtra_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PHCG_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PSupp_Pack2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres2_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres3_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres4_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres5_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres6_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres7_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PExtra_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PExtra_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PHCG_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PHCG_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PSupp_FormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_PSupp_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres3_PatientType" MaxLength="112" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres4_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres5_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres6_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres7_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReadOnly_Pres2_PatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate2" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate3" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate4" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate5" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate6" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate7" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate_HCG" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate_Supp" />
+    <Property Type="Boolean" Name="xfMFU_EditSalesDate_Extra" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate2" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate3" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate4" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate5" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate6" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate7" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate_HCG" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate_Supp" Precision="3" />
+    <Property Type="DateTime" Name="xfMFU_SalesDate_Extra" Precision="3" />
+    <Property Type="String" Name="xfMFU_SalesDateReason2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason5" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason6" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason7" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason_HCG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason_Supp" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_SalesDateReason_Extra" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewHome_Address" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewHome_State" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewHome_City" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewHome_Zip" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewHome_Country" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewDel_Address" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewDel_State" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewDel_City" MaxLength="49" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewDel_Country" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf_CAW_NewDel_Zip" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfMFU_DDR_isRequested" />
+    <Property Type="Boolean" Name="xfMFU_Path_IsRequested" />
+    <Property Type="DateTime" Name="xfMFU_DDR_StartDate" Precision="3" />
+    <Property Type="String" Name="xfMFU_DDR_Purpose" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_DDR_User" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_DDR_Subject" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_DDR_Notes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfMFU_Path_StartDate" Precision="3" />
+    <Property Type="String" Name="xfMFU_Path_Purpose" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_Path_User" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_Path_Subject" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_Path_Notes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMFU_ContactNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfCCAW_ScheduledDate" Precision="3" />
+    <Property Type="String" Name="xfRefNum" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDDR_USER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDDR_USER_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfApptDoctorShortName" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ActivityPurposeField" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedHotFlushesFrequency_Valid" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="xfOneOffDeliveryInstructions" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOneOffDeliveryInstructions_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReceiptFlag" />
+    <Property Type="String" Name="xfSupplementStatus" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSupplementStatus_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSuppReceiptNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfPossibleCancellationFlag" />
+    <Property Type="String" Name="xfPossibleCancellationReason" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOvaries" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOvaries_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfUterus" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfUterus_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfOvariesDate" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedOvariesReason" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedUterusDate" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfMedUterusReason" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfSuppSaleFlag" />
+    <Property Type="DateTime" Name="xfShakeItStartDate" Precision="3" />
+    <Property Type="Boolean" Name="xfShakeItFlagScheduleEmails" />
+    <Property Type="String" Name="xfShakeItStatus" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfShakeItStatus_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCreditCardMask" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfSWSendWelcomeEmail" />
+    <Property Type="String" Name="xfPatientStatus" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfCW_IsRecovered" />
+    <Property Type="Boolean" Name="xfCW_IsEscalated" />
+    <Property Type="Boolean" Name="xfCW_IsCancelled" />
+    <Property Type="String" Name="xfCW_Notes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfSWNotInterested" />
+    <Property Type="String" Name="xfSWProgramType" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReceipts" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfReceipts_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSupplementClub" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSupplementClub_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPreferredClinicalAssistant" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPreferredClinicalAssistant_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfSWSendPeriWelcomeEmail" />
+    <Property Type="String" Name="xfClinicalNotes" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDoctorNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xf2ndPathClinicalNotes" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBestTimeToCall" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCiscoGUIDAttachment" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfReactivationDate" Precision="3" />
+    <Property Type="Boolean" Name="xfCRWSendCOMEmailFlag" />
+    <Property Type="String" Name="xfPtPrint" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPtPrint_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCDiagDate" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCType" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCGeneticStudies" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCReceptor" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCPastTreatments" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCCurrentTreatments" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCFamilyHist" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCHistology" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfBCHistology_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfSW_RequestGPLetter" />
+    <Property Type="String" Name="xfCRW_OtherNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfBulkEmailFlag" />
+    <Property Type="Boolean" Name="xfBulkEmailFlagNew" />
+    <Property Type="Boolean" Name="xfGenericFlag1" />
+    <Property Type="Boolean" Name="xfGenericFlag2" />
+    <Property Type="Boolean" Name="xfGenericFlag3" />
+    <Property Type="Boolean" Name="xfEPBulkSMSFlag1" />
+    <Property Type="Boolean" Name="xfEPBulkSMSFlag2" />
+    <Property Type="Boolean" Name="xfEPBulkEmailReceipts" />
+    <Property Type="Boolean" Name="xfEPBulkEmailGeneric" />
+    <Property Type="Boolean" Name="xfMedSymPainfulIntercourse" />
+    <Property Type="String" Name="xfGPAddress" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPCountry" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPEmail" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPFax" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPLastName" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPName" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPNameOfPractice" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPPhone" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPPostalCode" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPState" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPState_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfGPCountry_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CurrentDateAndTime" Precision="3" />
+    <Property Name="xfMedLastPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="xfMedLastPath_Valid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="xfNotForCourier" Type="Boolean" />
+    <Property Name="xfDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OophorectomyDate" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="OophorectomyReason" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="xfCurrentUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="xfMedHistLastUpdate" Type="DateTime" Precision="3" />
+    <Property Name="xfMedPreviousWhyPatientStopHRT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="xfMedWhyPatientStopCurrentHRT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="xfClinicalAsst" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="xfClinicalAsst_Valid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="xfCRWSendApptConfEmailFlag" Type="Boolean" />
+    <Property Name="xfGiftSent" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="xfGiftSent_Valid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="xfNumberOfYears" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="xf12MonthPathFlag1" Type="Boolean" />
+    <Property Name="xf12MonthPathFlag2" Type="Boolean" />
+    <Property Name="xf12MonthPathFlag3" Type="Boolean" />
+    <Property Name="xf12MonthPathFlag4" Type="Boolean" />
+    <Property Name="xf12MonthPathText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="xfLeadsReceivedDate" Type="DateTime" Precision="3" />
+    <Property Name="xf12MonthForceFlag" Type="Boolean" />
+    <Property Name="xfPortalAccess" Type="Boolean" />
+    <Property Name="xfLastPathologySent" Type="DateTime" Precision="3" />
+    <Property Name="xfSendStatus" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="xfLastPathNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="xfEwayToken" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="xfDoNotSmsMobile" Type="Boolean" />
+    <Property Name="xfDoNotSmsEmail" Type="Boolean" />
+    <Property Name="xfOptOut" Type="Boolean" />
+    <Property Name="xfMedSymIncontinence" Type="Boolean" />
+    <Property Name="xfNoSMSConf" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="xsoPrescription">
+    <Key>
+      <PropertyRef Name="RecId" />
+    </Key>
+    <Property Type="String" Name="RecId" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Type="DateTime" Name="LastModDateTime" Precision="3" />
+    <Property Type="String" Name="LastModBy" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+    <Property Type="String" Name="CreatedBy" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OwnerType" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Owner" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OwnerTeam" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_RecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_Category" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLink_VRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfFormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfFormulaType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Application" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Application_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Doctor" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Doctor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Application" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Application_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Doctor" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Doctor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPatientType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Purpose" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Purpose_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Flavor" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Flavor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Flavor" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Flavor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="xfP1TotalRepeats" />
+    <Property Type="String" Name="xfP1TotalRepeats_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Dose8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Dose8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Instruction" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Instruction_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Instruction" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Instruction_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSource" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfContactRecID" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPharmacy" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPharmacy_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="xfDispenseDate" Precision="3" />
+    <Property Type="DateTime" Name="xfPrescribeDate" Precision="3" />
+    <Property Type="String" Name="xfCodeType" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCodeType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="xfP1Amount" />
+    <Property Type="Int16" Name="xfP2Amount" />
+    <Property Type="Int16" Name="xfP1Quantity" />
+    <Property Type="Int16" Name="xfP2Quantity" />
+    <Property Type="Int16" Name="xfP1RepeatsUsed" />
+    <Property Type="Int16" Name="xfP2RepeatsUsed" />
+    <Property Type="Int16" Name="xfP1RepeatsLeft" />
+    <Property Type="Int16" Name="xfP2RepeatsLeft" />
+    <Property Type="String" Name="PrimaryCurrencyCode" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TransactionCurrencyCode" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TransactionCurrencyCode_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="xfP1MedCostPCV" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="xfP1MedCost" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="xfP2MedCostPCV" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="xfP2MedCost" Precision="10" Scale="2" />
+    <Property Type="Int16" Name="xfP2TotalRepeats" />
+    <Property Type="String" Name="xfDispensingNumber" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfScriptNumber" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfSystemMessage" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1PrescriptionText" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2PrescriptionText" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfDispensingNumber_Fetch" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfCOM" />
+    <Property Type="String" Name="xfCOMFormulaType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMFormulaType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit1" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit2" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit3" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit4" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit5" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit6" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit7" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit8" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Unit8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit1" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit2" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit3" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit4" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit5" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit6" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit7" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit8" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Unit8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMPatientType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMPatientType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMCodeType" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMCodeType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMPharmacy" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMPharmacy_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Doctor" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Doctor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Application" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Application_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="xfCOMP1Amount" />
+    <Property Type="Int16" Name="xfCOMP1Quantity" />
+    <Property Type="String" Name="xfCOMP1Flavor" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Flavor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="xfCOMP1RepeatsUsed" />
+    <Property Type="Int16" Name="xfCOMP1RepeatsLeft" />
+    <Property Type="Int16" Name="xfCOMP1TotalRepeats" />
+    <Property Type="String" Name="xfCOMP1Instruction" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Instruction_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Dose8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit1" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit2" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit3" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit4" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit5" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit6" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit7" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit8" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Unit8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Doctor" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Doctor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Application" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Application_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="xfCOMP2Amount" />
+    <Property Type="Int16" Name="xfCOMP2Quantity" />
+    <Property Type="String" Name="xfCOMP2Flavor" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Flavor_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="xfCOMP2RepeatsUsed" />
+    <Property Type="Int16" Name="xfCOMP2RepeatsLeft" />
+    <Property Type="Int16" Name="xfCOMP2TotalRepeats" />
+    <Property Type="Decimal" Name="xfCOMP1MedCostPCV" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="xfCOMP1MedCost" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="xfCOMP2MedCostPCV" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="xfCOMP2MedCost" Precision="10" Scale="2" />
+    <Property Type="String" Name="xfCOMP2Instruction" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Instruction_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose2" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose3" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose4" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose5" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose6" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose7" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose8" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Dose8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit1" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit1_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit2" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit2_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit3" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit3_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit4" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit4_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit5" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit5_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit6" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit6_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit7" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit7_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit8" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Unit8_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfWizardSource" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1PrescriptionText" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2PrescriptionText" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfIsComUpdated" />
+    <Property Type="String" Name="xfCOMP1Hormone1_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone2_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone3_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone4_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone5_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone6_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone7_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP1Hormone8_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone1_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone2_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone3_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone4_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone5_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone6_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone7_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfCOMP2Hormone8_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone1_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone2_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone3_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone4_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone5_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone6_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone7_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP1Hormone8_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone1_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone2_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone3_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone4_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone5_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone6_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone7_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfP2Hormone8_long" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfReseDispensingNumber" />
+    <Property Type="Boolean" Name="xfResetScriptNumber" />
+    <Property Type="Boolean" Name="xfFlagPres" />
+    <Property Type="Boolean" Name="xfFlagDispenseNo" />
+    <Property Type="DateTime" Name="xfNextDDRChargeDate" Precision="3" />
+    <Property Type="DateTime" Name="xfDDRStartDate" Precision="3" />
+    <Property Type="String" Name="xfPrescriptionType" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xfPrescriptionType_Valid" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="xfPrintWS" />
+    <Property Type="Boolean" Name="xfPrintReceipt" />
+    <Property Type="Boolean" Name="xfGenericPrint1" />
+    <Property Type="Boolean" Name="xfGenericPrint2" />
+    <Property Type="Boolean" Name="xfGenericPrint3" />
+    <Property Name="xfSpecialReceiptRequired" Type="Boolean" />
+    <Property Name="xfNoReceiptRequired" Type="Boolean" />
+    <Property Name="xfRemake" Type="Boolean" />
+    <Property Name="xfProviderNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="procGetTagSQLValues_Result">
+    <Property Type="Int32" Name="TagId" Nullable="false" />
+    <Property Type="String" Name="Result" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="procGetResultBusiness_Result">
+    <Property Type="String" Name="RecId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Result" Nullable="true" />
+    <Property Type="Boolean" Name="Encrypt" Nullable="false" />
+  </ComplexType>
+</Schema>

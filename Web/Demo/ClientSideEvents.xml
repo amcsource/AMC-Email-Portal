@@ -1,0 +1,7 @@
+﻿<ToolbarList>
+	<Toolbar ID="Events">
+		<ToolbarItem Type="Button" ID="InsertPageBreak" Command="InsertPageBreak" ButtonFile="InsertPageBreak.gif" />
+		<ToolbarItem Type="Separator" />
+		<ToolbarItem Type="DropDown" ID="InsertHTML" Command="None" />
+	</Toolbar>
+</ToolbarList>

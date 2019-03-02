@@ -1,0 +1,220 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TestEditor.aspx.cs" Inherits="Demo_TestEditor" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />--%>
+</head>
+
+<%@ Register Assembly="TXTextControl.Web, Version=24.0.400.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" Namespace="TXTextControl.Web" TagPrefix="cc1" %>
+
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+        </asp:ScriptManager>
+        <%--<div class="body-editor">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-body">Body</a></li>
+                    <li><a href="#tabs-attachment">Attachment</a></li>
+                    <li><a href="#tabs-letter">Letter</a></li>
+                </ul>
+                <div id="tabs-body">
+                    <div class="form-elements">
+                        <asp:TextBox ID="txtTemplateBody" runat="server" name="header" TextMode="MultiLine" CssClass="textarea"></asp:TextBox>
+                    </div>
+                </div>
+                <div id="tabs-attachment">
+                   
+                </div>
+                <div id="tabs-letter">
+                    <div style="height: 600px;" class="sample">
+                        <cc1:TextControl Style="border-bottom: 1px solid #999999;" ID="TextControl1" runat="server" Dock="Fill" />
+                    </div>
+                </div>
+            </div>
+        </div>--%>
+
+        <div class="formdata" style="width: 73%; float: left;">
+            <div style="height: 600px;" class="sample">
+                <cc1:TextControl Style="border-bottom: 1px solid #999999;" ID="TextControl1" runat="server" Dock="Fill" />
+            </div>
+        </div>
+
+
+        <div class="tagSections" style="width: 26%; float: left;">
+            <fieldset>
+                <legend>Function Selector</legend>
+                <div class="functionSelector_result optionSelector_result">
+                    <ul class="functionSelector optionSelector placeholder">
+                        <li>Current User</li>
+                        <li>Current Date</li>
+                        <li>Current Time</li>
+                        <li>Current User Id</li>
+                    </ul>
+                </div>
+            </fieldset>
+        </div>
+        <br />
+        <asp:UpdatePanel ID="up1" runat="server">
+            <ContentTemplate>
+                <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" CssClass="SaveLetter" />
+
+                <asp:Button ID="btnPDF" runat="server" Text="Export to PDF" OnClick="btnPDF_Click" CssClass="SaveLetter" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        
+
+    </form>
+    <script type="text/javascript" src="<%= URLRewrite.BasePath()%>/js/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <%--<script src="//cdn.ckeditor.com/4.4.3/full/ckeditor.js"></script>--%>
+    <%--<script type="text/javascript">
+
+        CKEDITOR.plugins.addExternal('lineheight', '<%= URLRewrite.BasePath() %>/ckeditor/plugins/lineheight/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('wordcount', '<%= URLRewrite.BasePath() %>/ckeditor/plugins/wordcount/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('notification', '<%= URLRewrite.BasePath() %>/ckeditor/plugins/notification/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('undo', '<%= URLRewrite.BasePath() %>/ckeditor/plugins/undo/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('htmlwriter', '<%= URLRewrite.BasePath() %>/ckeditor/plugins/htmlwriter/', 'plugin.js');
+
+        CKEDITOR.replace('txtTemplateBody', {
+            //uiColor: '#A996C1',
+            height: '375px',
+            toolbar: [
+                { name: 'source', items: ['Source'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+	            {
+	                name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+                    'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+	            },
+	            { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+	            { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+            //'/',
+	            { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize', 'lineheight'] },
+	            { name: 'colors', items: ['TextColor', 'BGColor'] },
+	            { name: 'tools', items: ['Maximize', 'ShowBlocks'] }
+            ],
+            contentsCss: '<%= URLRewrite.BasePath() %>/css/ckeditor.css',
+            extraPlugins: 'lineheight,wordcount,notification,undo,htmlwriter',
+            font_names: 'Arial/Arial, Helvetica, sans-serif;' +
+                        'Calibri;' +
+	                    'Comic Sans MS/Comic Sans MS, cursive;' +
+	                    'Courier New/Courier New, Courier, monospace;' +
+	                    'Georgia/Georgia, serif;' +
+	                    'Lucida Sans Unicode/Lucida Sans Unicode, Lucida Grande, sans-serif;' +
+	                    'Tahoma/Tahoma, Geneva, sans-serif;' +
+	                    'Times New Roman/Times New Roman, Times, serif;' +
+	                    'Trebuchet MS/Trebuchet MS, Helvetica, sans-serif;' +
+	                    'Verdana/Verdana, Geneva, sans-serif',
+            font_defaultLabel: 'Calibri',
+            line_height: "5px; 10px; 15px; 17px;",
+            fontSize_sizes: '8/10.5px;11/16px;16/21px;20/26.5px;',
+            disableNativeSpellChecker: false,
+            enterMode: CKEDITOR.ENTER_BR,
+            wordcount: { showParagraphs: false, showWordCount: false, showCharCount: true, countSpacesAsChars: true, countHTML: false, maxWordCount: -1, maxCharCount: -1 }
+        });
+
+    </script>--%>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tabs").tabs();
+            $("#tabs").bind("tabsactivate", function (event, ui) {
+                if (ui.newTab.index() == 1) {
+
+                }
+            });
+
+            var tableName = "";
+            var activeElmt = "", isInput = false;
+
+
+            //GetTableColumns(tableName);
+            function GetTableColumns(tableName) {
+                $.ajax({
+                    type: "POST",
+                    url: "AddEditEmailTemplate.aspx/GetColumnsByTableName",
+                    data: "{'tableName':'" + tableName + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        $('.tagSelector').html(msg.d);
+                    }
+                });
+            }
+
+            $(document).ajaxStart(function () {
+                $('.tagSelector').html("<b>Please wait...</b>");
+            });
+
+            $(".formdata").delegate("input[type='text']", "focus", function () {
+                activeElmt = $(this);
+                isInput = true;
+            });
+
+            $(document).on('click', '.placeholder li', function (e) { //$(".placeholder li").click(function () {
+
+                if (activeElmt != "") {
+                    if ($(this).closest("ul").hasClass("tagSelector")) {
+                        tableName = "";
+                        if (isInput) {
+                            activeElmt.val(activeElmt.val() + " [field: " + tableName + "." + $(this).text() + "]");
+                        }
+                        else {
+                            CKEDITOR.instances['cphBody_txtTemplateBody'].insertHtml("[field: " + tableName + "." + $(this).text() + "]");
+                        }
+                    }
+                    else if ($(this).closest("ul").hasClass("functionSelector")) {
+                        if (isInput) {
+                            activeElmt.val(activeElmt.val() + " [function: " + $(this).text() + "]");
+                        }
+                        else {
+                            CKEDITOR.instances['cphBody_txtTemplateBody'].insertHtml("[function: " + $(this).text() + "]");
+                        }
+                    }
+                    else if ($(this).closest("ul").hasClass("querySelector")) {
+                        if (!isInput) {
+                            CKEDITOR.instances['cphBody_txtTemplateBody'].insertHtml("[query: " + $(this).text() + "]");
+                        }
+                    }
+                }
+                else {
+                    var html = "";
+
+                    if ($(this).closest("ul").hasClass("tagSelector")) {
+                        tableName = "";
+                        html = "[field: " + tableName + "." + $(this).text() + "] ";
+                    }
+                    else if ($(this).closest("ul").hasClass("functionSelector")) {
+                        html = "[function: " + $(this).text() + "] ";
+                    }
+                    else if ($(this).closest("ul").hasClass("querySelector")) {
+                        html = "[query: " + $(this).text() + "] ";
+                    }
+
+                    var sel = TXTextControl.selection
+                    sel.getBounds(function (e) {
+                        //console.log(e);
+
+                        var bounds = { "start": e.start, "length": 0 }
+                        sel.setBounds(bounds)
+
+                        var encoded = btoa(html);
+                        sel.load(TXTextControl.StreamType.PlainText, encoded);
+                    });
+                }
+            });
+
+
+            $("#tabs-attachment .attachmentOption").each(function () {
+                toggleAttachmentFields($(this).find("input[type = 'checkbox']"));
+            });
+
+            $(".attachmentOption input[type='checkbox']").click(function () {
+                toggleAttachmentFields($(this));
+            });
+        });
+    </script>
+</body>
+</html>

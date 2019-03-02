@@ -1,0 +1,348 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SiteMaster.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .transition-500 {
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+        }
+
+        .transition-1000 {
+            -webkit-transition-duration: 1000ms;
+            transition-duration: 1000ms;
+        }
+
+        [canvas="container"] {
+            background: #FFF;
+            width: 35px;
+            float: left;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header class="header">
+        <div class="header_left">
+            <a href='<%= URLRewrite.BasePath()%>/Default.aspx?UserId=<%= Convert.ToString(Session["UserId"]) %>'>
+                <img src="<%= URLRewrite.BasePath() %>/images/logo.png"></a></div>
+        <div class="navbar_right">
+            Welcome <span class="activeuser">
+                <asp:Literal ID="ltlUserName" runat="server"></asp:Literal></span>
+        </div>
+        <div class="clear">
+        </div>
+    </header>
+        <div class="section">
+            <div class="leftcolum" style="display: none">
+                <ul id="example2" class="leftnav">
+                    <li class="hasChildren" id="liGroups" runat="server">
+                        <div class="accordion-opener">
+                            Users & Groups <i class="fa fa-chevron-right icons"></i>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="panel loading">
+                            <ul class="leftnavInner">
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlinkGroups" runat="server" NavigateUrl="~/Groups.aspx" ToolTip="View all groups">Groups <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="hlinkAddGroup" runat="server" NavigateUrl="~/AddEditGroup.aspx"
+                                        ToolTip="Add new group"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlinkGroupUsers" runat="server" NavigateUrl="~/GroupUsers.aspx"
+                                        ToolTip="View all group users">Group Users <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="hlinkAddGroupUser" runat="server" NavigateUrl="~/AddEditGroupUser.aspx?return=groupuser"
+                                        ToolTip="Add new group user"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="hasChildren" id="liTags" runat="server">
+                        <div class="accordion-opener">
+                            Tags <i class="fa fa-chevron-right icons"></i>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="panel loading">
+                            <ul class="leftnavInner">
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlTagCategories" runat="server" NavigateUrl="~/TagCategory.aspx"
+                                        ToolTip="View all tag categories">
+                                        Tag Categories <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="hlAddTag" runat="server" NavigateUrl="~/AddEditTagCategory.aspx"
+                                        ToolTip="Add new tag category"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlTagSQLs" runat="server" NavigateUrl="~/TagSQL.aspx" ToolTip="View all tag sql queries">Tag SQL <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="hlAddTagSQL" runat="server" NavigateUrl="~/AddEditTagSQL.aspx"
+                                        ToolTip="Add new tag sql query"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="hasChildren" id="liDoctors" runat="server">
+                        <div class="accordion-opener">
+                            Doctors <i class="fa fa-chevron-right icons"></i>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="panel loading">
+                            <ul class="leftnavInner">
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Doctors.aspx" ToolTip="View all doctors">Doctors <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/AddEditDoctor.aspx"
+                                        ToolTip="Add new doctor"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="hasChildren" id="liTemplates" runat="server">
+                        <div class="accordion-opener">
+                            Templates <i class="fa fa-chevron-right icons"></i>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="panel loading">
+                            <ul class="leftnavInner">
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/EmailTemplateCategory.aspx"
+                                        ToolTip="View all email template categories">Template Categories<i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AddEditEmailTemplateCategory.aspx"
+                                        ToolTip="Add new email template category"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlinkMasterTemplates" runat="server" NavigateUrl="~/MasterTemplates.aspx"
+                                        ToolTip="View all master templates">Master Templates <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="hlinkAddMasterTemplates" runat="server" NavigateUrl="~/AddEditMasterTemplates.aspx"
+                                        ToolTip="Add new master template"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlinkEmailTemplates" runat="server" NavigateUrl="~/EmailTemplates.aspx"
+                                        ToolTip="View all email templates">Email Templates <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="hlinkAddEmailTemplates" runat="server" NavigateUrl="~/AddEditEmailTemplate.aspx"
+                                        ToolTip="Add new email template"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlinkDocumentTemplates" runat="server" NavigateUrl="~/DocumentTemplates.aspx"
+                                        ToolTip="View all document templates">Document Templates <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="hlinkAddDocumentTemplates" runat="server" NavigateUrl="~/AddEditDocumentTemplate.aspx"
+                                        ToolTip="Add new document template"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="firstlink">
+                                        <asp:HyperLink ID="hlinkInstructionTemplates" runat="server" NavigateUrl="~/InstructionTemplates.aspx" ToolTip="View all instruction templates">Instruction Templates <i class="fa fa-external-link"></i></asp:HyperLink>
+                                    </span>
+                                    <span class="icons">
+                                        <asp:HyperLink ID="hlinkAddInstructionTemplates" runat="server" NavigateUrl="~/AddEditInstructionTemplate.aspx" ToolTip="Add new instruction template"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                    </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="firstlink">
+                                    <asp:HyperLink ID="hlUserSignatures" runat="server" NavigateUrl="~/UserSignatures.aspx"
+                                        ToolTip="View all user signatures">User Signatures<i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span><span class="icons">
+                                    <asp:HyperLink ID="ldAddUserSignature" runat="server" NavigateUrl="~/AddEditUserSignature.aspx"
+                                        ToolTip="Add new user signature"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <%--commented as ahmz said to remove this tab, but do not remove permanemtly for future reference--%>
+                    <%--<li id="liQueries" runat="server">SQL Queries <span class="icons">
+                    <asp:HyperLink ID="hlinkSQLList" runat="server" NavigateUrl="~/Queries.aspx" ToolTip="View all sql queries"><i class="fa fa-external-link"></i></asp:HyperLink>
+                    <asp:HyperLink ID="hlinkSQLAdd" runat="server" NavigateUrl="~/AddEditQuery.aspx"
+                        ToolTip="Add new sql query"><i class="fa fa-plus-circle"></i></asp:HyperLink>
+                </span></li>--%>
+                    <li class="hasChildren" id="liEmails" runat="server">
+                        <div class="accordion-opener">
+                            Emails <i class="fa fa-chevron-right icons"></i>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="panel loading">
+                            <ul class="leftnavInner">
+                                <li><span class="singlelink">
+                                    <asp:HyperLink ID="hlinkSendMail" runat="server" NavigateUrl="~/Emails/SendEmail.aspx"
+                                        ToolTip="Send new mail">Send New <i class="fa fa-plus-circle"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="singlelink">
+                                    <asp:HyperLink ID="hlink" runat="server" NavigateUrl="~/Emails/SentEmails.aspx" ToolTip="View sent emails">Sent <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="singlelink">
+                                    <asp:HyperLink ID="hlAllSent" runat="server" NavigateUrl="~/Emails/AllSentEmails.aspx"
+                                        ToolTip="View all sent emails">All Sent <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="singlelink">
+                                    <asp:HyperLink ID="hlinkDrafts" runat="server" NavigateUrl="~/Emails/Drafts.aspx"
+                                        ToolTip="View all draft emails">Drafts <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="singlelink">
+                                    <asp:HyperLink ID="hlinkBulkEmail" runat="server" NavigateUrl="~/Emails/SendBulkEmail.aspx"
+                                        ToolTip="Send Bulk Email">Bulk Emails <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                                <li><span class="singlelink">
+                                    <asp:HyperLink ID="hlinkBulkPrint" runat="server" NavigateUrl="~/Emails/SendBulkPrint.aspx"
+                                        ToolTip="Send Bulk Print">Bulk Print <i class="fa fa-external-link"></i></asp:HyperLink>
+                                </span>
+                                    <div class="clr">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div canvas="container">
+                <span id="open-left">
+                    <img src="<%= URLRewrite.BasePath()%>/images/menu-alt-32.png" /></span>
+            </div>
+            <div class="rightcolum">
+                <asp:ContentPlaceHolder ID="cphBody" runat="server">
+                </asp:ContentPlaceHolder>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="<%= URLRewrite.BasePath()%>/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="<%= URLRewrite.BasePath()%>/js/jquery.accordion.2.0.js"></script>
+
+        <%--<script src="<%= URLRewrite.BasePath()%>/js/slidebars-extended.js" type="text/javascript"></script>
+    <script src="<%= URLRewrite.BasePath()%>/js/slidebars.js" type="text/javascript"></script>--%>
+
+        <%--<script type="text/javascript" src="<%= URLRewrite.BasePath()%>/js/MaxLength.min.js"></script>--%>
+        <script type="text/javascript">
+            if ($('.message').is(':visible')) {
+                $('.message').fadeOut(5000);
+            }
+
+            $('.leftnav').accordion({
+                canToggle: true
+            });
+
+            var val;
+            $('.leftnav li.hasChildren').click(function () {
+                val = $(this).index();
+            });
+
+            val = parseInt(val) > 0 ? parseInt(val) : -20;
+            $('.accordion-opener').eq(val).click();
+
+            $(".loading").removeClass("loading");
+
+            // activate tab based on currenlty active page.
+            var currurl = window.location.pathname;
+            var index = currurl.lastIndexOf("/") + 1;
+            var pagename = currurl.substr(index);
+            $('#example2').children("li").each(function () {
+                $(this).find(".leftnavInner").find("a").each(function () {
+                    if ($(this).attr("href").contains(pagename)) {
+                        $(this).closest("li").parents().eq(2).addClass("active").css("background-color", "#673e89");
+                        $(this).closest("li").closest("div").css({ "visibility": "visible", "display": "block" });
+
+                    }
+                });
+            });
+
+        </script>
+        <asp:ContentPlaceHolder ID="cphScript" runat="server">
+        </asp:ContentPlaceHolder>
+        <script type="text/javascript">
+            $(function () {
+                setInterval(KeepSessionAlive, 5 * 60000);
+                //setInterval(KeepSessionAlive, 10000);
+            });
+
+            function KeepSessionAlive() {
+                $.post("<%= URLRewrite.BasePath()%>/Handlers/KeepSessionAlive.ashx", null, function () {
+                //$("#result").append("<p>Session is alive and kicking!<p/>");
+            });
+        }
+        </script>
+        <script>
+            (function ($) {
+                if ($(".leftcolum").is(":visible")) {
+                    $(".rightcolum").width('81%').css('margin-left', '18%');
+                }
+                else {
+                    $(".rightcolum").width('98%').css('margin-left', '1%');
+                }
+
+                $('#open-left').on('click', function () {
+                    $(".leftcolum").toggle();
+                    if ($(".leftcolum").is(":visible")) {
+                        $(".rightcolum").width('81%').css('margin-left', '18%');
+                    }
+                    else {
+                        $(".rightcolum").width('98%').css('margin-left', '1%');
+                    }
+                    return false;
+                });
+
+            })(jQuery);
+        </script>
+    </form>
+</body>
+</html>
